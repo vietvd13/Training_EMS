@@ -3,7 +3,7 @@
     <h1>
       {{ $t('views.administrator.message') }}
     </h1>
-    <p>Test Github</p>
+    <p>Test Github Amend</p>
   </div>
 </template>
 
