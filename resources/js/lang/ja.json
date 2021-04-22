@@ -1,0 +1,100 @@
+{
+    "message": "日本人",
+    "routes": {
+        "login": "ログインする",
+        "page404": "ページが見つかりません",
+        "dashboard": "ダッシュボード",
+        "administrator": "管理者",
+        "havepermission": "する権利を持っている",
+        "nothavepermission": "権利はありません",
+        "user": "ユーザー"
+    },
+    "navbar": {
+        "settings": "設定",
+        "logout": "ログアウト",
+        "languages": {
+            "en": "英語",
+            "ja": "日本人"
+        },
+        "usersettings": "ユーザー設定"
+    },
+    "notiChangeLang": {
+        "title": "言語を変えてください",
+        "content": "成功した言語変更日本語"
+    },
+    "views": {
+        "login": {
+            "welcome": "お帰りなさい!",
+            "email": "メール",
+            "password": "パスワード",
+            "showpassword": "パスワードを表示",
+            "login": "パスワードを表示",
+            "changelang": "言語を変えてください"
+        },
+        "administrator": {
+            "message": "管理者 1"
+        },
+        "administrator2": {
+            "message": "管理者 2 - 権限を確認する"
+        },
+        "user": {
+            "message": "ユーザー"
+        },
+        "page404": {
+            "message": "404-ページが存在しません"
+        }
+    },
+    "profile": {
+        "toast": {
+            "editAvatar":{
+                "title":"Edit Avatar ja",
+                "content_successful": "Edit avatar successfully ja",
+                "content_unsuccessful": "Edit avatar Unsuccessfully ja"
+            },
+            "editInformation":{
+                "title":"Edit Information ja",
+                "content_successful": "Edit successfully ja",
+                "content_unsuccessful":"Edit unsuccessfully ja"
+            },
+            "editPassword": {
+                "title":"Edit Password ja",
+                "content_successful": "Edit successfully ja",
+                "content_unsuccessful":"Edit unsuccessfully ja"
+            }
+        },
+        "validation":{
+            "email":"Email much required with true form ja",
+            "name_at_least_2_letters":"Enter at least 2 letters ja",
+            "password_more_than_5_characters":"Password more than 5 character ja",
+            "password_mismatch": "Password mismatch ja"
+        },
+        "form":{
+            "label_mail":"Email address ja:",
+            "placeholder_mail":"Enter email ja",
+            "label_name":"Your name ja:",
+            "placeholder_name":"Enter name ja",
+            "currentPassword":"Current Password ja :",
+            "placeholder_currentPassword":"Enter Current Password ja",
+            "newPassword":"New Password ja :",
+            "placeholder_newPassword":"Enter New Password ja",
+            "confirmPassword":"Confirm New Password ja:",
+            "placeholder_confirmPassword":"Confirm Current Password ja"
+        },
+        "uploadAvatar": {
+            "title": "Change Avatar ja",
+            "btn_Upload":"Upload ja",
+            "btn_ok":"OK ja",
+            "btn_cancel":"Cancel ja"
+        },
+        "edit_password": " Edit ja",
+        "close_edit_password": " Close ja",
+        "change_password":"Change Password ja",
+        "information": "Information ja",
+        "title": "Profile ja",
+        "uploadImage": "Upload Image ja",
+        "editAvata": "Edit Avatar ja",
+        "cancel": "Cancel ja",
+        "confirm": "Confirm ja",
+        "submit" : "Submit ja"
+    }
+}

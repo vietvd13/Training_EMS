@@ -1,0 +1,100 @@
+{
+    "message": "English",
+    "routes": {
+        "login": "Login",
+        "page404": "Page Not Found",
+        "dashboard": "Dashboard",
+        "administrator": "Administrator",
+        "havepermission": "Have permission",
+        "nothavepermission": "Not have permission",
+        "user": "User"
+    },
+    "navbar": {
+        "settings": "Settings",
+        "logout": "Logout",
+        "languages": {
+            "en": "English",
+            "ja": "Japanese"
+        },
+        "usersettings": "User settings"
+    },
+    "notiChangeLang": {
+        "title": "Change language",
+        "content": "Successful change language English"
+    },
+    "views": {
+        "login": {
+            "welcome": "Welcome Back!",
+            "email": "Email",
+            "password": "Password",
+            "showpassword": "Show password",
+            "login": "Login",
+            "changelang": "Change language"
+        },
+        "administrator": {
+            "message": "Administrator 1"
+        },
+        "administrator2": {
+            "message": "Administrator 2 - Test permission"
+        },
+        "user": {
+            "message": "User"
+        },
+        "page404": {
+            "message": "404 - Page Not Found"
+        }
+    },
+    "profile": {
+        "toast": {
+            "editAvatar":{
+                "title":"Edit Avatar en",
+                "content_successful": "Edit avatar successfully en",
+                "content_unsuccessful": "Edit avatar Unsuccessfully en"
+            },
+            "editInformation":{
+                "title":"Edit Information en",
+                "content_successful": "Edit successfully en",
+                "content_unsuccessful":"Edit unsuccessfully en"
+            },
+            "editPassword": {
+                "title":"Edit Password en",
+                "content_successful": "Edit successfully en",
+                "content_unsuccessful":"Edit unsuccessfully en"
+            }
+        },
+        "validation":{
+            "email":"Email much required with true form en",
+            "name_at_least_2_letters":"Enter at least 2 letters en",
+            "password_more_than_5_characters":"Password more than 5 character en",
+            "password_mismatch": "Password mismatch en"
+        },
+        "form":{
+            "label_mail":"Email address en:",
+            "placeholder_mail":"Enter email en",
+            "label_name":"Your name en:",
+            "placeholder_name":"Enter name en",
+            "currentPassword":"Current Password en :",
+            "placeholder_currentPassword":"Enter Current Password en",
+            "newPassword":"New Password en :",
+            "placeholder_newPassword":"Enter New Password en",
+            "confirmPassword":"Confirm New Password en:",
+            "placeholder_confirmPassword":"Confirm Current Password en"
+        },
+        "uploadAvatar": {
+            "title": "Change Avatar en",
+            "btn_Upload":"Upload en",
+            "btn_ok":"OK en",
+            "btn_cancel":"Cancel en"
+        },
+        "edit_password": " Edit en",
+        "close_edit_password": " Close en",
+        "change_password":"Change Password en",
+        "information": "Information en",
+        "title": "Profile en",
+        "uploadImage": "Upload Image en",
+        "editAvata": "Edit Avatar en",
+        "cancel": "Cancel en",
+        "confirm": "Confirm en",
+        "submit" : "Submit en"
+    }
+}

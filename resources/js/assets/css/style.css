@@ -1,0 +1,60 @@
+body{
+    background-color: #EBEFF9;
+}
+
+*:focus{
+    -webkit-box-shadow: none!important;
+    box-shadow: none!important;
+    outline: 0;
+}
+
+.card {
+    margin-bottom: 12px;
+    border: none;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    -webkit-box-shadow: 0 0 37px rgba(8,21,66,0.05);
+    box-shadow: 0 0 37px rgba(8,21,66,0.05);
+    border: none !important;
+    border-radius: 10px !important;
+}
+
+.card .card-body .media-body{
+    text-align: left;
+}
+
+.card .media i{
+    font-size: 60px;
+}
+
+@media(max-width: 768px){
+    .card {
+        margin-bottom: 15px;
+    }
+}
+
+/* Mode scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+  
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+
