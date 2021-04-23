@@ -115,8 +115,14 @@ export default {
       }
     });
   },
+  mounted() {
+    const currentRoute = this.$route.meta.title;
+
+    this.handleActiveClass(this.$t(currentRoute));
+  },
   methods: {
     handleActiveClass(text) {
+      console.log('Run!');
       const listRoutes = this.$refs.ListRoutes;
       const listTextRoute = [];
       const lengthRoute = this.$refs.ListRoutes.length;
