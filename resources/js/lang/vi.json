@@ -1,0 +1,87 @@
+{
+    "message": "Tiếng Việt",
+    "routes": {
+        "login": "Đăng nhập",
+        "page404": "Trang không tồn tại",
+        "dashboard": "Trình điều khiển"
+    },
+    "navbar": {
+        "settings": "Cài đặt",
+        "logout": "Đăng xuất",
+        "languages": {
+            "en": "Tiếng Anh",
+            "vi": "Tiếng Việt"
+        },
+        "usersettings": "Cài đặt người dùng"
+    },
+    "notiChangeLang": {
+        "title": "Thay đổi ngôn ngữ",
+        "content": "Thay đổi ngôn ngữ thành công"
+    },
+    "views": {
+        "login": {
+            "welcome": "Chào mừng trở lại!",
+            "email": "Email",
+            "password": "Mật khẩu",
+            "showpassword": "Hiển thị mật khẩu",
+            "login": "Đăng nhập",
+            "changelang": "Thay đổi ngôn ngữ"
+        },
+        "page404": {
+            "message": "404 - Trang không tồn tại"
+        }
+    },
+    "profile": {
+        "toast": {
+            "editAvatar":{
+                "title":"Chỉnh sửa Avatar",
+                "content_successful": "Thay đổi avatar thành công",
+                "content_unsuccessful": "Thay đổi avatar thất bại"
+            },
+            "editInformation":{
+                "title":"Chỉnh sửa thông tin",
+                "content_successful": "Chỉnh sửa thành công",
+                "content_unsuccessful":"Chỉnh sửa thất bại"
+            },
+            "editPassword": {
+                "title":"Chỉnh sửa mật khẩu",
+                "content_successful": "Chỉnh sửa thành công",
+                "content_unsuccessful":"Chỉnh sửa thất bại"
+            }
+        },
+        "validation":{
+            "email":"Email much required with true form en",
+            "name_at_least_2_letters":"Tên cần ít nhất 2 ký tự",
+            "password_more_than_5_characters":"Mật khẩu cần ít nhất 5 ký tự",
+            "password_mismatch": "Mật khẩu không trùng nhau"
+        },
+        "form":{
+            "label_mail":"Địa chỉ Email:",
+            "placeholder_mail":"Nhập Email",
+            "label_name":"Họ và Tên:",
+            "placeholder_name":"Nhập Họ và Tên",
+            "currentPassword":"Mật khẩu hiện tại:",
+            "placeholder_currentPassword":"Nhập mật khẩu hiện tại",
+            "newPassword":"Mật khẩu mới:",
+            "placeholder_newPassword":"Nhập mật khẩu mới",
+            "confirmPassword":"Xác nhận mật khẩu mới:",
+            "placeholder_confirmPassword":"Nhập mật khẩu mới"
+        },
+        "uploadAvatar": {
+            "title": "Thay đổi ảnh đại diện",
+            "btn_Upload":"Tải lên",
+            "btn_ok":"Chấp nhận",
+            "btn_cancel":"Huỷ bỏ"
+        },
+        "edit_password": " Chỉnh sửa",
+        "close_edit_password": " Đóng",
+        "change_password":"Thay đổi mật khẩu",
+        "information": "Thông tin",
+        "title": "Hồ sơ người dùng",
+        "uploadImage": "Tải ảnh đại diện",
+        "editAvata": "Thay đổi ảnh đại diện",
+        "cancel": "Huỷ bỏ",
+        "confirm": "Chấp nhận",
+        "submit" : "Xác nhận"
+    }
+}

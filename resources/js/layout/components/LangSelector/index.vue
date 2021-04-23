@@ -9,8 +9,8 @@
     <b-dropdown-item :disabled="language==='en'" @click="handleSetLanguage('en')">
       {{ $t('navbar.languages.en') }}
     </b-dropdown-item>
-    <b-dropdown-item :disabled="language==='ja'" @click="handleSetLanguage('ja')">
-      {{ $t('navbar.languages.ja') }}
+    <b-dropdown-item :disabled="language==='vi'" @click="handleSetLanguage('vi')">
+      {{ $t('navbar.languages.vi') }}
     </b-dropdown-item>
   </b-dropdown>
   <!-- End Dropdown -->

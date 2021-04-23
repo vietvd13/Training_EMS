@@ -5,8 +5,6 @@ Vue.use(VueRouter);
 
 import Layout from '../layout';
 
-import adminRoutes from './modules/admin';
-import userRoutes from './modules/user';
 import errorRouter from './modules/ErrorPage';
 
 export const constantRoutes = [
@@ -79,8 +77,6 @@ export const constantRoutes = [
 ];
 
 export const asyncRoutes = [
-  adminRoutes,
-  userRoutes,
   errorRouter,
   {
     path: '*',
