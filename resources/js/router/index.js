@@ -45,7 +45,7 @@ export const constantRoutes = [
     redirect: '/dashboard',
     meta: {
       title: 'routes.dashboard',
-      icon: 'icofont-dashboard-web',
+      icon: 'icofont-university',
     },
   },
   {
@@ -60,7 +60,7 @@ export const constantRoutes = [
         component: () => import('@/views/Dashboard/index'),
         meta: {
           title: 'routes.dashboard',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-university',
         },
       },
     ],
@@ -77,7 +77,7 @@ export const constantRoutes = [
         component: () => import('@/views/Dashboard/index'),
         meta: {
           title: 'routes.dashboard',
-          icon: 'icofont-dashboard-webd',
+          icon: 'icofont-university',
         },
       },
     ],
@@ -92,7 +92,7 @@ export const constantRoutes = [
         component: () => import('@/views/ManagerUser/index'),
         meta: {
           title: 'routes.manager-user',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-users-social',
         },
       },
     ],
@@ -107,7 +107,7 @@ export const constantRoutes = [
         component: () => import('@/views/ManagerCourse/index'),
         meta: {
           title: 'routes.manager-course',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-electron',
         },
       },
     ],
@@ -122,7 +122,7 @@ export const constantRoutes = [
         component: () => import('@/views/ManagerClass/index'),
         meta: {
           title: 'routes.manager-class',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-school-bag',
         },
       },
     ],
@@ -137,7 +137,7 @@ export const constantRoutes = [
         component: () => import('@/views/TeacherScheduled/index'),
         meta: {
           title: 'routes.teacher-scheduled',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-meeting-add',
         },
       },
     ],
@@ -152,7 +152,7 @@ export const constantRoutes = [
         component: () => import('@/views/ManagerQuiz/index'),
         meta: {
           title: 'routes.manager-quiz',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-paper',
         },
       },
     ],
@@ -167,7 +167,7 @@ export const constantRoutes = [
         component: () => import('@/views/ManagerTest/index'),
         meta: {
           title: 'routes.manager-test',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-prescription',
         },
       },
     ],
@@ -182,7 +182,7 @@ export const constantRoutes = [
         component: () => import('@/views/ViewResult/index'),
         meta: {
           title: 'routes.view-result',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-chart-pie',
         },
       },
     ],
@@ -198,7 +198,7 @@ export const constantRoutes = [
         component: () => import('@/views/ChooseClass/index'),
         meta: {
           title: 'routes.choose-class',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-instrument',
         },
       },
     ],
@@ -214,7 +214,7 @@ export const constantRoutes = [
         component: () => import('@/views/ChooseCourse/index'),
         meta: {
           title: 'routes.choose-course',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-instrument',
         },
       },
     ],
@@ -230,7 +230,7 @@ export const constantRoutes = [
         component: () => import('@/views/ChooseTest/index'),
         meta: {
           title: 'routes.choose-test',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-instrument',
         },
       },
     ],
@@ -246,7 +246,7 @@ export const constantRoutes = [
         component: () => import('@/views/DoTest/index'),
         meta: {
           title: 'routes.do-test',
-          icon: 'icofont-dashboard-web',
+          icon: 'icofont-instrument',
         },
       },
     ],
