@@ -4,7 +4,17 @@
         "login": "Đăng nhập",
         "page404": "Trang không tồn tại",
         "dashboard": "Trình điều khiển",
-        "profile": "Hồ sơ"
+        "profile": "Hồ sơ",
+        "manager-user": "Quản lý người dùng",
+        "manager-course": "Quản lý môn học",
+        "manager-class": "Quản lý lớp học",
+        "teacher-scheduled": "Lịch trình của giáo viên",
+        "manager-quiz": "Quản lý câu hỏi",
+        "manager-test": "Quản lý bài kiểm tra",
+        "view-result": "Kết quả kiểm tra",
+        "choose-class": "Lớp học",
+        "choose-test": "Bài kiểm tra",
+        "do-test": "Làm bài kiểm tra"
     },
     "navbar": {
         "settings": "Cài đặt",

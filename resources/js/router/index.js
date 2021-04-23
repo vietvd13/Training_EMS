@@ -18,7 +18,6 @@ export const constantRoutes = [
         path: '/redirect/:path*',
         component: () => import('@/views/Redirect/index'),
         name: 'redirect',
-        roles: ['admin'],
       },
       {
         path: '/dashboard/profile',
@@ -47,7 +46,6 @@ export const constantRoutes = [
     meta: {
       title: 'routes.dashboard',
       icon: 'icofont-dashboard-web',
-      permissions: ['view menu administrator'],
     },
   },
   {
@@ -62,8 +60,7 @@ export const constantRoutes = [
         component: () => import('@/views/Dashboard/index'),
         meta: {
           title: 'routes.dashboard',
-          icon: 'dashboard',
-          permissions: ['view menu user'],
+          icon: 'icofont-dashboard-web',
         },
       },
     ],
@@ -80,8 +77,160 @@ export const constantRoutes = [
         component: () => import('@/views/Dashboard/index'),
         meta: {
           title: 'routes.dashboard',
-          icon: 'dashboard',
-          permissions: ['view menu user'],
+          icon: 'icofont-dashboard-webd',
+        },
+      },
+    ],
+  },
+  {
+    path: '/manager-user',
+    redirect: 'manager-user/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ManagerUser/index'),
+        meta: {
+          title: 'routes.manager-user',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/manager-course',
+    redirect: 'manager-course/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ManagerCourse/index'),
+        meta: {
+          title: 'routes.manager-course',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/manager-class',
+    redirect: 'manager-class/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ManagerClass/index'),
+        meta: {
+          title: 'routes.manager-class',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/teacher-scheduled',
+    redirect: 'teacher-scheduled/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/TeacherScheduled/index'),
+        meta: {
+          title: 'routes.teacher-scheduled',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/manager-quiz',
+    redirect: 'manager-quizz/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ManagerQuiz/index'),
+        meta: {
+          title: 'routes.manager-quiz',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/manager-test',
+    redirect: 'manager-test/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ManagerTest/index'),
+        meta: {
+          title: 'routes.manager-test',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/view-result',
+    redirect: 'view-result/index',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ViewResult/index'),
+        meta: {
+          title: 'routes.view-result',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/choose-class',
+    redirect: 'choose-class/index',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ChooseClass/index'),
+        meta: {
+          title: 'routes.choose-class',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/choose-test',
+    redirect: 'choose-test/index',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ChooseTest/index'),
+        meta: {
+          title: 'routes.choose-test',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
+    path: '/do-test',
+    redirect: 'do-test/index',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/DoTest/index'),
+        meta: {
+          title: 'routes.do-test',
+          icon: 'icofont-dashboard-web',
         },
       },
     ],

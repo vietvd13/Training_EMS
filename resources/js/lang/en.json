@@ -4,7 +4,17 @@
         "login": "Login",
         "page404": "Page Not Found",
         "dashboard": "Dashboard",
-        "profile": "Profile"
+        "profile": "Profile",
+        "manager-user": "Manager User",
+        "manager-course": "Manager Course",
+        "manager-class": "Manager Class",
+        "teacher-scheduled": "Teacher Scheduled",
+        "manager-quiz": "Manager Quiz",
+        "manager-test": "Manager Test",
+        "view-result": "View Result",
+        "choose-class": "Choose Class",
+        "choose-test": "Choose Test",
+        "do-test": "Do Test"
     },
     "navbar": {
         "settings": "Settings",
