@@ -1,6 +1,6 @@
 <template>
   <div>
-    <li v-for="(item, index) in items" :key="index">
+    <li v-for="(item, index) in items" :key="index" ref="ListRoutes" @click="handleActiveClass($t(item.name))">
       <div v-if="item.hasChildren == false">
         <router-link :to="item.path">
           <i :class="item.icon" />
@@ -105,6 +105,45 @@ export default {
       }
     });
   },
+  mounted() {
+    const currentRoute = this.$route.meta.title;
+
+    this.handleActiveClass(this.$t(currentRoute));
+  },
+  methods: {
+    handleActiveClass(text) {
+      const listRoutes = this.$refs.ListRoutes;
+      const listTextRoute = [];
+      const lengthRoute = this.$refs.ListRoutes.length;
+      text = ' ' + text;
+
+      for (let indexRoute = 0; indexRoute < lengthRoute; indexRoute++) {
+        listTextRoute.push(listRoutes[indexRoute].innerText);
+      }
+
+      // Remove class active
+      for (let indexRoute = 0; indexRoute < lengthRoute; indexRoute++) {
+        const CLASS_ACTIVE = 'active';
+
+        const el = listRoutes[indexRoute].classList.value;
+
+        const isExit = el.includes(CLASS_ACTIVE);
+
+        if (isExit) {
+          this.$refs.ListRoutes[indexRoute].classList.remove('active');
+        }
+      }
+
+      // Add class active
+      for (let indexRoute = 0; indexRoute < lengthRoute; indexRoute++) {
+        if (listTextRoute[indexRoute] === text) {
+          this.$refs.ListRoutes[indexRoute].classList.add('active');
+
+          break;
+        }
+      }
+    },
+  },
 };
 </script>
 
@@ -136,6 +175,7 @@ ul li  {
 
 ul li a > i {
     padding-right: 10px;
+    font-size: 20px;
 }
 
 ul.childrenRoute {

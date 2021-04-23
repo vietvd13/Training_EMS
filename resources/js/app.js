@@ -9,6 +9,8 @@ import store from '@/store';
 import '@/permission';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 
+import '@/style/index.scss';
+
 import './assets/css/icofont.min.css';
 import './assets/css/style.css';
 import 'bootstrap/dist/css/bootstrap.css';

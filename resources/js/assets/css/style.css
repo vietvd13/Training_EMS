@@ -1,34 +1,41 @@
-body{
-    background-color: #EBEFF9;
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+body {
+    background-color: #ebeff9 !important;
+    font-family: "Roboto", sans-serif;
 }
 
-*:focus{
-    -webkit-box-shadow: none!important;
-    box-shadow: none!important;
+*:focus {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
     outline: 0;
 }
 
 .card {
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     border: none;
     -webkit-transition: all 0.3s ease;
     transition: all 0.3s ease;
     letter-spacing: 0.5px;
-    -webkit-box-shadow: 0 0 37px rgba(8,21,66,0.05);
-    box-shadow: 0 0 37px rgba(8,21,66,0.05);
+    -webkit-box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
+    box-shadow: 0 0 37px rgba(8, 21, 66, 0.05);
     border: none !important;
     border-radius: 10px !important;
 }
 
-.card .card-body .media-body{
+.card .card-body .media-body {
     text-align: left;
 }
 
-.card .media i{
+.card > .card-body {
+    padding: 10px;
+}
+
+.card .media i {
     font-size: 60px;
 }
 
-@media(max-width: 768px){
+@media (max-width: 768px) {
     .card {
         margin-bottom: 15px;
     }
@@ -41,10 +48,10 @@ body{
     width: 10px;
     height: 10px;
 }
-  
+
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+    background: #f1f1f1;
 }
 
 /* Handle */
@@ -54,7 +61,5 @@ body{
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: #555;
 }
-
-
