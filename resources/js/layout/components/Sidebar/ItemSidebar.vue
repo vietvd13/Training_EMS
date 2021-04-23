@@ -122,7 +122,6 @@ export default {
   },
   methods: {
     handleActiveClass(text) {
-      console.log('Run!');
       const listRoutes = this.$refs.ListRoutes;
       const listTextRoute = [];
       const lengthRoute = this.$refs.ListRoutes.length;
