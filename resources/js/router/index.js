@@ -25,7 +25,7 @@ export const constantRoutes = [
         component: () => import('@/views/Profile/index'),
         name: 'Profile',
         meta: {
-          title: 'profile.title',
+          title: 'routes.profile',
         },
         hidden: true,
       },
@@ -49,6 +49,24 @@ export const constantRoutes = [
       icon: 'icofont-dashboard-web',
       permissions: ['view menu administrator'],
     },
+  },
+  {
+    path: '/dashboard',
+    redirect: 'dashboard/index',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        alias: '/dashboard',
+        component: () => import('@/views/Dashboard/index'),
+        meta: {
+          title: 'routes.dashboard',
+          icon: 'dashboard',
+          permissions: ['view menu user'],
+        },
+      },
+    ],
   },
   {
     path: '/dashboard',
