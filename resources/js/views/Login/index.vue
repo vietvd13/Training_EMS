@@ -174,7 +174,7 @@ p {
 .container-fluid {
   padding: 0px;
   position: absolute;
-  top: 150px;
+  top: 20%;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -335,6 +335,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   max-width: 1170px;
+  margin: 0 auto;
 }
 @media screen and (max-width: 575px) {
   .container {
@@ -355,6 +356,7 @@ h1, h2, h3, h4, h5, h6 {
         position: absolute;
         top: 30px;
         margin-bottom: 20px;
+        overflow: hidden;
     }
 }
 
@@ -447,6 +449,12 @@ a {
 
 .background {
   overflow: hidden;
+  /* Full height */
   height: 100vh;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 </style>
