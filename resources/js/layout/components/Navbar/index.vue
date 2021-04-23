@@ -26,7 +26,7 @@
             <b-icon icon="person-circle" font-scale="1.0" class="icon-user" /><span>{{ $t('navbar.usersettings') }}</span>
           </template>
           <b-dropdown-item class="text" :disabled="routePath==='/dashboard/profile'" @click="$router.push('/dashboard/profile')">
-            {{ $t('profile.title') }}
+            {{ $t('routes.profile') }}
           </b-dropdown-item>
           <b-dropdown-item class="text" @click="logout">{{ $t('navbar.logout') }}</b-dropdown-item>
         </b-dropdown>
