@@ -28,7 +28,10 @@
             "changelang": "Change language"
         },
         "page404": {
-            "message": "404 - Page Not Found"
+            "oops": "Oops!",
+            "message": "The bodyguard said that you can't enter this page...",
+            "detail": "Please check that the URL you entered is correct. Please click the button below to return to the homepage or send an error report.",
+            "back_to_home": "Back to Home"
         }
     },
     "profile": {
