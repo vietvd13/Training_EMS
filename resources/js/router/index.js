@@ -204,6 +204,22 @@ export const constantRoutes = [
     ],
   },
   {
+    path: '/choose-course',
+    redirect: 'choose-course/index',
+    hidden: true,
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/ChooseCourse/index'),
+        meta: {
+          title: 'routes.choose-course',
+          icon: 'icofont-dashboard-web',
+        },
+      },
+    ],
+  },
+  {
     path: '/choose-test',
     redirect: 'choose-test/index',
     hidden: true,
