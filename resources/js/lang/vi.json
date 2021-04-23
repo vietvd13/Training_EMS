@@ -28,7 +28,10 @@
             "changelang": "Thay đổi ngôn ngữ"
         },
         "page404": {
-            "message": "404 - Trang không tồn tại"
+            "oops": "Oops!",
+            "message": "Người vệ sĩ nói rằng bạn không thể vào trang này ...",
+            "detail": "Vui lòng kiểm tra xem URL bạn đã nhập có đúng không. Vui lòng nhấp vào nút bên dưới để quay lại trang chủ hoặc gửi báo cáo lỗi.",
+            "back_to_home": "Trang chủ"
         }
     },
     "profile": {
