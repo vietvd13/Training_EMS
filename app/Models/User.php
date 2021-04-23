@@ -42,6 +42,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+        'pivot'
     ];
 
     /**
@@ -62,6 +63,10 @@ class User extends Authenticatable
     /**
      * @inheritdoc
      */
+    public function classes() {
+        return $this->belongsToMany('App\Models\Classs','class_trainee','trainee_id','class_id');
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
