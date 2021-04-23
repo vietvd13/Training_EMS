@@ -1,6 +1,6 @@
 <template>
   <div>
-    <li v-for="(item, index) in items" :key="index" ref="ListRoutes" @click="handleActiveClass($t(item.name))">
+    <li v-for="(item, index) in items" :key="index" ref="ListRoutes">
       <div v-if="item.hasChildren == false">
         <router-link :to="item.path">
           <i :class="item.icon" />
@@ -47,6 +47,16 @@ export default {
   computed: {
     routes() {
       return this.$store.state.permission.routes;
+    },
+    isRouteChange() {
+      return this.$route.meta.title;
+    },
+  },
+  watch: {
+    isRouteChange() {
+      const currentRoute = this.$route.meta.title;
+
+      this.handleActiveClass(this.$t(currentRoute));
     },
   },
   created() {
@@ -104,11 +114,6 @@ export default {
         }
       }
     });
-  },
-  mounted() {
-    const currentRoute = this.$route.meta.title;
-
-    this.handleActiveClass(this.$t(currentRoute));
   },
   methods: {
     handleActiveClass(text) {
