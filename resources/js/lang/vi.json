@@ -13,13 +13,14 @@
         "manager-test": "Quản lý bài kiểm tra",
         "view-result": "Kết quả kiểm tra",
         "choose-class": "Lớp học",
+        "choose-course": "Môn học",
         "choose-test": "Bài kiểm tra",
         "do-test": "Làm bài kiểm tra"
-    },
+    },          
     "navbar": {
         "settings": "Cài đặt",
         "logout": "Đăng xuất",
-        "languages": {
+        "languages": { 
             "en": "Tiếng Anh",
             "vi": "Tiếng Việt"
         },
