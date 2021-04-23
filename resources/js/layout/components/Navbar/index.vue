@@ -28,8 +28,8 @@
           <b-dropdown-item class="text" :disabled="routePath==='/dashboard/profile'" @click="$router.push('/dashboard/profile')">
             {{ $t('profile.title') }}
           </b-dropdown-item>
-          <b-dropdown-item class="text">Settings</b-dropdown-item>
-          <b-dropdown-item class="text" @click="logout">Logout</b-dropdown-item>
+          <b-dropdown-item class="text">{{ $t('navbar.settings') }}</b-dropdown-item>
+          <b-dropdown-item class="text" @click="logout">{{ $t('navbar.logout') }}</b-dropdown-item>
         </b-dropdown>
       </b-navbar-nav>
     </b-collapse>

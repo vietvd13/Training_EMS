@@ -3,18 +3,14 @@
     "routes": {
         "login": "Login",
         "page404": "Page Not Found",
-        "dashboard": "Dashboard",
-        "administrator": "Administrator",
-        "havepermission": "Have permission",
-        "nothavepermission": "Not have permission",
-        "user": "User"
+        "dashboard": "Dashboard"
     },
     "navbar": {
         "settings": "Settings",
         "logout": "Logout",
         "languages": {
             "en": "English",
-            "ja": "Japanese"
+            "vi": "Vietnamese"
         },
         "usersettings": "User settings"
     },
@@ -30,15 +26,6 @@
             "showpassword": "Show password",
             "login": "Login",
             "changelang": "Change language"
-        },
-        "administrator": {
-            "message": "Administrator 1"
-        },
-        "administrator2": {
-            "message": "Administrator 2 - Test permission"
-        },
-        "user": {
-            "message": "User"
         },
         "page404": {
             "message": "404 - Page Not Found"
