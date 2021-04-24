@@ -19,8 +19,9 @@ use Illuminate\Support\Str;
 final class Acl
 {
     const ROLE_ADMIN = 'admin'; // this role will have all permission
-    const ROLE_USER = 'user'; //this rola will have permission about answer survey
-    const PERMISSION_PERMISSION_MANAGE = "permission manage";
+    const ROLE_STAFF = 'staff';
+    const ROLE_TRAINER = 'trainer'; //this rola will have permission about answer survey
+    const ROLE_TRAINEE = 'trainee';
     public static function roles(): array
     {
         try {

@@ -23,15 +23,32 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@laravue.dev',
             'password' => Hash::make('laravue'),
         ]);
-        $user = User::create([
-            'name' => 'User',
-            'email' => 'user@laravue.dev',
+
+        $staff = User::create([
+            'name' => 'staff',
+            'email' => 'staff@laravue.dev',
+            'password' => Hash::make('laravue'),
+        ]);
+
+        $trainer = User::create([
+            'name' => 'trainer',
+            'email' => 'trainer@laravue.dev',
+            'password' => Hash::make('laravue'),
+        ]);
+        
+        $trainee = User::create([
+            'name' => 'trainee',
+            'email' => 'trainee@laravue.dev',
             'password' => Hash::make('laravue'),
         ]);
 
         $adminRole = Role::findByName(\App\Acl::ROLE_ADMIN);
-        $userRole = Role::findByName(\App\Acl::ROLE_USER);
+        $staffRole = Role::findByName(\App\Acl::ROLE_STAFF);
+        $trainerRole = Role::findByName(\App\Acl::ROLE_TRAINER);
+        $traineeRole = Role::findByName(\App\Acl::ROLE_TRAINEE);
         $admin->syncRoles($adminRole);
-        $user->syncRoles($userRole);
+        $staff->syncRoles($staffRole);
+        $trainer->syncRoles($trainerRole);
+        $trainee->syncRoles($traineeRole);
     }
 }

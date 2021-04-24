@@ -18,6 +18,6 @@ class permission extends \Spatie\Permission\Models\Permission
      */
     public function scopeAllowed($query)
     {
-        return $query->where('name', '!=', Acl::PERMISSION_PERMISSION_MANAGE);
+        // return $query->where('name', '!=', Acl::PERMISSION_PERMISSION_MANAGE);
     }
 }

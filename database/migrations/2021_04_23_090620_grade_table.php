@@ -18,7 +18,7 @@ class GradeTable extends Migration
             $table->bigInteger('trainne_id')->unsigned();
             $table->bigInteger("test_id")->unsigned();
             $table->bigInteger('class_id')->unsigned();
-            $table->bigInteger('course_id')->unsigned();
+            $table->integer('grade');
 
             $table->foreign('trainne_id')
                 ->references('id')
