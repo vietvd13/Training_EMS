@@ -12,7 +12,7 @@ class Question extends Model
         "number_of_answer",	
         "is_multiple_choice"
     ];
-
+    public $timestamps = false;
     protected $hidden = ['pivot'];
 
     public function test() {

@@ -3,170 +3,78 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\User;
+use App\Models\Role;
 use App\Http\Resources\UserResource;
 
 use App\Http\Controllers\Controller;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
-use Validator;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Foundation\Exceptions;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
-    const ITEM_PER_PAGE = 10;
     public function index(Request $request)
     {
-         $searchParams =  $request->all();
-         $limit = Arr::get($searchParams,'limit',static::ITEM_PER_PAGE);
-        $keyword = Arr::get($searchParams,'keyword','');
-        $current_page = Arr::get($searchParams,'page',1);
-        $query = User::query();
-        if(!empty($keyword)){
-            $query->where('name','LIKE','%' .$keyword. '%');
-            $query->orWhere('email','LIKE','%' .$keyword. '%');
-        }
-            return UserResource::collection($query->paginate($limit,['*'],'page',$current_page));         
+        $users = User::paginate(10,['*']);
+        return UserResource::collection($users);
     }
     public function store(Request $request)
     {
-       $validator = Validator::make($request->all(),
-       array_merge($this->getValidationRules(),
-                [
-                    'password'=> ['required', 'min:6'],
-                    'confirmPassword'=> 'same:password'
-                ]
-            )
-        );
-        if($validator->fails()){
-            return response()->json(['errors'=>$validator->errors(),'message'=>'Request not correct format','statusCode'=>403]);
-        } else {
-            $data = $request->all();
-           $newUser = User::create([
-                'name'=>$data['name'],
-                'email'=>$data['email'],
-                'password'=>Hash::make($data['password']),
-            ]);
-             // Pagination information
-             $queryParam =  $request->get('queryParam');
-             $count = User::all()->count();
-             $users = User::paginate($queryParam['limit'],['*'],'page',ceil($count/$queryParam['limit']));
-            return response()->json(['data'=>$newUser,'pagination_info'=>$users,'statusCode'=>200]);
-           }
+        $valid = $this->ValidateData($request);
+        if($valid != true) {
+            return $valid->errors();
+        }
+        $role = Role::find($request->user_role);
+        $user = User::create([
+            'name' => $request->user_full_name,
+            'email' => $request->user_password,
+            'password' => Hash::make($request->user_password),
+        ]);
+        $user->syncRoles($role->name);
+        return response()->json(['message' => "create sucessfully"]);
     }
     public function show($id)
     {
-        try{
-            $userDB = User::findOrFail($id);
-            return new UserResource($userDB);
-        } catch(ModelNotFoundException $ex)
-        {
-            return response()->json(['error'=>'NOT FOUND','statusCode' =>404]);
+        try {
+            return new UserResource(User::find($id));
+        } catch (Exception $e) {
+            return response()->json(["message" => "There is no data mutch"]);
         }
     }
-   public function updateNewPassword(Request $request){
-    try{
-        $userDB = User::findOrFail($request ->get('userId'));
-               $validator = Validator::make($request->all(),[
-                'password' => 'required|min:6',
-                'newPassword' => 'required|min:6',
-                'confirmNewPassword'=>'same:newPassword'
-               ]);
-               if($validator->fails()) {
-                return response()->json(['errors' => $validator->errors(), 'statusCode'=>403]);
-               } else {
-               //Check currentPassword is user's password in DB
-                 $mathWithOldPassword = Hash::check($request->get('password' ),$userDB['password']);
-                     if(!$mathWithOldPassword ) {
-                       return response()->json(['error'=>'Old password not correct','statusCode'=>403]);
-                     } else {
-                     // Check create newPassword has different to old Password
-                        if($request->get('password') == $request->get('newPassword')) {
-                          $differentPass = 'NO';
-                        } else {
-                          $differentPass = 'YES';
-                        }
-                       $userDB ->password = Hash::make($request->get('newPassword'));
-                       $userDB->save();
-                      
-                      return response()->json(['message'=>'UPDATE SUCCESS' , 'has_different_with_old_password' =>$differentPass,'statusCode' =>200]);
-                     }
-               }
-           } catch(ModelNotFoundException $ex)
-           {
-               return response()->json(['error'=>'NOT FOUND','statusCode' =>404]);
-           }
-   }
     public function update(Request $request, $id)
     {
-         try{
-            $userDB = User::findOrFail($id);
-             //Just update email, name
-             $email =  $request->get('email');
-             $name = $request->get('name');
-             //Update name and email
-             if(!empty($email)&&!empty($name)) {
-                 $validator = Validator::make($request->all(),$this->getValidationRules());
-                if($this->isExistEmail($email) && $email != $userDB->email ) {
-                    return response()->json(['error'=>'Email is exist','statusCode' =>403]);
-                }
-                $userDB->email = $email;
-                $userDB->name = $name;
-                $userDB->save();
-             }
-             // Update avatar
-             if($request->hasFile('avatar')){
-                 $avatar = $request->file('avatar');
-                 $request->validate([
-                    'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-                 ]);
-             $current_avatar = $userDB->avatar;
-             $avatar_name =  $userDB->id.'_avatar'.time().'.'.$avatar->getClientOriginalExtension();
-             $avatar->storeAs('public/avatars',$avatar_name);
-             $userDB->avatar = $avatar_name;
-             $userDB->save();
-           
-            // Old avatar will be remove
-            if($current_avatar != 'default-avatar.jpg' || $current_avatar != null )
-               Storage::delete(['public/avatars/'.$current_avatar]);
-            }
-            return response()->json(['data'=>$userDB,'message'=>'UPDATE SUCCESS','statusCode' =>200]);
-
-        } catch(ModelNotFoundException $ex)
-        {
-            return response()->json(['error'=>'NOT FOUND','statusCode' =>404]);
-        } catch(Exception $e)
-        {
-             return response()->json(['error'=>'UPDATE FAIL','statusCode' =>500]);
+        $valid = $this->ValidateData($request);
+        if($valid != true) {
+            return $valid->errors();
         }
+        $role = Role::find($request->user_role);
+        $user = User::find($id);
+        $user->name = $request->user_full_name;
+        $user->password = $request->user_password;
+        $user->save();
+        $user->syncRoles($role->name);
+        return response()->json(['message' => "Update sucessfully"]);
     }
    // Jus destroy one user
     public function destroy($id)
     {
-         try{
-            $userDB = User::findOrFail($id);
-             $userDB->delete();
-            return response()->json(['message'=>'DELETE SUCCESS'],200);
-        } catch(ModelNotFoundException $ex)
-        {
-            return response()->json(['error'=>'NOT FOUND','statusCode' =>404]);
-        } catch(Exception $e) {
-            return response()->json(['error'=>'External API call failed','statusCode' =>500]);
+        try {
+            User::where('id',$id)->delete();
+            return response()->json(['message' => "Delete sucessfully"]);
+        } catch (Exception $e) {
+            return response()->json(["message" => "Can not delete because relationship"]);
         }
     }
-    private function getValidationRules()
+    private function ValidateData($request)
     {
-        return [
-            'name'=>'required',
-            'email'=>'required|email|unique:users',
-        ];
-    }
-    private function isExistEmail($email) {
-       $foundEmail = User::where('email',$email)->first();
-       if($foundEmail){
-           return true;
-       }
-       return false;
+        $Validater = Validator::make($request->all(),[
+            "user_full_name" => 'string|required',
+            "user_account" => 'string|required',
+            "user_password" => 'string|required',
+            "user_role" => 'integer|required'
+        ]);
+        if($Validater->fails()) return $Validater;
+        else return true;
     }
 }

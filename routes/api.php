@@ -15,15 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::namespace('Api')->group(function() {
-
     Route::post('/login','AuthController@login');
     Route::middleware(['auth:sanctum'])->group(function () {
-        Route::apiResource('/users','UserController');
         Route::get('/user',function(Request $request)
         {
             return new UserResource($request->user()); 
         });
-        Route::apiResource('users', 'UserController');
+        Route::apiResource('question', 'QuestionController');
+        Route::apiResource('/class','ClassController');
+        Route::apiResource('/course','CourseController');
+        Route::apiResource('/users','UserController');
         Route::put('update-password', 'UserController@updateNewPassword');
         Route::post('/logout','AuthController@logout');
     });
