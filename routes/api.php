@@ -21,6 +21,7 @@ Route::namespace('Api')->group(function() {
         {
             return new UserResource($request->user()); 
         });
+        Route::get('role', 'RoleController@index');
         Route::apiResource('question', 'QuestionController');
         Route::apiResource('/class','ClassController');
         Route::apiResource('/course','CourseController');
