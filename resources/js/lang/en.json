@@ -44,6 +44,18 @@
             "message": "The bodyguard said that you can't enter this page...",
             "detail": "Please check that the URL you entered is correct. Please click the button below to return to the homepage or send an error report.",
             "back_to_home": "Back to Home"
+        },
+        "profile": {
+            "edit-avatar": "Change Avatar",
+            "fullname": "Full name",
+            "email": "Email",
+            "new-password": "New password",
+            "cf-new-password": "Confirm new password",
+            "enter-fullname": "Enter full name",
+            "enter-email": "Enter email",
+            "enter-newpassword": "Enter new password",
+            "enter-cfnewpassword": "Enter new password",
+            "submit": "Submit"
         }
     }
 }
