@@ -1,15 +1,38 @@
 import { service } from './service';
+
 export default {
-  async getRequest(URL) {
-    return await service.get(URL);
+  async getRequest(URL, PARAMS) {
+    return await service({
+      url: URL,
+      method: 'GET',
+      params: PARAMS,
+    });
   },
-  async postRequest(URL, BODY) {
-    return await service.post(URL, BODY);
+
+  async postRequest(URL, DATA, PARAMS) {
+    return await service({
+      url: URL,
+      method: 'POST',
+      data: DATA,
+      params: PARAMS,
+    });
   },
-  async putRequest(URL, BODY) {
-    return await service.put(URL, BODY);
+
+  async putRequest(URL, DATA, PARAMS) {
+    return await service({
+      url: URL,
+      method: 'PUT',
+      data: DATA,
+      params: PARAMS,
+    });
   },
-  async deleteRequest(URL) {
-    return await service.delete(URL);
+
+  async deleteRequest(URL, DATA, PARAMS) {
+    return await service({
+      url: URL,
+      method: 'DELETE',
+      data: DATA,
+      params: PARAMS,
+    });
   },
 };
