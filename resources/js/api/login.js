@@ -1,5 +1,5 @@
 // This is an example of an API, please create a new one
-import request from '../utils/request.js'; //
+import request from '../utils/request.js';
 import { template } from './templateURL.js';
 
 const urlAPI = {

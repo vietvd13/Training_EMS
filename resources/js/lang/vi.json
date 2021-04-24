@@ -44,6 +44,18 @@
             "message": "Người vệ sĩ nói rằng bạn không thể vào trang này ...",
             "detail": "Vui lòng kiểm tra xem URL bạn đã nhập có đúng không. Vui lòng nhấp vào nút bên dưới để quay lại trang chủ hoặc gửi báo cáo lỗi.",
             "back_to_home": "Trang chủ"
+        },
+        "profile": {
+            "edit-avatar": "Đổi ảnh đại diện",
+            "fullname": "Họ và tên",
+            "email": "Email",
+            "new-password": "Mật khẩu mới",
+            "cf-new-password": "Xác nhận mật khẩu mới",
+            "enter-fullname": "Nhập họ và tên",
+            "enter-email": "Nhập địa chỉ email",
+            "enter-newpassword": "Nhập mật khẩu mới",
+            "enter-cfnewpassword": "Nhập lại mật khẩu mới",
+            "submit": "Xác nhận"
         }
     }
 }
