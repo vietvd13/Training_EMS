@@ -50,7 +50,9 @@
 </template>
 
 <script>
+// Import funcotion helper
 import { SECOND, HOUR, getHourTime, getZeroPad } from './helper/Filters';
+// Import img
 const wellcome = require('@/assets/images/wellcome.png');
 
 export default {
