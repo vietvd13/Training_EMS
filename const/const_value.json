@@ -1,0 +1,14 @@
+{
+    "ROLE": {
+        "ADMIN": "admin",
+        "TRAINEE": "trainee",
+        "TRAINERS": "trainer",
+        "TRAINING_STAFF": "staff"
+    },
+    "DASHBOARD_VIEW": {
+        "ADMIN": "Administrator",
+        "TRAINEE": "Trainee",
+        "TRAINERS": "Trainers",
+        "TRAINING_STAFF": "TrainingStaff"
+    }
+}

@@ -39,6 +39,12 @@
             "login": "Đăng nhập",
             "changelang": "Thay đổi ngôn ngữ"
         },
+       "dashboard": {
+            "wellcome": "Xin chào, {name}!",
+            "email": "Email: {email}",
+            "role": "Chức vụ: {role}",
+            "quotes": "Trí tuệ không phải là một sản phẩm từ trường học, mà là một quá trình học tập suốt đời."
+        },
         "page404": {
             "oops": "Oops!",
             "message": "Người vệ sĩ nói rằng bạn không thể vào trang này ...",
