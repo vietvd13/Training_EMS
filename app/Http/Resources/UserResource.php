@@ -24,12 +24,12 @@ class UserResource extends JsonResource
                 },
                 $this->roles->toArray()
             ),
-            'permissions' => array_map(
-                function ($permission) {
-                    return $permission['name'];
-                },
-                $this->getAllPermissions()->toArray()
-            ),
+            // 'permissions' => array_map(
+            //     function ($permission) {
+            //         return $permission['name'];
+            //     },
+            //     $this->getAllPermissions()->toArray()
+            // ),
            'avatar' => $this->avatar, // collum avatar
         ];
     }

@@ -51,19 +51,19 @@ class TestController extends Controller
         //         $query->select(['id','answer_content','is_correct','question_id']);
         //     }
         // ])->get(['id','question_content']);
-        return Grade::with([
-            "trainee" => function($query) {
-                $query->select(['id','name','email']);
-            },
-            "test" => function($query) {
-                $query->select(['id']);
-            },
-            "class" => function($query) {
-                $query->select(['id','class_name']);
-            },
-            "course" => function($query) {
-                $query->select(['id','course_name']);
-            }
-        ])->get(['id','trainne_id','test_id','course_id']);
+        // return Grade::with([
+        //     "trainee" => function($query) {
+        //         $query->select(['id','name','email']);
+        //     },
+        //     "test" => function($query) {
+        //         $query->select(['id']);
+        //     },
+        //     "class" => function($query) {
+        //         $query->select(['id','class_name']);
+        //     },
+        //     "course" => function($query) {
+        //         $query->select(['id','course_name']);
+        //     }
+        // ])->get(['id','trainne_id','test_id','course_id']);
     } 
 }
