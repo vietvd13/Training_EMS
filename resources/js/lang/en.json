@@ -39,6 +39,12 @@
             "login": "Login",
             "changelang": "Change language"
         },
+        "dashboard": {
+            "wellcome": "Hi, {name}!",
+            "email": "Email: {email}",
+            "role": "Role: {role}",
+            "quotes": "Wisdom is not a product from school, but a lifelong learning process."
+        },
         "page404": {
             "oops": "Oops!",
             "message": "The bodyguard said that you can't enter this page...",
