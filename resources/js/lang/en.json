@@ -45,6 +45,10 @@
             "role": "Role: {role}",
             "quotes": "Wisdom is not a product from school, but a lifelong learning process."
         },
+        "manager-user": {
+            "create-new": "Create new",
+            "enter-search": "Searching..."
+        },
         "page404": {
             "oops": "Oops!",
             "message": "The bodyguard said that you can't enter this page...",
