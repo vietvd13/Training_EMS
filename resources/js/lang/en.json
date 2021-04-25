@@ -47,7 +47,37 @@
         },
         "manager-user": {
             "create-new": "Create new",
-            "enter-search": "Searching..."
+            "enter-search": "Searching...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "fullname": "Full Name",
+                "email": "Email",
+                "role": "Role",
+                "actions": "Actions"
+            },
+            "modal": {
+                "title-create": "Create new user",
+                "title-edit": "Edit user",
+                "fullname": "Full Name",
+                "email": "Email",
+                "password": "Password",
+                "role": "Role",
+                "enter-fullname": "Enter full name",
+                "enter-email": "Enter email",
+                "enter-password": "Enter password",
+                "list_role": {
+                    "admin": "Administrator",
+                    "staff": "Training Staff",
+                    "trainer": "Trainer",
+                    "trainee": "Trainee"
+                },
+                "edit": "Edit",
+                "delete": "Delete",
+                "create": "Create",
+                "save": "Save",
+                "close": "Close"
+            }
         },
         "page404": {
             "oops": "Oops!",
@@ -67,5 +97,17 @@
             "enter-cfnewpassword": "Enter new password",
             "submit": "Submit"
         }
+    },
+    "overlay": {
+        "loading": "Please wait..."
+    },
+    "select": {
+        "please_select": "Please select..."
+    },
+    "role": {
+        "admin": "Administrator",
+        "trainee": "Trainee",
+        "trainer": "Trainer",
+        "staff": "Training Staff"
     }
 }

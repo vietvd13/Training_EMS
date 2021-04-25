@@ -47,7 +47,36 @@
         },
         "manager-user": {
             "create-new": "Tạo mới",
-            "enter-search": "Tìm kiếm..."
+            "enter-search": "Tìm kiếm...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "fullname": "Họ và Tên",
+                "email": "Email",
+                "role": "Quyền hạng",
+                "actions": "Hành động"
+            },
+            "modal": {
+                "title-create": "Tạo người dùng mới",
+                "fullname": "Họ và Tên",
+                "email": "Email",
+                "password": "Mật khẩu",
+                "role": "Quyền hạng",
+                "enter-fullname": "Nhập họ và tên",
+                "enter-email": "Nhập địa chỉ email",
+                "enter-password": "Nhập mật khẩu",
+                "list_role": {
+                    "admin": "Quản trị viên",
+                    "staff": "Nhân Viên",
+                    "trainer": "Huấn luyện viên",
+                    "trainee": "Thực tập sinh"
+                },
+                "edit": "Chỉnh sửa",
+                "delete": "Xoá",
+                "create": "Tạo mới",
+                "save": "Lưu",
+                "close": "Đóng"
+            }
         },
         "page404": {
             "oops": "Oops!",
@@ -67,5 +96,17 @@
             "enter-cfnewpassword": "Nhập lại mật khẩu mới",
             "submit": "Xác nhận"
         }
+    },
+    "overlay": {
+        "loading": "Vui lòng đợi ..."
+    },
+    "select": {
+        "please_select": "Xin hãy lựa chọn..."
+    },
+    "role": { 
+        "admin": "Quản trị viên",
+        "staff": "Nhân Viên",
+        "trainer": "Huấn luyện viên",
+        "trainee": "Thực tập sinh"
     }
 }
