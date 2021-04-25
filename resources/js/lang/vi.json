@@ -45,6 +45,10 @@
             "role": "Chức vụ: {role}",
             "quotes": "Trí tuệ không phải là một sản phẩm từ trường học, mà là một quá trình học tập suốt đời."
         },
+        "manager-user": {
+            "create-new": "Tạo mới",
+            "enter-search": "Tìm kiếm..."
+        },
         "page404": {
             "oops": "Oops!",
             "message": "Người vệ sĩ nói rằng bạn không thể vào trang này ...",
