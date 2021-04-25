@@ -5,10 +5,40 @@
         "TRAINERS": "trainer",
         "TRAINING_STAFF": "staff"
     },
+    "ROLE_CODE": {
+        "ADMIN": 1,
+        "TRAINEE": 4,
+        "TRAINERS": 3,
+        "TRAINING_STAFF": 2
+    },
+    "ROLE_NAME": [
+        "role.admin",
+        "role.trainee",
+        "role.trainer",
+        "role.staff"
+    ],
     "DASHBOARD_VIEW": {
         "ADMIN": "Administrator",
         "TRAINEE": "Trainee",
         "TRAINERS": "Trainers",
         "TRAINING_STAFF": "TrainingStaff"
-    }
+    },
+    "SELECT_ROLE": [
+        {
+            "value": 1,
+            "label": "views.manager-user.modal.list_role.admin"
+        },
+        {
+            "value": 2,
+            "label": "views.manager-user.modal.list_role.staff"
+        },
+        {
+            "value": 3,
+            "label": "views.manager-user.modal.list_role.trainer"
+        },
+        {
+            "value": 4,
+            "label": "views.manager-user.modal.list_role.trainee"
+        }
+    ]
 }
