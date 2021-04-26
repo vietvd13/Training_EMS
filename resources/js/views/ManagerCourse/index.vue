@@ -4,7 +4,7 @@
       <b-row>
         <b-col sm="4">
           <div class="zone-controls">
-            <b-button @click="handleOpenModal()">{{ $t('views.manage-course.create-new') }}</b-button>
+            <b-button @click="handleOpenModal(null, null)">{{ $t('views.manage-course.create-new') }}</b-button>
           </div>
         </b-col>
         <b-col sm="5" />
@@ -41,6 +41,14 @@
               >
                 <b-thead>
                   <b-th>
+                    <span>{{ $t('views.manage-course.table.no') }}</span>
+                  </b-th>
+
+                  <b-th>
+                    <span>{{ $t('views.manage-course.table.id') }}</span>
+                  </b-th>
+
+                  <b-th>
                     <span>{{ $t('views.manage-course.table.course-name') }}</span>
                   </b-th>
 
@@ -51,18 +59,28 @@
 
                 <b-tbody>
                   <b-tr v-for="(course, indexCourse) in ListCourse" :key="indexCourse">
-                    <b-td />
+                    <b-td>
+                      <span>{{ indexCourse + 1 }}</span>
+                    </b-td>
 
                     <b-td>
+                      <span>{{ course.course_id }}</span>
+                    </b-td>
+
+                    <b-td class="zone-min-width">
+                      <span>{{ course.course_name }}</span>
+                    </b-td>
+
+                    <b-td class="zone-button-control">
                       <div class="zone-button-edit">
-                        <b-button @click="handleOpenModal()">
-                          {{ $t('views.manage-course.modal.edit') }}
+                        <b-button @click="handleOpenModal(course, indexCourse)">
+                          {{ $t('views.manage-course.table.edit') }}
                         </b-button>
                       </div>
 
                       <div class="zone-button-delete">
-                        <b-button>
-                          {{ $t('views.manage-course.modal.delete') }}
+                        <b-button @click="handleDeleteCourse(course.course_id)">
+                          {{ $t('views.manage-course.table.delete') }}
                         </b-button>
                       </div>
                     </b-td>
@@ -78,6 +96,7 @@
     </div>
 
     <b-modal
+      id="modal-course"
       v-model="showModal"
       size="lg"
       centered
@@ -91,7 +110,7 @@
       >
         <b-form-input
           id="input-course-name"
-          v-model="Course.cousre_name"
+          v-model="Course.course_name"
           :placeholder="$t('views.manage-course.modal.course-name')"
         />
       </b-form-group>
@@ -123,16 +142,17 @@
 
 <script>
 // Import function call api
-import { getListCourse, postCreateCourse } from '@/api/manage-course';
+import { getListCourse, postCreateCourse, putUpdateCourse, deleteCourse } from '@/api/manage-course';
 
 // Import Component
 import LazyLoad from '@/components/LazyLoad';
 
 // Import function helper
 import { handleNextPage } from '@/utils/lazyload';
+import { IsEmptyOrWhiteSpace } from '@/utils/validate';
 
 // Import Toast
-// import { MakeToast } from '@/utils/toast_message';
+import { MakeToast } from '@/utils/toast_message';
 
 export default {
   name: 'ManageCourse',
@@ -167,31 +187,27 @@ export default {
 
       // Course
       Course: {
-        id: '',
-        cousre_name: '',
+        course_id: '',
+        course_name: '',
       },
+
+      // index Edit
+      isIndexEdit: '',
     };
   },
-  computed: {
-    isCurrentPageChange() {
-      return this.page;
-    },
-  },
-  watch: {
-    isCurrentPageChange() {
-      if (this.page === 1) {
-        this.ListCourse.length = 0;
-        this.handleGetListCourse();
-      }
-    },
-  },
   methods: {
+    // Get List Course
     handleGetListCourse() {
-      const length = this.ListCourse.length;
+      let length;
+      if (this.isAction === 'CREATE' || this.isAction === '' || this.isAction === 'DELETE') {
+        length = this.ListCourse.length;
+      } else if (this.isAction === 'EDIT') {
+        length = this.isIndexEdit;
+      }
 
       this.page = handleNextPage(length);
 
-      var param = {
+      const param = {
         page: this.page,
       };
 
@@ -203,48 +219,160 @@ export default {
             this.ListCourse = [...response.data];
           }
 
-          this.ListCourse = [...new Map(this.ListCourse.map(item => [item['id'], item])).values()];
+          this.ListCourse = [...new Map(this.ListCourse.map(item => [item['course_id'], item])).values()];
           this.overlay.show = false;
         });
     },
 
-    handleOpenModal() {
+    // Handle Open Modal
+    handleOpenModal(course, index) {
       this.showModal = true;
+      this.isResetDataModal();
 
-      this.isAction = 'CREATE';
+      if (course !== null) {
+        this.Course.course_id = course.course_id;
+        this.Course.course_name = course.course_name;
+        this.isIndexEdit = index;
+
+        this.isAction = 'EDIT';
+      } else {
+        this.isAction = 'CREATE';
+      }
     },
 
-    isResetModal() {
+    // Handle Reset Data in Modal
+    isResetDataModal() {
       const COURSE = {
-        id: '',
+        course_id: '',
         course_name: '',
       };
 
       this.Course = COURSE;
     },
 
+    // Handle Create Course
     handleCreateCourse() {
-      const COURSE_NAME = this.Course.cousre_name;
+      const COURSE_NAME = this.Course.course_name;
 
       const COURSE = {
         'course_name': COURSE_NAME,
       };
 
-      postCreateCourse(COURSE)
-        .then((response) => {
-          console.log(response);
+      const isValidCourse = this.isValidateCourse(COURSE);
 
-          this.isResetModal();
+      if (isValidCourse.status === true) {
+        postCreateCourse(COURSE)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manage-course.message.success'),
+              content: this.$t('views.manage-course.message.message-create-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.isResetDataModal();
+            this.showModal = false;
+            this.overlay.show = true;
+            this.handleGetListCourse();
+            this.overlay.show = false;
+          });
+      } else {
+        MakeToast({
+          variant: 'warning',
+          title: this.$t('views.manage-course.valid.title'),
+          content: this.$t(isValidCourse.type),
+          toaster: 'b-toaster-top-right',
+        });
+      }
+    },
+
+    // Handler Update Courser
+    handleUpdateCourse() {
+      const COURSE_ID = this.Course.course_id;
+      const COURSE_NAME = this.Course.course_name;
+
+      const COURSE = {
+        'course_name': COURSE_NAME,
+      };
+
+      const ID = {
+        'id': COURSE_ID,
+      };
+
+      const isValidCourse = this.isValidateCourse(COURSE);
+
+      if (isValidCourse.status === true) {
+        putUpdateCourse(COURSE, ID)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manage-course.message.success'),
+              content: this.$t('views.manage-course.message.message-edit-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.showModal = false;
+            this.page = 1;
+            this.overlay.show = true;
+            this.handleGetListCourse();
+            this.overlay.show = false;
+          });
+      } else {
+        MakeToast({
+          variant: 'warning',
+          title: this.$t('views.manage-course.valid.title'),
+          content: this.$t(isValidCourse.type),
+          toaster: 'b-toaster-top-right',
+        });
+      }
+    },
+
+    // Handle Delete Course
+    handleDeleteCourse(id) {
+      this.isAction = 'DELETE';
+
+      const ID = {
+        'course_id': id,
+      };
+
+      deleteCourse(ID)
+        .then(() => {
+          MakeToast({
+            variant: 'success',
+            title: this.$t('views.manage-course.message.success'),
+            content: this.$t('views.manage-course.message.message-delete-success'),
+            toaster: 'b-toaster-top-right',
+          });
+
           this.showModal = false;
+          this.ListCourse.length = this.ListCourse.length - 1;
           this.overlay.show = true;
-          this.page = 1;
-          this.overlay.show = false;
           this.handleGetListCourse();
+          this.overlay.show = false;
         });
     },
 
-    handleUpdateCourse() {
+    isValidateCourse(course) {
+      let isPass = {
+        status: false,
+        type: '',
+      };
 
+      const checkCourseName = IsEmptyOrWhiteSpace(course.course_name);
+
+      if (checkCourseName === true) {
+        isPass = {
+          status: false,
+          type: 'views.manage-course.valid.course_name',
+        };
+      } else {
+        isPass = {
+          status: true,
+          type: -1,
+        };
+      }
+
+      return isPass;
     },
   },
 };

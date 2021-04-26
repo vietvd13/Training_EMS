@@ -105,6 +105,8 @@
             "create-new": "Create new",
             "enter-search": "Searching...",
             "table": {
+                "no": "No",
+                "id": "ID",
                 "course-name": "Course Name",
                 "actions": "Actions",
                 "edit": "Edit",
@@ -115,6 +117,18 @@
                 "title-edit": "Edit course",
                 "course-name": "Course Name",
                 "enter-course-name": "Enter course name"
+            },
+            "valid": {
+                "title": "Warning",
+                "course_name": "You need to enter a course name."
+            },
+            "message": {
+                "success": "Success",
+                "warning": "Warning",
+                "danger": "Danger",
+                "message-create-success": "A new course has been added to the system",
+                "message-edit-success": "You have successfully edited the course information",
+                "message-delete-success": "You have successfully deleted a course from the system"
             }
         },
         "page404": {
