@@ -309,7 +309,12 @@ export default {
 
       getListUser(param)
         .then((response) => {
-          this.ListUser = [...this.ListUser, ...response.data];
+          if (this.page > 1) {
+            this.ListUser = [...this.ListUser, ...response.data];
+          } else {
+            this.ListUser = [...response.data];
+          }
+
           this.ListUser = [...new Map(this.ListUser.map(item => [item['id'], item])).values()];
           this.overlay.show = false;
         });
@@ -323,7 +328,7 @@ export default {
       if (user !== null) {
         this.User.id = user.id;
         this.User.email = user.email;
-        this.User.password = null;
+        this.User.password = '';
         this.User.fullname = user.name;
         this.User.role = deCodeRole(user.roles[0]);
         this.User.avatar = null;
@@ -365,6 +370,7 @@ export default {
             this.overlay.show = true;
             this.page = 1;
             this.overlay.show = false;
+            this.handleGetListUser();
           });
       } else {
         const TITLE = 'views.manager-user.valid.title';
@@ -384,7 +390,7 @@ export default {
       const ID = this.User.id;
       const FULLNAME = this.User.fullname;
       const EMAIL = this.User.email;
-      const PASSWORD = '';
+      const PASSWORD = this.User.password;
       const ROLE = this.User.role;
 
       const USER = {
@@ -414,6 +420,7 @@ export default {
             this.overlay.show = true;
             this.page = 1;
             this.overlay.show = false;
+            this.handleGetListUser();
           });
       } else {
         const TITLE = 'views.manager-user.valid.title';
@@ -459,6 +466,8 @@ export default {
                 this.overlay.show = true;
                 this.page = 1;
                 this.overlay.show = false;
+
+                this.handleGetListUser();
               });
           }
         })
@@ -493,6 +502,8 @@ export default {
       const isCheckPassword = IsEmptyOrWhiteSpace(user.user_password);
       const listRole = ConstValue.ROLE_ARRAY;
       const isCheckRole = listRole.includes(user.user_role);
+      console.log(isCheckPassword);
+      console.log(user);
 
       if (isCheckFullName === true) {
         isValid = {
@@ -571,6 +582,7 @@ export default {
         position: sticky;
         top: 0;
         left: 0;
+        z-index: 1000;
       }
 
       th.zone-min-width {
