@@ -62,3 +62,12 @@ export function validEmail(email) {
 export function isNumber(n) {
   return /^-?[\d.]+(?:e-?\d+)?$/.test(n);
 }
+
+/**
+ * Check Empty and Space
+ * @param {*} str
+ * @returns {Boolean}
+ */
+export function IsEmptyOrWhiteSpace(str) {
+  return (str.match(/^\s*$/) || []).length > 0;
+}
