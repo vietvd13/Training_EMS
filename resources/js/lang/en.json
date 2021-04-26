@@ -143,6 +143,57 @@
                 "delete": "Delete"
             }
         },
+        "trainer_scheduled": {
+            "enter-search": "Searching...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "class-name": "Class name",
+                "course-name": "Course Name",
+                "actions": "Actions",
+                "assign": "Assign Trainer"
+            }
+        },
+        "manage-quiz": {
+            "create-new": "Create new",
+            "enter-search": "Searching...",
+            "table": {
+                "no":  "No",
+                "id": "ID",
+                "quiz": "Quiz",
+                "actions": "Actions",
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        },
+        "manage-test": {
+            "create-new": "Create new",
+            "enter-search": "Searching...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "test": "Test",
+                "course": "Course",
+                "actions": "Actions",
+                "edit": "Edit",
+                "delete": "Delete"
+            }
+        },
+        "view-result": {
+            "search-fullname": "Search by trainee's name",
+            "please-select-course": "Please select course",
+            "please-select-class": "Please select class",
+            "please-select-test": "Please select test",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "fullname": "Full Name",
+                "course": "Course",
+                "class": "Class",
+                "test": "Test",
+                "point": "Point"
+            }
+        },
         "page404": {
             "oops": "Oops!",
             "message": "The bodyguard said that you can't enter this page...",

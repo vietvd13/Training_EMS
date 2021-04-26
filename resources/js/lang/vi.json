@@ -143,6 +143,57 @@
                 "delete": "Xoá"
             }
         },
+        "trainer_scheduled": {
+            "enter-search": "Tìm kiếm...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "class-name": "Tên lớp",
+                "course-name": "Tên môn học",
+                "actions": "Hành động",
+                "assign": "Gắn giáo viên"
+            }
+        },
+        "manage-quiz": {
+            "create-new": "Tạo mới",
+            "enter-search": "Tìm kiếm...",
+            "table": {
+                "no":  "No",
+                "id": "ID",
+                "quiz": "Câu hỏi",
+                "actions": "Hành động",
+                "edit": "Chỉnh sửa",
+                "delete": "Xoá"
+            }
+        },
+        "manage-test": {
+            "create-new": "Tạo mới",
+            "enter-search": "Tìm kiếm...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "test": "Bài kiểm tra",
+                "course": "Môn học",
+                "actions": "Hành động",
+                "edit": "Chỉnh sửa",
+                "delete": "Xoá"
+            }
+        },
+        "view-result": {
+            "search-fullname": "Tìm kiếm với tên thực tập sinh",
+            "please-select-course": "Lựa chọn môn học",
+            "please-select-class": "Lựa chọn lớp học",
+            "please-select-test": "Lựa chọn bài học",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "fullname": "Họ và Tên",
+                "course": "Môn học",
+                "class": "Lớp học",
+                "test": "Bài kiểm tra",
+                "point": "Điểm số"
+            }
+        },
         "page404": {
             "oops": "Oops!",
             "message": "Người vệ sĩ nói rằng bạn không thể vào trang này ...",
