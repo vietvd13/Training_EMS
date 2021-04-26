@@ -48,8 +48,6 @@ export default {
           default:
             console.warn('[Viet ERROR]: Lỗi có role những không xác định được role gì!');
         }
-      } else {
-        console.warn('[Viet ERROR]: Lỗi xử lý không lấy được role của User trong store!');
       }
     },
   },
