@@ -22,6 +22,13 @@ class ClassResource extends JsonResource
                 "trainee_email" => $trainee['email']
             ];
         }
+        $courses = [];
+        foreach ($this->course as $index => $course) {
+            $courses[] = [
+                "courese_id" => $course['id'],
+                "course_name" => $course['course_name']
+            ];
+        }
         $trainer = [];
         $is_assigned = false;
         if(isset($this->trainer[0])) {
@@ -38,7 +45,8 @@ class ClassResource extends JsonResource
             "class_name" => $this->class_name,
             "is_assigned" => $is_assigned,
             "class_trainer" => $trainer,
-            "class_trainees" => $trainees
+            "class_trainees" => $trainees,
+            "class_course" => $courses
         ];
     }
 }

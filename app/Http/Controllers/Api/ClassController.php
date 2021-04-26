@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ClassResource;
 use Illuminate\Http\Request;
 use App\Models\Classs;
+use App\Models\Course;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\Validator;
@@ -24,12 +25,24 @@ class ClassController extends Controller
             },
             "trainer" => function($query) {
                 $query->role('trainer')->select(['id','name','email']);
+            },
+            "course" => function($query) {
+                $query->select(['id','course_name']);
             }
         ])->orderBy('failed_at','DESC')->paginate(10,['id','class_name']);
         
         return ClassResource::collection($classes);
     }
 
+    public function assign_trainer(Request $request, $id) {
+        if(!isset($request->class_trainer)) {
+            return response()->json(['message'=> 'Invalid data, required class trainer id']);
+        }
+        $trainer = User::find($request->class_trainer);
+        $class = Classs::find($id);
+        $class->trainer()->sync($trainer->id);
+        return response()->json(['message' => 'assigned sucessfully']);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -59,6 +72,14 @@ class ClassController extends Controller
                 "class_students" => "Invalid, There are some ID is not trainee"
             ];
         }
+
+        $courses = Course::whereIn('id',$request->class_courses)->get(['id']);
+        if(count($courses) != count($request->class_students)) {
+            return [
+                "class_students" => "Invalid, There are some ID is not Courses"
+            ];
+        }
+
         $class = Classs::create([
             "class_name" => $request->class_name
         ]);
@@ -68,10 +89,15 @@ class ClassController extends Controller
             $trainees_list[] = $trainee['id'];
         }
 
+        $courses_list = [];
+        foreach ($courses as $index => $course) {
+            $courses_list[] = $course['id'];
+        }
+
         $class->trainee()->attach($trainees_list);
+        $class->course()->attach($courses_list);
         return $class;
     }
-
     /**
      * Display the specified resource.
      *
@@ -86,6 +112,9 @@ class ClassController extends Controller
             },
             "trainer" => function($query) {
                 $query->role('trainer')->select(['id','name','email']);
+            },
+            "course" => function($query) {
+                $query->select(['id','course_name']);
             }
         ])->where('id', $id)->get();
         return new ClassResource($class[0]);
@@ -122,6 +151,13 @@ class ClassController extends Controller
                 "class_students" => "Invalid, There are some ID is not trainee"
             ];
         }
+
+        $courses = Course::whereIn('id',$request->class_courses)->get(['id']);
+        if(count($courses) != count($request->class_students)) {
+            return [
+                "class_students" => "Invalid, There are some ID is not Courses"
+            ];
+        }
        
         $class = Classs::find($id);
         $class->class_name = $request->class_name;
@@ -131,7 +167,13 @@ class ClassController extends Controller
             $trainees_list[] = $trainee['id'];
         }
 
+        $courses_list = [];
+        foreach ($courses as $index => $course) {
+            $courses_list[] = $course['id'];
+        }
+
         $class->trainee()->sync($trainees_list);
+        $class->course()->sync($courses_list);
         return [
             "message" => "Update Sucessfully"
         ];
@@ -158,7 +200,8 @@ class ClassController extends Controller
     {
         $Validater = Validator::make($request->all(),[
             "class_name" => 'string|required',
-            "class_students" => 'array|required'
+            "class_students" => 'array|required',
+            "class_courses" => 'array|required'
         ]);
         // if(!$Validater->fails() && isset($request->data))
         // {
