@@ -9,6 +9,15 @@ import errorRouter from './modules/ErrorPage';
 
 export const constantRoutes = [
   {
+    path: '/login',
+    component: () => import('@/views/Login/index'),
+    name: 'Login',
+    meta: {
+      title: 'routes.login',
+    },
+    hidden: true,
+  },
+  {
     path: '/redirect',
     component: Layout,
     redirect: { name: 'redirect' },
@@ -29,15 +38,6 @@ export const constantRoutes = [
         hidden: true,
       },
     ],
-  },
-  {
-    path: '/login',
-    component: () => import('@/views/Login/index'),
-    name: 'Login',
-    meta: {
-      title: 'routes.login',
-    },
-    hidden: true,
   },
   {
     path: '/',
@@ -83,9 +83,21 @@ export const constantRoutes = [
     ],
   },
   {
+    path: '/404',
+    redirect: { name: 'Page404' },
+    component: () => import('@/views/ErrorPage/Page404'),
+    hidden: true,
+  },
+];
+
+export const asyncRoutes = [
+  {
     path: '/manage-user',
     redirect: 'manage-user/index',
     component: Layout,
+    meta: {
+      roles: ['admin'],
+    },
     children: [
       {
         path: 'index',
@@ -101,6 +113,9 @@ export const constantRoutes = [
     path: '/manage-course',
     redirect: 'manage-course/index',
     component: Layout,
+    meta: {
+      roles: ['admin', 'staff'],
+    },
     children: [
       {
         path: 'index',
@@ -116,6 +131,9 @@ export const constantRoutes = [
     path: '/manage-class',
     redirect: 'manage-class/index',
     component: Layout,
+    meta: {
+      roles: ['admin', 'staff'],
+    },
     children: [
       {
         path: 'index',
@@ -131,6 +149,9 @@ export const constantRoutes = [
     path: '/trainer-scheduled',
     redirect: 'trainer-scheduled/index',
     component: Layout,
+    meta: {
+      roles: ['admin', 'staff'],
+    },
     children: [
       {
         path: 'index',
@@ -146,6 +167,9 @@ export const constantRoutes = [
     path: '/manage-quiz',
     redirect: 'manage-quizz/index',
     component: Layout,
+    meta: {
+      roles: ['admin', 'trainer'],
+    },
     children: [
       {
         path: 'index',
@@ -161,6 +185,9 @@ export const constantRoutes = [
     path: '/manage-test',
     redirect: 'manage-test/index',
     component: Layout,
+    meta: {
+      roles: ['admin', 'trainer'],
+    },
     children: [
       {
         path: 'index',
@@ -176,6 +203,9 @@ export const constantRoutes = [
     path: '/view-result',
     redirect: 'view-result/index',
     component: Layout,
+    meta: {
+      roles: ['admin', 'trainer', 'trainee'],
+    },
     children: [
       {
         path: 'index',
@@ -192,6 +222,9 @@ export const constantRoutes = [
     redirect: 'choose-class/index',
     hidden: true,
     component: Layout,
+    meta: {
+      roles: ['admin', 'trainee'],
+    },
     children: [
       {
         path: 'index',
@@ -208,6 +241,9 @@ export const constantRoutes = [
     redirect: 'choose-course/index',
     hidden: true,
     component: Layout,
+    meta: {
+      roles: ['admin', 'trainee'],
+    },
     children: [
       {
         path: 'index',
@@ -224,6 +260,9 @@ export const constantRoutes = [
     redirect: 'choose-test/index',
     hidden: true,
     component: Layout,
+    meta: {
+      roles: ['admin', 'trainee'],
+    },
     children: [
       {
         path: 'index',
@@ -240,6 +279,9 @@ export const constantRoutes = [
     redirect: 'do-test/index',
     hidden: true,
     component: Layout,
+    meta: {
+      roles: ['admin', 'trainee'],
+    },
     children: [
       {
         path: 'index',
@@ -251,15 +293,6 @@ export const constantRoutes = [
       },
     ],
   },
-  {
-    path: '/404',
-    redirect: { name: 'Page404' },
-    component: () => import('@/views/ErrorPage/Page404'),
-    hidden: true,
-  },
-];
-
-export const asyncRoutes = [
   errorRouter,
   {
     path: '*',

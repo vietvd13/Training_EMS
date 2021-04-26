@@ -3,7 +3,7 @@
     <div class="zone-header-page">
       <b-row>
         <b-col sm="3">
-          <b-form-input v-model="keySearch" :placeholder="$t('views.view-result.search-fullname')" />
+          <b-form-input v-model="isfilter.fullname" :placeholder="$t('views.view-result.search-fullname')" />
         </b-col>
 
         <b-col sm="3">
