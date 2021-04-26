@@ -51,7 +51,7 @@ class UserController extends Controller
         $role = Role::find($request->user_role);
         $user = User::find($id);
         $user->name = $request->user_full_name;
-        $user->password = $request->user_password;
+        $user->password = Hash::make($request->user_password);
         $user->save();
         $user->syncRoles($role->name);
         return response()->json(['message' => "Update sucessfully"]);
