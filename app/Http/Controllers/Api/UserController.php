@@ -28,7 +28,7 @@ class UserController extends Controller
         $role = Role::find($request->user_role);
         $user = User::create([
             'name' => $request->user_full_name,
-            'email' => $request->user_password,
+            'email' => $request->user_account,
             'password' => Hash::make($request->user_password),
         ]);
         $user->syncRoles($role->name);
