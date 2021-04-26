@@ -58,6 +58,7 @@
             },
             "modal": {
                 "title-create": "Tạo người dùng mới",
+                "title-edit": "Chỉnh sửa người dùng",
                 "fullname": "Họ và Tên",
                 "email": "Email",
                 "password": "Mật khẩu",
@@ -76,6 +77,28 @@
                 "create": "Tạo mới",
                 "save": "Lưu",
                 "close": "Đóng"
+            },
+            "valid": {
+                "title": "Cảnh báo",
+                "fullname": "Bạn cần nhập tên đầy đủ cho người dùng.",
+                "email": "Địa chỉ Email được nhập chưa chính xác.",
+                "password": "Bạn cần nhập mật khẩu cho người dùng.",
+                "role": "Người dùng cần phải được xác định quyền hạng.",
+                "exception": "Lỗi không xác định"
+            },
+            "confirm": {
+                "title": "Vui lòng xác nhận",
+                "cf-delete": "Bạn muốn xoá người dùng này đúng không?",
+                "cf-yes": "Có",
+                "cf-no": "Không"
+            },
+            "message": {
+                "success": "Thành công",
+                "warning": "Cảnh báo",
+                "danger": "Thất bại",
+                "message-create-success": "Một người dùng mới đã được thêm vào hệ thống",
+                "message-edit-success": "Bạn đã chỉnh sửa thành công thông tin người dùng",
+                "message-delete-success": "Bạn đã xóa thành công một người dùng khỏi hệ thống"
             }
         },
         "page404": {

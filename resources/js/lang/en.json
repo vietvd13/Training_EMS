@@ -77,6 +77,28 @@
                 "create": "Create",
                 "save": "Save",
                 "close": "Close"
+            },
+            "valid": {
+                "title": "Warning",
+                "fullname": "You need to enter the user's full name.",
+                "email": "The user's email address is incorrect.",
+                "password": "You need to enter a password for the user.",
+                "role": "You need to define permissions for the user.",
+                "exception": "An unknown error"
+            },
+            "confirm": {
+                "title": "Please Confirm",
+                "cf-delete": "You want to delete this user, right?",
+                "cf-yes": "Yes",
+                "cf-no": "No"
+            },
+            "message": {
+                "success": "Success",
+                "warning": "Warning",
+                "danger": "Danger",
+                "message-create-success": "A new user has been added to the system",
+                "message-edit-success": "You have successfully edited the user information",
+                "message-delete-success": "You have successfully deleted a user from the system"
             }
         },
         "page404": {

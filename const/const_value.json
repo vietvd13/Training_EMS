@@ -5,6 +5,12 @@
         "TRAINERS": "trainer",
         "TRAINING_STAFF": "staff"
     },
+    "ROLE_ARRAY": [
+        1,
+        2,
+        3,
+        4
+    ],
     "ROLE_CODE": {
         "ADMIN": 1,
         "TRAINEE": 4,

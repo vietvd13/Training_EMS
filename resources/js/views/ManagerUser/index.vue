@@ -227,6 +227,10 @@ import ConstValue from '../../../../const/const_value.json';
 // Import function helper
 import { deCodeRole, getNameRole } from '@/utils/deCode';
 import { handleNextPage } from '@/utils/lazyload';
+import { validEmail, IsEmptyOrWhiteSpace } from '@/utils/validate';
+
+// Import Toast
+import { MakeToast } from '@/utils/toast_message';
 
 export default {
   name: 'ManagerUser',
@@ -343,14 +347,35 @@ export default {
         'user_role': ROLE,
       };
 
-      postCreateUser(USER)
-        .then(() => {
-          this.isResetDataModal();
-          this.showModal = false;
-          this.overlay.show = true;
-          this.page = 1;
-          this.overlay.show = false;
+      const validUser = this.isValidateUser(USER);
+
+      if (validUser.status === true) {
+        postCreateUser(USER)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manager-user.message.success'),
+              content: this.$t('views.manager-user.message.message-create-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.isResetDataModal();
+            this.showModal = false;
+            this.overlay.show = true;
+            this.page = 1;
+            this.overlay.show = false;
+          });
+      } else {
+        const TITLE = 'views.manager-user.valid.title';
+
+        MakeToast({
+          variant: 'warning',
+          title: this.$t(TITLE),
+          content: this.$t(validUser.type),
+          toaster: 'b-toaster-top-right',
+
         });
+      }
     },
 
     // Update User
@@ -358,7 +383,7 @@ export default {
       const ID = this.User.id;
       const FULLNAME = this.User.fullname;
       const EMAIL = this.User.email;
-      const PASSWORD = this.User.password;
+      const PASSWORD = '';
       const ROLE = this.User.role;
 
       const USER = {
@@ -372,13 +397,33 @@ export default {
         'id': ID,
       };
 
-      putUpdateUser(USER, ID_USER)
-        .then(() => {
-          this.showModal = false;
-          this.overlay.show = true;
-          this.page = 1;
-          this.overlay.show = false;
+      const validUser = this.isValidateUser(USER);
+
+      if (validUser.status === true) {
+        putUpdateUser(USER, ID_USER)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manager-user.message.success'),
+              content: this.$t('views.manager-user.message.message-edit-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.showModal = false;
+            this.overlay.show = true;
+            this.page = 1;
+            this.overlay.show = false;
+          });
+      } else {
+        const TITLE = 'views.manager-user.valid.title';
+
+        MakeToast({
+          variant: 'warning',
+          title: this.$t(TITLE),
+          content: this.$t(validUser.type),
+          toaster: 'b-toaster-top-right',
         });
+      }
     },
 
     // Delete User
@@ -387,12 +432,37 @@ export default {
         id: id,
       };
 
-      deleteUser(PARAM)
-        .then(() => {
-          this.showModal = false;
-          this.overlay.show = true;
-          this.page = 1;
-          this.overlay.show = false;
+      this.$bvModal.msgBoxConfirm(this.$t('views.manager-user.confirm.cf-delete'), {
+        title: this.$t('views.manager-user.confirm.title'),
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: this.$t('views.manager-user.confirm.cf-yes'),
+        cancelTitle: this.$t('views.manager-user.confirm.cf-no'),
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true,
+      })
+        .then(value => {
+          if (value === true) {
+            deleteUser(PARAM)
+              .then(() => {
+                MakeToast({
+                  variant: 'success',
+                  title: this.$t('views.manager-user.message.success'),
+                  content: this.$t('views.manager-user.message.message-delete-success'),
+                  toaster: 'b-toaster-top-right',
+                });
+
+                this.showModal = false;
+                this.overlay.show = true;
+                this.page = 1;
+                this.overlay.show = false;
+              });
+          }
+        })
+        .catch(err => {
+          console.log(err);
         });
     },
 
@@ -408,6 +478,57 @@ export default {
       };
 
       this.User = USER;
+    },
+
+    // Validate form
+    isValidateUser(user) {
+      let isValid = {
+        status: false,
+        type: '',
+      };
+
+      const isCheckFullName = IsEmptyOrWhiteSpace(user.user_full_name);
+      const isCheckEmail = validEmail(user.user_account);
+      const isCheckPassword = IsEmptyOrWhiteSpace(user.user_password);
+      const listRole = ConstValue.ROLE_ARRAY;
+      const isCheckRole = listRole.includes(user.user_role);
+
+      if (isCheckFullName === true) {
+        isValid = {
+          status: false,
+          type: 'views.manager-user.valid.fullname',
+        };
+
+        return isValid;
+      } else if (isCheckEmail === false) {
+        isValid = {
+          status: false,
+          type: 'views.manager-user.valid.email',
+        };
+
+        return isValid;
+      } else if (isCheckPassword === true) {
+        isValid = {
+          status: false,
+          type: 'views.manager-user.valid.password',
+        };
+
+        return isValid;
+      } else if (isCheckRole === false) {
+        isValid = {
+          status: false,
+          type: 'views.manager-user.valid.role',
+        };
+
+        return isValid;
+      } else {
+        isValid = {
+          status: true,
+          type: -1,
+        };
+
+        return isValid;
+      }
     },
 
   },
