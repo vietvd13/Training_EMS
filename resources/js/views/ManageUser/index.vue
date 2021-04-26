@@ -4,13 +4,13 @@
       <b-row>
         <b-col sm="4">
           <div class="zone-controls">
-            <b-button @click="handleOpenModal(null, null)">{{ $t('views.manager-user.create-new') }}</b-button>
+            <b-button @click="handleOpenModal(null, null)">{{ $t('views.manage-user.create-new') }}</b-button>
           </div>
         </b-col>
         <b-col sm="5" />
         <b-col sm="3">
           <div class="zone-controls">
-            <b-form-input v-model="keySearch" :placeholder="$t('views.manager-user.enter-search')" />
+            <b-form-input v-model="keySearch" :placeholder="$t('views.manage-user.enter-search')" />
           </div>
         </b-col>
       </b-row>
@@ -41,27 +41,27 @@
                 <b-thead>
                   <b-tr>
                     <b-th>
-                      <span>{{ $t('views.manager-user.table.no') }}</span>
+                      <span>{{ $t('views.manage-user.table.no') }}</span>
                     </b-th>
 
                     <b-th>
-                      <span>{{ $t('views.manager-user.table.id') }}</span>
+                      <span>{{ $t('views.manage-user.table.id') }}</span>
                     </b-th>
 
                     <b-th class="zone-min-width">
-                      <span>{{ $t('views.manager-user.table.fullname') }}</span>
+                      <span>{{ $t('views.manage-user.table.fullname') }}</span>
                     </b-th>
 
                     <b-th class="zone-min-width">
-                      <span>{{ $t('views.manager-user.table.email') }}</span>
+                      <span>{{ $t('views.manage-user.table.email') }}</span>
                     </b-th>
 
                     <b-th class="zone-min-width">
-                      <span>{{ $t('views.manager-user.table.role') }}</span>
+                      <span>{{ $t('views.manage-user.table.role') }}</span>
                     </b-th>
 
                     <b-th>
-                      <span>{{ $t('views.manager-user.table.actions') }}</span>
+                      <span>{{ $t('views.manage-user.table.actions') }}</span>
                     </b-th>
                   </b-tr>
                 </b-thead>
@@ -94,13 +94,13 @@
                     <b-td class="zone-button-control">
                       <div class="zone-button-edit">
                         <b-button @click="handleOpenModal(user, indexUser)">
-                          {{ $t('views.manager-user.modal.edit') }}
+                          {{ $t('views.manage-user.modal.edit') }}
                         </b-button>
                       </div>
 
                       <div class="zone-button-delete">
                         <b-button @click="handleDeleteUser(user.id)">
-                          {{ $t('views.manager-user.modal.delete') }}
+                          {{ $t('views.manage-user.modal.delete') }}
                         </b-button>
                       </div>
                     </b-td>
@@ -120,31 +120,31 @@
       v-model="showModal"
       size="lg"
       centered
-      :title="isAction === 'CREATE' ? $t('views.manager-user.modal.title-create') : $t('views.manager-user.modal.title-edit')"
+      :title="isAction === 'CREATE' ? $t('views.manage-user.modal.title-create') : $t('views.manage-user.modal.title-edit')"
     >
       <b-form-group
         label-cols="4"
         label-cols-lg="2"
-        :label="$t('views.manager-user.modal.fullname')"
+        :label="$t('views.manage-user.modal.fullname')"
         label-for="input-fullname"
       >
         <b-form-input
           id="input-fullname"
           v-model="User.fullname"
-          :placeholder="$t('views.manager-user.modal.enter-fullname')"
+          :placeholder="$t('views.manage-user.modal.enter-fullname')"
         />
       </b-form-group>
 
       <b-form-group
         label-cols="4"
         label-cols-lg="2"
-        :label="$t('views.manager-user.modal.email')"
+        :label="$t('views.manage-user.modal.email')"
         label-for="input-email"
       >
         <b-form-input
           id="input-email"
           v-model="User.email"
-          :placeholder="$t('views.manager-user.modal.enter-email')"
+          :placeholder="$t('views.manage-user.modal.enter-email')"
           :disabled="isAction === 'CREATE' ? false : true"
         />
       </b-form-group>
@@ -152,21 +152,21 @@
       <b-form-group
         label-cols="4"
         label-cols-lg="2"
-        :label="$t('views.manager-user.modal.password')"
+        :label="$t('views.manage-user.modal.password')"
         label-for="input-password"
       >
         <b-form-input
           id="input-password"
           v-model="User.password"
           type="password"
-          :placeholder="$t('views.manager-user.modal.enter-password')"
+          :placeholder="$t('views.manage-user.modal.enter-password')"
         />
       </b-form-group>
 
       <b-form-group
         label-cols="4"
         label-cols-lg="2"
-        :label="$t('views.manager-user.modal.role')"
+        :label="$t('views.manage-user.modal.role')"
         label-for="input-role"
       >
         <b-form-select
@@ -197,18 +197,18 @@
             v-if="isAction === 'CREATE'"
             @click="handleCreateUser()"
           >
-            {{ $t('views.manager-user.modal.create') }}
+            {{ $t('views.manage-user.modal.create') }}
           </b-button>
 
           <b-button
             v-if="isAction === 'EDIT'"
             @click="handleUpdateUser()"
           >
-            {{ $t('views.manager-user.modal.save') }}
+            {{ $t('views.manage-user.modal.save') }}
           </b-button>
 
           <b-button @click="showModal = false">
-            {{ $t('views.manager-user.modal.close') }}
+            {{ $t('views.manage-user.modal.close') }}
           </b-button>
         </div>
       </template>
@@ -235,7 +235,7 @@ import { validEmail, IsEmptyOrWhiteSpace } from '@/utils/validate';
 import { MakeToast } from '@/utils/toast_message';
 
 export default {
-  name: 'ManagerUser',
+  name: 'ManageUser',
   components: {
     LazyLoad,
   },
@@ -359,8 +359,8 @@ export default {
           .then(() => {
             MakeToast({
               variant: 'success',
-              title: this.$t('views.manager-user.message.success'),
-              content: this.$t('views.manager-user.message.message-create-success'),
+              title: this.$t('views.manage-user.message.success'),
+              content: this.$t('views.manage-user.message.message-create-success'),
               toaster: 'b-toaster-top-right',
             });
 
@@ -371,7 +371,7 @@ export default {
             this.overlay.show = false;
           });
       } else {
-        const TITLE = 'views.manager-user.valid.title';
+        const TITLE = 'views.manage-user.valid.title';
 
         MakeToast({
           variant: 'warning',
@@ -409,8 +409,8 @@ export default {
           .then(() => {
             MakeToast({
               variant: 'success',
-              title: this.$t('views.manager-user.message.success'),
-              content: this.$t('views.manager-user.message.message-edit-success'),
+              title: this.$t('views.manage-user.message.success'),
+              content: this.$t('views.manage-user.message.message-edit-success'),
               toaster: 'b-toaster-top-right',
             });
 
@@ -421,7 +421,7 @@ export default {
             this.overlay.show = false;
           });
       } else {
-        const TITLE = 'views.manager-user.valid.title';
+        const TITLE = 'views.manage-user.valid.title';
 
         MakeToast({
           variant: 'warning',
@@ -440,13 +440,13 @@ export default {
         id: id,
       };
 
-      this.$bvModal.msgBoxConfirm(this.$t('views.manager-user.confirm.cf-delete'), {
-        title: this.$t('views.manager-user.confirm.title'),
+      this.$bvModal.msgBoxConfirm(this.$t('views.manage-user.confirm.cf-delete'), {
+        title: this.$t('views.manage-user.confirm.title'),
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'danger',
-        okTitle: this.$t('views.manager-user.confirm.cf-yes'),
-        cancelTitle: this.$t('views.manager-user.confirm.cf-no'),
+        okTitle: this.$t('views.manage-user.confirm.cf-yes'),
+        cancelTitle: this.$t('views.manage-user.confirm.cf-no'),
         footerClass: 'p-2',
         hideHeaderClose: false,
         centered: true,
@@ -457,8 +457,8 @@ export default {
               .then(() => {
                 MakeToast({
                   variant: 'success',
-                  title: this.$t('views.manager-user.message.success'),
-                  content: this.$t('views.manager-user.message.message-delete-success'),
+                  title: this.$t('views.manage-user.message.success'),
+                  content: this.$t('views.manage-user.message.message-delete-success'),
                   toaster: 'b-toaster-top-right',
                 });
 
@@ -505,28 +505,28 @@ export default {
       if (isCheckFullName === true) {
         isValid = {
           status: false,
-          type: 'views.manager-user.valid.fullname',
+          type: 'views.manage-user.valid.fullname',
         };
 
         return isValid;
       } else if (isCheckEmail === false) {
         isValid = {
           status: false,
-          type: 'views.manager-user.valid.email',
+          type: 'views.manage-user.valid.email',
         };
 
         return isValid;
       } else if (isCheckPassword === true) {
         isValid = {
           status: false,
-          type: 'views.manager-user.valid.password',
+          type: 'views.manage-user.valid.password',
         };
 
         return isValid;
       } else if (isCheckRole === false) {
         isValid = {
           status: false,
-          type: 'views.manager-user.valid.role',
+          type: 'views.manage-user.valid.role',
         };
 
         return isValid;

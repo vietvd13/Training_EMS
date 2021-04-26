@@ -83,90 +83,90 @@ export const constantRoutes = [
     ],
   },
   {
-    path: '/manager-user',
-    redirect: 'manager-user/index',
+    path: '/manage-user',
+    redirect: 'manage-user/index',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/ManagerUser/index'),
+        component: () => import('@/views/ManageUser/index'),
         meta: {
-          title: 'routes.manager-user',
+          title: 'routes.manage-user',
           icon: 'icofont-users-social',
         },
       },
     ],
   },
   {
-    path: '/manager-course',
-    redirect: 'manager-course/index',
+    path: '/manage-course',
+    redirect: 'manage-course/index',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/ManagerCourse/index'),
+        component: () => import('@/views/ManageCourse/index'),
         meta: {
-          title: 'routes.manager-course',
+          title: 'routes.manage-course',
           icon: 'icofont-electron',
         },
       },
     ],
   },
   {
-    path: '/manager-class',
-    redirect: 'manager-class/index',
+    path: '/manage-class',
+    redirect: 'manage-class/index',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/ManagerClass/index'),
+        component: () => import('@/views/ManageClass/index'),
         meta: {
-          title: 'routes.manager-class',
+          title: 'routes.manage-class',
           icon: 'icofont-school-bag',
         },
       },
     ],
   },
   {
-    path: '/teacher-scheduled',
-    redirect: 'teacher-scheduled/index',
+    path: '/trainer-scheduled',
+    redirect: 'trainer-scheduled/index',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/TeacherScheduled/index'),
+        component: () => import('@/views/TrainerScheduled/index'),
         meta: {
-          title: 'routes.teacher-scheduled',
+          title: 'routes.trainer-scheduled',
           icon: 'icofont-meeting-add',
         },
       },
     ],
   },
   {
-    path: '/manager-quiz',
-    redirect: 'manager-quizz/index',
+    path: '/manage-quiz',
+    redirect: 'manage-quizz/index',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/ManagerQuiz/index'),
+        component: () => import('@/views/ManageQuiz/index'),
         meta: {
-          title: 'routes.manager-quiz',
+          title: 'routes.manage-quiz',
           icon: 'icofont-paper',
         },
       },
     ],
   },
   {
-    path: '/manager-test',
-    redirect: 'manager-test/index',
+    path: '/manage-test',
+    redirect: 'manage-test/index',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/ManagerTest/index'),
+        component: () => import('@/views/ManageTest/index'),
         meta: {
-          title: 'routes.manager-test',
+          title: 'routes.manage-test',
           icon: 'icofont-prescription',
         },
       },

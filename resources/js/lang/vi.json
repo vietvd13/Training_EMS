@@ -8,7 +8,7 @@
         "manager-user": "Quản lý người dùng",
         "manager-course": "Quản lý môn học",
         "manager-class": "Quản lý lớp học",
-        "teacher-scheduled": "Lịch trình của giáo viên",
+        "trainer-scheduled": "Lịch trình của huấn luyện viên",
         "manager-quiz": "Quản lý câu hỏi",
         "manager-test": "Quản lý bài kiểm tra",
         "view-result": "Kết quả kiểm tra",
@@ -129,6 +129,18 @@
                 "message-create-success": "Một khoá học mới đã được thêm vào hệ thống",
                 "message-edit-success": "Bạn đã chỉnh sửa thành công thông tin của khoá học",
                 "message-delete-success": "Bạn đã xóa thành công một khoá học khỏi hệ thống"
+            }
+        },
+        "manage-class": {
+            "create-new": "Tạo mới",
+            "enter-search": "Tìm kiếm...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "class-name": "Tên lớp",
+                "actions": "Hành động",
+                "edit": "Chỉnh sửa",
+                "delete": "Xoá"
             }
         },
         "page404": {
