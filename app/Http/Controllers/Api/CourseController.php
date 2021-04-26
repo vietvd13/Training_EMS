@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use Exception;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
 class CourseController extends Controller
 {
     /**
@@ -15,8 +16,12 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $is_paginate = Arr::get($request->all(),'full','');
+        if($is_paginate == 1) {
+            return Course::get(['id','course_name']);
+        }
         $courses = Course::paginate(10,['id','course_name']);
         return CourseResource::collection($courses);
     }
