@@ -21,7 +21,7 @@
 
         <LangSelector class="m-2" />
 
-        <b-dropdown text="Block Level Dropdown" block class="m-2">
+        <b-dropdown id="dropdown-profile" text="Block Level Dropdown" block class="m-2">
           <template #button-content>
             <b-icon icon="person-circle" font-scale="1.0" class="icon-user" /><span>{{ $t('navbar.usersettings') }}</span>
           </template>

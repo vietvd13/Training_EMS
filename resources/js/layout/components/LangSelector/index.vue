@@ -1,6 +1,6 @@
 <template>
   <!-- Start Dropdown -->
-  <b-dropdown text="Block Level Dropdown" block>
+  <b-dropdown id="dropdown-lang" text="Block Level Dropdown" block>
     <!-- Icon change -->
     <template #button-content>
       <b-icon icon="globe" font-scale="1.0" class="icon-globe" /><span>{{ $t('views.login.changelang') }}</span>
