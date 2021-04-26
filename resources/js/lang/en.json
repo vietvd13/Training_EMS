@@ -101,6 +101,22 @@
                 "message-delete-success": "You have successfully deleted a user from the system"
             }
         },
+        "manage-course": {
+            "create-new": "Create new",
+            "enter-search": "Searching...",
+            "table": {
+                "course-name": "Course Name",
+                "actions": "Actions",
+                "edit": "Edit",
+                "delete": "Delete"
+            },
+            "modal": {
+                "title-create": "Create a new course",
+                "title-edit": "Edit course",
+                "course-name": "Course Name",
+                "enter-course-name": "Enter course name"
+            }
+        },
         "page404": {
             "oops": "Oops!",
             "message": "The bodyguard said that you can't enter this page...",

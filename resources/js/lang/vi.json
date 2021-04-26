@@ -101,6 +101,22 @@
                 "message-delete-success": "Bạn đã xóa thành công một người dùng khỏi hệ thống"
             }
         },
+        "manage-course": {
+            "create-new": "Tạo mới",
+            "enter-search": "Tìm kiếm...",
+            "table": {
+                "course-name": "Tên khoá học",
+                "actions": "Hành động",
+                "edit": "Chỉnh sửa",
+                "delete": "Xoá"
+            },
+            "modal": {
+                "title-create": "Tạo khoá học mới",
+                "title-edit": "Chỉnh sửa khoá học",
+                "course-name": "Tên khoá học",
+                "enter-course-name": "Nhập tên khoá học"
+            }
+        },
         "page404": {
             "oops": "Oops!",
             "message": "Người vệ sĩ nói rằng bạn không thể vào trang này ...",
