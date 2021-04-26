@@ -121,18 +121,18 @@
             v-if="isAction === 'CREATE'"
             @click="handleCreateCourse()"
           >
-            {{ $t('views.manager-user.modal.create') }}
+            {{ $t('views.manage-user.modal.create') }}
           </b-button>
 
           <b-button
             v-if="isAction === 'EDIT'"
             @click="handleUpdateCourse()"
           >
-            {{ $t('views.manager-user.modal.save') }}
+            {{ $t('views.manage-user.modal.save') }}
           </b-button>
 
           <b-button @click="showModal = false">
-            {{ $t('views.manager-user.modal.close') }}
+            {{ $t('views.manage-user.modal.close') }}
           </b-button>
         </div>
       </template>

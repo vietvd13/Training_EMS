@@ -32,19 +32,19 @@
     "SELECT_ROLE": [
         {
             "value": 1,
-            "label": "views.manager-user.modal.list_role.admin"
+            "label": "views.manage-user.modal.list_role.admin"
         },
         {
             "value": 2,
-            "label": "views.manager-user.modal.list_role.staff"
+            "label": "views.manage-user.modal.list_role.staff"
         },
         {
             "value": 3,
-            "label": "views.manager-user.modal.list_role.trainer"
+            "label": "views.manage-user.modal.list_role.trainer"
         },
         {
             "value": 4,
-            "label": "views.manager-user.modal.list_role.trainee"
+            "label": "views.manage-user.modal.list_role.trainee"
         }
     ]
 }

@@ -8,10 +8,10 @@
 
 <script>
 export default {
-
+  name: 'TrainerScheduled',
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

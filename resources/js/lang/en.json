@@ -5,12 +5,12 @@
         "page404": "Page Not Found",
         "dashboard": "Dashboard",
         "profile": "Profile",
-        "manager-user": "Manager User",
-        "manager-course": "Manager Course",
-        "manager-class": "Manager Class",
-        "teacher-scheduled": "Teacher Scheduled",
-        "manager-quiz": "Manager Quiz",
-        "manager-test": "Manager Test",
+        "manage-user": "Manage User",
+        "manage-course": "Manage Course",
+        "manage-class": "Manage Class",
+        "trainer-scheduled": "Trainer Scheduled",
+        "manage-quiz": "Manage Quiz",
+        "manage-test": "Manage Test",
         "view-result": "View Result",
         "choose-class": "Choose Class",
         "choose-courese": "Choose Course",
@@ -45,7 +45,7 @@
             "role": "Role: {role}",
             "quotes": "Wisdom is not a product from school, but a lifelong learning process."
         },
-        "manager-user": {
+        "manage-user": {
             "create-new": "Create new",
             "enter-search": "Searching...",
             "table": {
@@ -129,6 +129,18 @@
                 "message-create-success": "A new course has been added to the system",
                 "message-edit-success": "You have successfully edited the course information",
                 "message-delete-success": "You have successfully deleted a course from the system"
+            }
+        },
+        "manage-class": {
+            "create-new": "Create new",
+            "enter-search": "Searching...",
+            "table": {
+                "no": "No",
+                "id": "ID",
+                "class-name": "Class name",
+                "actions": "Actions",
+                "edit": "Edit",
+                "delete": "Delete"
             }
         },
         "page404": {
