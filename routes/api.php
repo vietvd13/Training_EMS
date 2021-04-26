@@ -29,5 +29,6 @@ Route::namespace('Api')->group(function() {
         Route::apiResource('/users','UserController');
         Route::put('update-password', 'UserController@updateNewPassword');
         Route::post('/logout','AuthController@logout');
+        Route::post('/class/assigned-class/{id}','ClassController@assign_trainer');
     });
 });
