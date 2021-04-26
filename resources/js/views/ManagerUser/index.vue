@@ -144,6 +144,7 @@
           id="input-email"
           v-model="User.email"
           :placeholder="$t('views.manager-user.modal.enter-email')"
+          :disabled="isAction === 'CREATE' ? false : true"
         />
       </b-form-group>
 
