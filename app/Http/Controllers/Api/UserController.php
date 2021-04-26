@@ -19,6 +19,12 @@ class UserController extends Controller
         $users = User::paginate(10,['*']);
         return UserResource::collection($users);
     }
+
+    public function get_trainer() {
+        $users = User::query();
+        return $users->role('trainer')->get(['id','email','name']);
+    }
+    
     public function store(Request $request)
     {
         $valid = $this->ValidateData($request);
