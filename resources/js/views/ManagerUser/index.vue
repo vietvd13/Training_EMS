@@ -628,5 +628,13 @@ export default {
         }
       }
     }
+
+    footer#__BVID__50___BV_modal_footer_ {
+      button {
+        background-color: #fb8c00;
+      }
+
+      background-color: #fb8c00;
+    }
   }
 </style>
