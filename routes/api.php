@@ -25,6 +25,7 @@ Route::namespace('Api')->group(function() {
         Route::apiResource('question', 'QuestionController');
         Route::apiResource('/class','ClassController');
         Route::apiResource('/course','CourseController');
+        Route::apiResource('/test','TestController');
         Route::apiResource('/users','UserController');
         Route::put('update-password', 'UserController@updateNewPassword');
         Route::post('/logout','AuthController@logout');

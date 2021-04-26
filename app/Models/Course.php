@@ -13,6 +13,7 @@ class Course extends Model
         "is_assigned"
     ];
     protected $hidden = ['pivot'];
+    
     public function classes() {
         return $this->belongsToMany('App\Models\Classs','class_course','course_id','class_id');
     }

@@ -16,4 +16,10 @@ class Test extends Model
     public function question() {
         return $this->belongsToMany('App\Models\Question','test_question','test_id','question_id');
     }
+    public function class() {
+        return $this->hasOne('App\Models\Classs','id','class_id');
+    }
+    public function course() {
+        return $this->hasOne('App\Models\Course','id','course_id');
+    }
 }
