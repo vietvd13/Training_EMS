@@ -1,8 +1,6 @@
 <template>
   <div>
-    <h1>
-      Choose Course
-    </h1>
+    <h1>Choose Course</h1>
   </div>
 </template>
 
