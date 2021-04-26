@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {
     public $guard_name = 'api';
-
+    public $timestamps = false;
     protected $fillable = [
         "course_name",
         "is_assigned"
