@@ -4,7 +4,7 @@
       <b-row>
         <b-col sm="4">
           <div class="zone-controls">
-            <b-button @click="handleOpenModal(null)">{{ $t('views.manager-user.create-new') }}</b-button>
+            <b-button @click="handleOpenModal(null, null)">{{ $t('views.manager-user.create-new') }}</b-button>
           </div>
         </b-col>
         <b-col sm="5" />
@@ -93,7 +93,7 @@
 
                     <b-td class="zone-button-control">
                       <div class="zone-button-edit">
-                        <b-button @click="handleOpenModal(user)">
+                        <b-button @click="handleOpenModal(user, indexUser)">
                           {{ $t('views.manager-user.modal.edit') }}
                         </b-button>
                       </div>
@@ -116,6 +116,7 @@
     </div>
 
     <b-modal
+      id="modal-user"
       v-model="showModal"
       size="lg"
       centered
@@ -281,29 +282,25 @@ export default {
       // Page
       page: 1,
 
+      // Index
+      isIndexEdit: '',
+
     };
-  },
-  computed: {
-    isCurrentPageChange() {
-      return this.page;
-    },
-  },
-  watch: {
-    isCurrentPageChange() {
-      if (this.page === 1) {
-        this.ListUser.length = 0;
-        this.handleGetListUser();
-      }
-    },
   },
   methods: {
     // Get List User
     handleGetListUser() {
-      const length = this.ListUser.length;
+      let length;
+
+      if (this.isAction === 'CREATE' || this.isAction === '' || this.isAction === 'DELETE') {
+        length = this.ListUser.length;
+      } else if (this.isAction === 'EDIT') {
+        length = this.isIndexEdit;
+      }
 
       this.page = handleNextPage(length);
 
-      var param = {
+      const param = {
         page: this.page,
       };
 
@@ -321,7 +318,7 @@ export default {
     },
 
     // Open Modal
-    handleOpenModal(user) {
+    handleOpenModal(user, index) {
       this.showModal = true;
       this.isResetDataModal();
 
@@ -332,6 +329,8 @@ export default {
         this.User.fullname = user.name;
         this.User.role = deCodeRole(user.roles[0]);
         this.User.avatar = null;
+
+        this.isIndexEdit = index;
 
         this.isAction = 'EDIT';
       } else {
@@ -368,9 +367,8 @@ export default {
             this.isResetDataModal();
             this.showModal = false;
             this.overlay.show = true;
-            this.page = 1;
-            this.overlay.show = false;
             this.handleGetListUser();
+            this.overlay.show = false;
           });
       } else {
         const TITLE = 'views.manager-user.valid.title';
@@ -417,10 +415,10 @@ export default {
             });
 
             this.showModal = false;
-            this.overlay.show = true;
             this.page = 1;
-            this.overlay.show = false;
+            this.overlay.show = true;
             this.handleGetListUser();
+            this.overlay.show = false;
           });
       } else {
         const TITLE = 'views.manager-user.valid.title';
@@ -436,6 +434,8 @@ export default {
 
     // Delete User
     handleDeleteUser(id) {
+      this.isAction = 'DELETE';
+
       const PARAM = {
         id: id,
       };
@@ -463,11 +463,10 @@ export default {
                 });
 
                 this.showModal = false;
+                this.ListUser.length = this.ListUser.length - 1;
                 this.overlay.show = true;
-                this.page = 1;
-                this.overlay.show = false;
-
                 this.handleGetListUser();
+                this.overlay.show = false;
               });
           }
         })
@@ -502,8 +501,6 @@ export default {
       const isCheckPassword = IsEmptyOrWhiteSpace(user.user_password);
       const listRole = ConstValue.ROLE_ARRAY;
       const isCheckRole = listRole.includes(user.user_role);
-      console.log(isCheckPassword);
-      console.log(user);
 
       if (isCheckFullName === true) {
         isValid = {
