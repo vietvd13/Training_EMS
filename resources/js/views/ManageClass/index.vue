@@ -105,7 +105,7 @@
       v-model="showModal"
       size="lg"
       centered
-      :title="isAction === 'CREATE' ? $t('views.manage-user.modal.title-create') : $t('views.manage-user.modal.title-edit')"
+      :title="isAction === 'CREATE' ? $t('views.manage-class.modal.title-create') : $t('views.manage-user.modal.title-edit')"
     >
       <b-form-group
         label-cols="4"
@@ -255,6 +255,9 @@ import LazyLoad from '@/components/LazyLoad';
 import { handleNextPage } from '@/utils/lazyload';
 import { getKey, reNameKey } from '@/utils/getKey';
 
+// Import Toast
+import { MakeToast } from '@/utils/toast_message';
+
 export default {
   name: 'ManageClass',
   components: {
@@ -393,6 +396,13 @@ export default {
 
       postCreateClass(NEW_CLASS)
         .then(() => {
+          MakeToast({
+            variant: 'success',
+            title: this.$t('views.manage-class.message.success'),
+            content: this.$t('views.manage-class.message.message-create-success'),
+            toaster: 'b-toaster-top-right',
+          });
+
           this.isResetDataModal();
           this.showModal = false;
           this.overlay.show = true;
@@ -418,6 +428,13 @@ export default {
 
       putUpdateClass(UPDATE_CLASS, ID_UPDATE)
         .then(() => {
+          MakeToast({
+            variant: 'success',
+            title: this.$t('views.manage-class.message.success'),
+            content: this.$t('views.manage-class.message.message-edit-success'),
+            toaster: 'b-toaster-top-right',
+          });
+
           this.showModal = false;
           this.page = 1;
           this.overlay.show = true;
@@ -436,6 +453,13 @@ export default {
 
       deleteClass(PARAM)
         .then(() => {
+          MakeToast({
+            variant: 'success',
+            title: this.$t('views.manage-class.message.success'),
+            content: this.$t('views.manage-class.message.message-delete-success'),
+            toaster: 'b-toaster-top-right',
+          });
+
           this.showModal = false;
           this.ListClass.length = this.ListClass.length - 1;
           this.overlay.show = true;

@@ -151,6 +151,20 @@
                 "course-in-class": "Khoá học trong lớp",
                 "all-student": "Tất cả thực tập sinh",
                 "student-in-class": "Thực tập sinh trong lớp"
+            },
+            "valid":{
+                "title":"Cảnh báo",
+                "class-name":"Bạn cần nhập tên lớp học",
+                "list-course": "Bạn cần nhập ít nhất một khoá học",
+                "list-trainee":"Bạn cần nhập ít nhất một thực tập sinh"
+            },
+            "message":{
+                "success": "Thành công",
+                "warning": "Cảnh báo",
+                "danger": "Thất bại",
+                "message-create-success": "Một lớp học mới đã được thêm vào hệ thống",
+                "message-edit-success": "Bạn đã chỉnh sửa thành công thông tin của lớp học",
+                "message-delete-success": "Bạn đã xóa thành công một lớp học khỏi hệ thống"                
             }
         },
         "trainer_scheduled": {
