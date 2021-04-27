@@ -4,7 +4,7 @@
       <b-row>
         <b-col sm="4">
           <div class="zone-controls">
-            <b-button @click="handleOpenModal()">{{ $t('views.manage-class.create-new') }}</b-button>
+            <b-button @click="handleOpenModal(null)">{{ $t('views.manage-class.create-new') }}</b-button>
           </div>
         </b-col>
         <b-col sm="5" />
@@ -78,18 +78,20 @@
 
                     <b-td class="zone-button-control">
                       <div class="zone-button-edit">
-                        <b-button @click="handleOpenModal()">
-                          {{ $t('views.manage-class.modal.edit') }}
+                        <b-button @click="handleOpenModal(currentClass.class_id)">
+                          {{ $t('views.manage-class.table.edit') }}
                         </b-button>
                       </div>
 
                       <div class="zone-button-delete">
-                        <b-button @click="handleDeleteClass()">
-                          {{ $t('views.manage-class.modal.delete') }}
+                        <b-button @click="handleDeleteClass(currentClass.class_id)">
+                          {{ $t('views.manage-class.table.delete') }}
                         </b-button>
                       </div>
                     </b-td>
                   </b-tr>
+
+                  <LazyLoad @lazyload="handleGetListClass()" />
                 </b-tbody>
               </b-table-simple>
             </div>
@@ -184,9 +186,15 @@
         <b-row>
           <b-col sm="5" style="padding: 0;">
             <div class="zone-display-list">
-              <div class="zone-display-item">
-                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
-              </div>
+              <draggable class="list-group" :list="ListTrainee" group="trainee">
+                <div
+                  v-for="(trainee, indexTrainee) in ListTrainee"
+                  :key="indexTrainee"
+                  class="zone-display-item"
+                >
+                  <span>{{ trainee.trainee_name }}</span>
+                </div>
+              </draggable>
             </div>
           </b-col>
 
@@ -194,13 +202,40 @@
 
           <b-col sm="5" style="padding: 0;">
             <div class="zone-display-list">
-              <div class="zone-display-item">
-                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
-              </div>
+              <draggable class="list-group" :list="isClass.class_trainee" group="trainee">
+                <div
+                  v-for="(trainee_select, indexTraineeSelect) in isClass.class_trainee"
+                  :key="indexTraineeSelect"
+                  class="zone-display-item"
+                >
+                  <span>{{ trainee_select.trainee_name }}</span>
+                </div>
+              </draggable>
             </div>
           </b-col>
         </b-row>
       </div>
+      <template #modal-footer>
+        <div>
+          <b-button
+            v-if="isAction === 'CREATE'"
+            @click="handleCreateClass()"
+          >
+            {{ $t('views.manage-user.modal.create') }}
+          </b-button>
+
+          <b-button
+            v-if="isAction === 'EDIT'"
+            @click="handleUpdateClass()"
+          >
+            {{ $t('views.manage-user.modal.save') }}
+          </b-button>
+
+          <b-button @click="showModal = false">
+            {{ $t('views.manage-user.modal.close') }}
+          </b-button>
+        </div>
+      </template>
     </b-modal>
 
   </div>
@@ -211,12 +246,20 @@
 import draggable from 'vuedraggable';
 
 // Import function call api
-import { getListCourse } from '@/api/manage-class';
+import { getListCourse, getListTrainee, getListClass, postCreateClass, getOneClass, putUpdateClass, deleteClass } from '@/api/manage-class';
+
+// Import Component
+import LazyLoad from '@/components/LazyLoad';
+
+// Import function helper
+import { handleNextPage } from '@/utils/lazyload';
+import { getKey, reNameKey } from '@/utils/getKey';
 
 export default {
   name: 'ManageClass',
   components: {
     draggable,
+    LazyLoad,
   },
   data() {
     return {
@@ -236,14 +279,14 @@ export default {
       ListClass: [],
 
       // Modal
-      showModal: true,
+      showModal: false,
 
       // Class
       isClass: {
-        id: '',
+        class_id: '',
         class_name: '',
         class_courses: [],
-        class_students: [],
+        class_trainee: [],
       },
 
       // Data
@@ -251,11 +294,14 @@ export default {
       ListTrainee: [],
 
       // Action
-      isAction: 'CREATE',
+      isAction: '',
+
+      // Index
+      isIndexEdit: '',
+
+      // Page
+      page: 1,
     };
-  },
-  mounted() {
-    this.handleGetListCourse();
   },
   methods: {
     // Get List Course
@@ -270,29 +316,143 @@ export default {
         });
     },
 
+    // Get List Trainee
+    handleGetListTrainee() {
+      getListTrainee()
+        .then((response) => {
+          this.ListTrainee = reNameKey(response, 'name', 'trainee_name');
+        });
+    },
+
     // Get List Class
     handleGetListClass() {
+      let length;
 
+      if (this.isAction === 'CREATE' || this.isAction === '' || this.isAction === 'DELETE') {
+        length = this.ListClass.length;
+      } else if (this.isAction === 'EDIT') {
+        length = this.isIndexEdit;
+      }
+
+      this.page = handleNextPage(length);
+
+      const PARAM = {
+        page: this.page,
+      };
+
+      getListClass(PARAM)
+        .then((response) => {
+          if (this.page > 1) {
+            this.ListClass = [...this.ListClass, ...response.data];
+          } else {
+            this.ListClass = [...response.data];
+          }
+
+          this.ListClass = [...new Map(this.ListClass.map(item => [item['class_id'], item])).values()];
+          this.overlay.show = false;
+        });
     },
 
     // Handle Open Modal
-    handleOpenModal() {
+    handleOpenModal(id) {
+      this.isResetDataModal();
+      this.handleGetListCourse();
+      this.handleGetListTrainee();
 
+      if (id !== null) {
+        this.isAction = 'EDIT';
+
+        const ID = {
+          id: id,
+        };
+
+        getOneClass(ID)
+          .then((response) => {
+            this.isClass.class_id = response.data.class_id;
+            this.isClass.class_name = response.data.class_name;
+            this.isClass.class_courses = response.data.class_course;
+            this.isClass.class_trainee = response.data.class_trainees;
+          });
+      } else {
+        this.isAction = 'CREATE';
+      }
+
+      this.showModal = true;
     },
 
     // Handle Create Class
     handleCreateClass() {
+      const list_course = getKey(this.isClass.class_courses, 'id');
+      const list_trainee = getKey(this.isClass.class_trainee, 'id');
 
+      const NEW_CLASS = {
+        'class_name': this.isClass.class_name,
+        'class_courses': list_course,
+        'class_students': list_trainee,
+      };
+
+      postCreateClass(NEW_CLASS)
+        .then(() => {
+          this.isResetDataModal();
+          this.showModal = false;
+          this.overlay.show = true;
+          this.handleGetListClass();
+          this.overlay.show = false;
+        });
     },
 
     // Handle Update Class
     handleUpdateClass() {
+      const list_course = getKey(this.isClass.class_courses, 'courese_id');
+      const list_trainee = getKey(this.isClass.class_trainee, 'trainee_id');
 
+      const UPDATE_CLASS = {
+        'class_name': this.isClass.class_name,
+        'class_courses': list_course,
+        'class_students': list_trainee,
+      };
+
+      const ID_UPDATE = {
+        'id': this.isClass.class_id,
+      };
+
+      putUpdateClass(UPDATE_CLASS, ID_UPDATE)
+        .then(() => {
+          this.showModal = false;
+          this.page = 1;
+          this.overlay.show = true;
+          this.handleGetListClass();
+          this.overlay.show = false;
+        });
     },
 
     // Handle Delete Class
-    handleDeleteClass() {
+    handleDeleteClass(id) {
+      this.isAction = 'DELETE';
 
+      const PARAM = {
+        id: id,
+      };
+
+      deleteClass(PARAM)
+        .then(() => {
+          this.showModal = false;
+          this.ListClass.length = this.ListClass.length - 1;
+          this.overlay.show = true;
+          this.handleGetListClass();
+          this.overlay.show = false;
+        });
+    },
+
+    isResetDataModal() {
+      const IS_CLASS = {
+        class_id: '',
+        class_name: '',
+        class_courses: [],
+        class_trainee: [],
+      };
+
+      this.isClass = IS_CLASS;
     },
   },
 };
