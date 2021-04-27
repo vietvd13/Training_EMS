@@ -24,6 +24,10 @@ class UserController extends Controller
         $users = User::query();
         return $users->role('trainer')->get(['id','email','name']);
     }
+    public function get_trainee() {
+        $users = User::query();
+        return $users->role('trainee')->get(['id','email','name']);
+    }
     
     public function store(Request $request)
     {
