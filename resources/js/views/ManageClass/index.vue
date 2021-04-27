@@ -97,6 +97,100 @@
         </div>
       </div>
     </div>
+
+    <b-modal
+      id="modal-class"
+      v-model="showModal"
+      size="lg"
+      centered
+      :title="isAction === 'CREATE' ? $t('views.manage-user.modal.title-create') : $t('views.manage-user.modal.title-edit')"
+    >
+      <b-form-group
+        label-cols="4"
+        label-cols-lg="2"
+        :label="$t('views.manage-class.modal.class-name')"
+        label-for="input-classname"
+      >
+        <b-form-input
+          id="input-classname"
+          v-model="isClass.class_name"
+          :placeholder="$t('views.manage-class.modal.enter-class-name')"
+        />
+      </b-form-group>
+
+      <div style="margin-top: 20px;">
+        <b-row>
+          <b-col sm="5" class="zone-diplay-title-list">
+            <span>{{ $t('views.manage-class.modal.all-course') }}</span>
+          </b-col>
+
+          <b-col sm="2" />
+
+          <b-col sm="5" class="zone-diplay-title-list">
+            <span>{{ $t('views.manage-class.modal.course-in-class') }}</span>
+          </b-col>
+        </b-row>
+      </div>
+
+      <div>
+        <b-row>
+          <b-col sm="5" style="padding: 0;">
+            <div class="zone-display-list">
+              <div class="zone-display-item">
+                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
+              </div>
+            </div>
+          </b-col>
+
+          <b-col sm="2" />
+
+          <b-col sm="5" style="padding: 0;">
+            <div class="zone-display-list">
+              <div class="zone-display-item">
+                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <b-row>
+          <b-col sm="5" class="zone-diplay-title-list">
+            <span>{{ $t('views.manage-class.modal.all-student') }}</span>
+          </b-col>
+
+          <b-col sm="2" />
+
+          <b-col sm="5" class="zone-diplay-title-list">
+            <span>{{ $t('views.manage-class.modal.student-in-class') }}</span>
+          </b-col>
+        </b-row>
+      </div>
+
+      <div>
+        <b-row>
+          <b-col sm="5" style="padding: 0;">
+            <div class="zone-display-list">
+              <div class="zone-display-item">
+                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
+              </div>
+            </div>
+          </b-col>
+
+          <b-col sm="2" />
+
+          <b-col sm="5" style="padding: 0;">
+            <div class="zone-display-list">
+              <div class="zone-display-item">
+                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
+              </div>
+            </div>
+          </b-col>
+        </b-row>
+      </div>
+    </b-modal>
+
   </div>
 </template>
 
@@ -119,6 +213,20 @@ export default {
 
       // List class
       ListClass: [],
+
+      // Modal
+      showModal: true,
+
+      // Class
+      isClass: {
+        id: '',
+        class_name: '',
+        class_courses: [],
+        class_students: [],
+      },
+
+      // Action
+      isAction: 'CREATE',
     };
   },
   methods: {
@@ -244,5 +352,50 @@ export default {
         }
       }
     }
+  }
+
+  .zone-display-list {
+    width: 100%;
+    height: 250px;
+    background-color: #dddddd;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    overflow-y: scroll;
+    padding: 5px;
+    border: solid 2px #052c50;
+
+    .zone-display-item {
+      span {
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        color: #303133;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        font-weight: 400;
+      }
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .zone-diplay-title-list {
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #052c50;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
   }
 </style>
