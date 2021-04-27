@@ -11,7 +11,6 @@ export function getKey(array, key) {
 }
 
 export function reNameKey(array, oldKey, newKey) {
-  const result = [];
   const length = array.length;
   let index = 0;
 
@@ -20,5 +19,5 @@ export function reNameKey(array, oldKey, newKey) {
     delete array[index][oldKey];
   }
 
-  return result;
+  return array;
 }

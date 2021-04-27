@@ -151,6 +151,20 @@
                 "course-in-class": "Course in Class",
                 "all-student": "All Student",
                 "student-in-class": "Trainee in Class"
+            },
+            "valid":{
+                "title":"Warning",
+                "class-name":"You need to enter a class name",
+                "list-course": "You need to enter at least one course",
+                "list-trainee":"You need to enter at least one trainee"
+            },
+            "message":{
+                "success": "Success",
+                "warning": "Warning",
+                "danger": "Danger",
+                "message-create-success": "A new class has been added to the system",
+                "message-edit-success": "You have successfully edited the class information",
+                "message-delete-success": "You have successfully deleted a class from the system"                
             }
         },
         "trainer_scheduled": {
