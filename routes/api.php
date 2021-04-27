@@ -31,5 +31,6 @@ Route::namespace('Api')->group(function() {
         Route::post('/logout','AuthController@logout');
         Route::post('/class/assigned-class/{id}','ClassController@assign_trainer');
         Route::get('/user/trainer-list','UserController@get_trainer');
+        Route::get('/user/trainee-list','UserController@get_trainee');
     });
 });
