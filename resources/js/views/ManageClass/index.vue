@@ -136,9 +136,15 @@
         <b-row>
           <b-col sm="5" style="padding: 0;">
             <div class="zone-display-list">
-              <div class="zone-display-item">
-                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
-              </div>
+              <draggable class="list-group" :list="ListCourse" group="course">
+                <div
+                  v-for="(course, indexCourse) in ListCourse"
+                  :key="indexCourse"
+                  class="zone-display-item"
+                >
+                  <span>{{ course.course_name }}</span>
+                </div>
+              </draggable>
             </div>
           </b-col>
 
@@ -146,9 +152,15 @@
 
           <b-col sm="5" style="padding: 0;">
             <div class="zone-display-list">
-              <div class="zone-display-item">
-                <span>Day la cau hoi thu nhat trong danh sach cau hoi nay day!</span>
-              </div>
+              <draggable class="list-group" :list="isClass.class_courses" group="course">
+                <div
+                  v-for="(courseSelect, indexCourseSelect) in isClass.class_courses"
+                  :key="indexCourseSelect"
+                  class="zone-display-item"
+                >
+                  <span>{{ courseSelect.course_name }}</span>
+                </div>
+              </draggable>
             </div>
           </b-col>
         </b-row>
@@ -195,8 +207,17 @@
 </template>
 
 <script>
+// Import component
+import draggable from 'vuedraggable';
+
+// Import function call api
+import { getListCourse } from '@/api/manage-class';
+
 export default {
   name: 'ManageClass',
+  components: {
+    draggable,
+  },
   data() {
     return {
       // Key Search
@@ -225,11 +246,30 @@ export default {
         class_students: [],
       },
 
+      // Data
+      ListCourse: [],
+      ListTrainee: [],
+
       // Action
       isAction: 'CREATE',
     };
   },
+  mounted() {
+    this.handleGetListCourse();
+  },
   methods: {
+    // Get List Course
+    handleGetListCourse() {
+      const PARAM = {
+        full: 1,
+      };
+
+      getListCourse(PARAM)
+        .then((response) => {
+          this.ListCourse = response;
+        });
+    },
+
     // Get List Class
     handleGetListClass() {
 
