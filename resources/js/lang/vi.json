@@ -172,11 +172,27 @@
             "enter-search": "Tìm kiếm...",
             "table": {
                 "no": "No",
-                "id": "ID",
+                "id": "ID Lớp học",
                 "class-name": "Tên lớp",
                 "course-name": "Tên môn học",
                 "actions": "Hành động",
-                "assign": "Gắn giáo viên"
+                "assign": "Xếp huấn luyện viên"
+            },
+            "modal": {
+                "title": "Xếp huấn luyện viên",
+                "trainer": "Huấn luyện viên",
+                "assign": "Lưu",
+                "close": "Đóng"
+            },
+            "message": {
+                "success": "Thành công",
+                "warning": "Cảnh báo",
+                "danger": "Thất bại",
+                "assign-success": "Bạn đã xếp huấn luyện viên cho lớp thành công"
+            },
+            "valid": {
+                "title":"Cảnh báo",
+                "assign": "Bạn cần lựa chọn một huấn luyện viên cho lớp"
             }
         },
         "manage-quiz": {
