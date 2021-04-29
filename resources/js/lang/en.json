@@ -172,11 +172,27 @@
             "enter-search": "Searching...",
             "table": {
                 "no": "No",
-                "id": "ID",
+                "id": "ID Class",
                 "class-name": "Class name",
                 "course-name": "Course Name",
                 "actions": "Actions",
                 "assign": "Assign Trainer"
+            },
+            "modal": {
+                "title": "Assign Trainer",
+                "trainer": "Trainer",
+                "assign": "Save",
+                "close": "Close"
+            },
+            "message": {
+                "success": "Success",
+                "warning": "Warning",
+                "danger": "Danger",
+                "assign-success": "You have successfully assigned the trainer to the class"
+            },
+            "valid": {
+                "title":"Warning",
+                "assign": "You need to select a trainer for this class"
             }
         },
         "manage-quiz": {

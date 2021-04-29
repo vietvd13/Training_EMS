@@ -1,3 +1,11 @@
+header#modal-user___BV_modal_header_ {
+    button.close {
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
 footer#modal-user___BV_modal_footer_ {
     display: flex;
     justify-content: center;

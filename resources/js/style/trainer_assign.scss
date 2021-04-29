@@ -1,4 +1,4 @@
-header#modal-class___BV_modal_header_ {
+header#trainer_scheduled___BV_modal_header_ {
     button.close {
         &:focus {
             outline: none;
@@ -6,14 +6,10 @@ header#modal-class___BV_modal_header_ {
     }
 }
 
-div#modal-class___BV_modal_body_ {
-    margin-left: 20px;
-    margin-right: 20px;
-}
-
-footer#modal-class___BV_modal_footer_ {
+footer#trainer_scheduled___BV_modal_footer_ {
     display: flex;
     justify-content: center;
+
     button {
         background-color: #fb8c00;
         border: none;
