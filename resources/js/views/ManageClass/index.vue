@@ -254,6 +254,8 @@ import LazyLoad from '@/components/LazyLoad';
 // Import function helper
 import { handleNextPage } from '@/utils/lazyload';
 import { getKey, reNameKey } from '@/utils/getKey';
+import { removeDupEl } from '@/utils/helperDrag';
+import { IsEmptyOrWhiteSpace } from '@/utils/validate';
 
 // Import Toast
 import { MakeToast } from '@/utils/toast_message';
@@ -308,21 +310,22 @@ export default {
   },
   methods: {
     // Get List Course
-    handleGetListCourse() {
+    async handleGetListCourse() {
       const PARAM = {
         full: 1,
       };
 
-      getListCourse(PARAM)
+      await getListCourse(PARAM)
         .then((response) => {
-          this.ListCourse = response;
+          this.ListCourse = reNameKey(response, 'id', 'courese_id');
         });
     },
 
     // Get List Trainee
-    handleGetListTrainee() {
-      getListTrainee()
+    async handleGetListTrainee() {
+      await getListTrainee()
         .then((response) => {
+          this.ListTrainee = reNameKey(response, 'id', 'trainee_id');
           this.ListTrainee = reNameKey(response, 'name', 'trainee_name');
         });
     },
@@ -357,7 +360,7 @@ export default {
     },
 
     // Handle Open Modal
-    handleOpenModal(id) {
+    async handleOpenModal(id) {
       this.isResetDataModal();
       this.handleGetListCourse();
       this.handleGetListTrainee();
@@ -369,7 +372,7 @@ export default {
           id: id,
         };
 
-        getOneClass(ID)
+        await getOneClass(ID)
           .then((response) => {
             this.isClass.class_id = response.data.class_id;
             this.isClass.class_name = response.data.class_name;
@@ -380,13 +383,17 @@ export default {
         this.isAction = 'CREATE';
       }
 
+      this.ListCourse = removeDupEl(this.ListCourse, this.isClass.class_courses, 'courese_id');
+
+      this.ListTrainee = removeDupEl(this.ListTrainee, this.isClass.class_trainee, 'trainee_id');
+
       this.showModal = true;
     },
 
     // Handle Create Class
     handleCreateClass() {
-      const list_course = getKey(this.isClass.class_courses, 'id');
-      const list_trainee = getKey(this.isClass.class_trainee, 'id');
+      const list_course = getKey(this.isClass.class_courses, 'courese_id');
+      const list_trainee = getKey(this.isClass.class_trainee, 'trainee_id');
 
       const NEW_CLASS = {
         'class_name': this.isClass.class_name,
@@ -394,21 +401,35 @@ export default {
         'class_students': list_trainee,
       };
 
-      postCreateClass(NEW_CLASS)
-        .then(() => {
-          MakeToast({
-            variant: 'success',
-            title: this.$t('views.manage-class.message.success'),
-            content: this.$t('views.manage-class.message.message-create-success'),
-            toaster: 'b-toaster-top-right',
-          });
+      const isValidateClass = this.isValidateClass(NEW_CLASS);
 
-          this.isResetDataModal();
-          this.showModal = false;
-          this.overlay.show = true;
-          this.handleGetListClass();
-          this.overlay.show = false;
+      if (isValidateClass.status === true) {
+        postCreateClass(NEW_CLASS)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manage-class.message.success'),
+              content: this.$t('views.manage-class.message.message-create-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.isResetDataModal();
+            this.showModal = false;
+            this.overlay.show = true;
+            this.handleGetListClass();
+            this.overlay.show = false;
+          });
+      } else {
+        const TITLE = 'views.manage-class.valid.title';
+
+        MakeToast({
+          variant: 'warning',
+          title: this.$t(TITLE),
+          content: this.$t(isValidateClass.type),
+          toaster: 'b-toaster-top-right',
+
         });
+      }
     },
 
     // Handle Update Class
@@ -426,21 +447,35 @@ export default {
         'id': this.isClass.class_id,
       };
 
-      putUpdateClass(UPDATE_CLASS, ID_UPDATE)
-        .then(() => {
-          MakeToast({
-            variant: 'success',
-            title: this.$t('views.manage-class.message.success'),
-            content: this.$t('views.manage-class.message.message-edit-success'),
-            toaster: 'b-toaster-top-right',
-          });
+      const isValidateClass = this.isValidateClass(UPDATE_CLASS);
 
-          this.showModal = false;
-          this.page = 1;
-          this.overlay.show = true;
-          this.handleGetListClass();
-          this.overlay.show = false;
+      if (isValidateClass.status === true) {
+        putUpdateClass(UPDATE_CLASS, ID_UPDATE)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manage-class.message.success'),
+              content: this.$t('views.manage-class.message.message-edit-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.showModal = false;
+            this.page = 1;
+            this.overlay.show = true;
+            this.handleGetListClass();
+            this.overlay.show = false;
+          });
+      } else {
+        const TITLE = 'views.manage-class.valid.title';
+
+        MakeToast({
+          variant: 'warning',
+          title: this.$t(TITLE),
+          content: this.$t(isValidateClass.type),
+          toaster: 'b-toaster-top-right',
+
         });
+      }
     },
 
     // Handle Delete Class
@@ -451,20 +486,47 @@ export default {
         id: id,
       };
 
-      deleteClass(PARAM)
-        .then(() => {
-          MakeToast({
-            variant: 'success',
-            title: this.$t('views.manage-class.message.success'),
-            content: this.$t('views.manage-class.message.message-delete-success'),
-            toaster: 'b-toaster-top-right',
-          });
+      this.$bvModal.msgBoxConfirm(this.$t('views.manage-user.confirm.cf-delete'), {
+        title: this.$t('views.manage-user.confirm.title'),
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: this.$t('views.manage-user.confirm.cf-yes'),
+        cancelTitle: this.$t('views.manage-user.confirm.cf-no'),
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true,
+      })
+        .then(value => {
+          if (value === true) {
+            deleteClass(PARAM)
+              .then((response) => {
+                if (response.message !== 'Can not delete because relationship') {
+                  MakeToast({
+                    variant: 'success',
+                    title: this.$t('views.manage-class.message.success'),
+                    content: this.$t('views.manage-class.message.message-delete-success'),
+                    toaster: 'b-toaster-top-right',
+                  });
 
-          this.showModal = false;
-          this.ListClass.length = this.ListClass.length - 1;
-          this.overlay.show = true;
-          this.handleGetListClass();
-          this.overlay.show = false;
+                  this.showModal = false;
+                  this.ListClass.length = this.ListClass.length - 1;
+                  this.overlay.show = true;
+                  this.handleGetListClass();
+                  this.overlay.show = false;
+                } else {
+                  MakeToast({
+                    variant: 'warning',
+                    title: this.$t('views.manage-class.message.warning'),
+                    content: this.$t('views.manage-class.message.message-delete-relationship'),
+                    toaster: 'b-toaster-top-right',
+                  });
+                }
+              });
+          }
+        })
+        .catch(err => {
+          console.log(err);
         });
     },
 
@@ -477,6 +539,29 @@ export default {
       };
 
       this.isClass = IS_CLASS;
+    },
+
+    isValidateClass(currentClass) {
+      let isValid = {
+        status: false,
+        type: '',
+      };
+
+      const isCheckName = IsEmptyOrWhiteSpace(currentClass.class_name);
+
+      if (isCheckName === true) {
+        isValid = {
+          status: false,
+          type: 'views.manage-class.valid.class-name',
+        };
+      } else {
+        isValid = {
+          status: true,
+          type: -1,
+        };
+      }
+
+      return isValid;
     },
   },
 };
@@ -588,25 +673,36 @@ export default {
     padding: 5px;
     border: solid 2px #052c50;
 
-    .zone-display-item {
-      span {
-        width: 100%;
-        height: 100%;
-        background-color: #fff;
-        color: #303133;
-        margin: 0 auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+    .list-group {
+      width: 100%;
+      height: 100%;
+
+      .zone-display-item {
         margin-top: 5px;
         margin-bottom: 5px;
-        padding: 5px;
-        border-radius: 5px;
-        font-weight: 400;
-      }
 
-      &:hover {
-        cursor: pointer;
+        span {
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+          color: #303133;
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 5px;
+          border-radius: 5px;
+          font-weight: 400;
+
+          &:active {
+            background-color: #ffe268;
+            opacity: 0.7;
+          }
+        }
+
+        &:hover {
+          cursor: grab;
+        }
       }
     }
   }

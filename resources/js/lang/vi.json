@@ -5,12 +5,12 @@
         "page404": "Trang không tồn tại",
         "dashboard": "Trình điều khiển",
         "profile": "Hồ sơ",
-        "manager-user": "Quản lý người dùng",
-        "manager-course": "Quản lý môn học",
-        "manager-class": "Quản lý lớp học",
+        "manage-user": "Quản lý người dùng",
+        "manage-course": "Quản lý môn học",
+        "manage-class": "Quản lý lớp học",
         "trainer-scheduled": "Lịch trình của huấn luyện viên",
-        "manager-quiz": "Quản lý câu hỏi",
-        "manager-test": "Quản lý bài kiểm tra",
+        "manage-quiz": "Quản lý câu hỏi",
+        "manage-test": "Quản lý bài kiểm tra",
         "view-result": "Kết quả kiểm tra",
         "choose-class": "Lớp học",
         "choose-course": "Môn học",
@@ -45,7 +45,7 @@
             "role": "Chức vụ: {role}",
             "quotes": "Trí tuệ không phải là một sản phẩm từ trường học, mà là một quá trình học tập suốt đời."
         },
-        "manager-user": {
+        "manage-user": {
             "create-new": "Tạo mới",
             "enter-search": "Tìm kiếm...",
             "table": {
@@ -164,7 +164,8 @@
                 "danger": "Thất bại",
                 "message-create-success": "Một lớp học mới đã được thêm vào hệ thống",
                 "message-edit-success": "Bạn đã chỉnh sửa thành công thông tin của lớp học",
-                "message-delete-success": "Bạn đã xóa thành công một lớp học khỏi hệ thống"                
+                "message-delete-success": "Bạn đã xóa thành công một lớp học khỏi hệ thống",
+                "message-delete-relationship": "Bạn không thể thực hiện xoá lớp học này"                 
             }
         },
         "trainer_scheduled": {

@@ -164,7 +164,8 @@
                 "danger": "Danger",
                 "message-create-success": "A new class has been added to the system",
                 "message-edit-success": "You have successfully edited the class information",
-                "message-delete-success": "You have successfully deleted a class from the system"                
+                "message-delete-success": "You have successfully deleted a class from the system",
+                "message-delete-relationship": "You cannot delete this class"                
             }
         },
         "trainer_scheduled": {
