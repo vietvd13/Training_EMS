@@ -335,20 +335,35 @@ export default {
         'course_id': id,
       };
 
-      deleteCourse(ID)
-        .then(() => {
-          MakeToast({
-            variant: 'success',
-            title: this.$t('views.manage-course.message.success'),
-            content: this.$t('views.manage-course.message.message-delete-success'),
-            toaster: 'b-toaster-top-right',
-          });
+      this.$bvModal.msgBoxConfirm(this.$t('views.manage-course.confirm.cf-delete'), {
+        title: this.$t('views.manage-course.confirm.title'),
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: this.$t('views.manage-course.confirm.cf-yes'),
+        cancelTitle: this.$t('views.manage-course.confirm.cf-no'),
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true,
+      })
+        .then(value => {
+          if (value === true) {
+            deleteCourse(ID)
+              .then(() => {
+                MakeToast({
+                  variant: 'success',
+                  title: this.$t('views.manage-course.message.success'),
+                  content: this.$t('views.manage-course.message.message-delete-success'),
+                  toaster: 'b-toaster-top-right',
+                });
 
-          this.showModal = false;
-          this.ListCourse.length = this.ListCourse.length - 1;
-          this.overlay.show = true;
-          this.handleGetListCourse();
-          this.overlay.show = false;
+                this.showModal = false;
+                this.ListCourse.length = this.ListCourse.length - 1;
+                this.overlay.show = true;
+                this.handleGetListCourse();
+                this.overlay.show = false;
+              });
+          }
         });
     },
 

@@ -1,0 +1,85 @@
+header#modal-quiz___BV_modal_header_ {
+    button.close {
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+div#modal-quiz___BV_modal_body_ {
+    .zone-table-answer {
+        height: 300px;
+        overflow-y: scroll;
+
+        th {
+            background-color: #052c50;
+            color: #fff;
+            min-width: 50px;
+            word-break: break-all;
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        th,
+        td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        th.zone-min-width {
+            width: 120px;
+            word-break: break-all;
+        }
+
+        td.zone-min-width {
+            width: 120px;
+            word-break: break-all;
+
+            button {
+                background-color: #fb8c00;
+                border: none;
+
+                &:hover {
+                    opacity: 0.7;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .zone-add-quiz {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        div {
+            border-radius: 50%;
+            background-color: #f56c6c;
+            border: none;
+            font-weight: 700;
+            width: 30px;
+            height: 30px;
+            color: #fff;
+            text-align: center;
+
+            &:hover {
+                opacity: 0.7;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+footer#modal-quiz___BV_modal_footer_ {
+    display: flex;
+    justify-content: center;
+
+    button {
+        background-color: #fb8c00;
+        border: none;
+        min-width: 130px;
+    }
+}
