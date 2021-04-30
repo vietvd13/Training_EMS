@@ -23,7 +23,6 @@ yarn-error.log
 /public/stats.html
 /public/*.js
 /public/*.js.map
-/public/mix-manifest.json
 .idea
 .DS_Store
 .vscode
