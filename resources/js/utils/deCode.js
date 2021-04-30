@@ -34,3 +34,39 @@ export function getNameRole(code) {
     return -1;
   }
 }
+
+export function changeBoolean2Number(arr, key) {
+  const length = arr.length;
+  let index = 0;
+
+  for (index; index < length; index++) {
+    arr[index][key] = +!!arr[index][key];
+  }
+
+  return arr;
+}
+
+export function changeNumber2Boolean(arr, key) {
+  const length = arr.length;
+  let index = 0;
+
+  for (index; index < length; index++) {
+    arr[index][key] = !!arr[index][key];
+  }
+
+  return arr;
+}
+
+export function isCountDup(arr, key, val) {
+  const length = arr.length;
+  let index = 0;
+  let result = 0;
+
+  for (index; index < length; index++) {
+    if (arr[index][key] === val) {
+      result = result + 1;
+    }
+  }
+
+  return result;
+}

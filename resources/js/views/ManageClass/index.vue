@@ -460,7 +460,6 @@ export default {
             });
 
             this.showModal = false;
-            this.page = 1;
             this.overlay.show = true;
             this.handleGetListClass();
             this.overlay.show = false;
@@ -486,13 +485,13 @@ export default {
         id: id,
       };
 
-      this.$bvModal.msgBoxConfirm(this.$t('views.manage-user.confirm.cf-delete'), {
-        title: this.$t('views.manage-user.confirm.title'),
+      this.$bvModal.msgBoxConfirm(this.$t('views.manage-class.confirm.cf-delete'), {
+        title: this.$t('views.manage-class.confirm.title'),
         size: 'sm',
         buttonSize: 'sm',
         okVariant: 'danger',
-        okTitle: this.$t('views.manage-user.confirm.cf-yes'),
-        cancelTitle: this.$t('views.manage-user.confirm.cf-no'),
+        okTitle: this.$t('views.manage-class.confirm.cf-yes'),
+        cancelTitle: this.$t('views.manage-class.confirm.cf-no'),
         footerClass: 'p-2',
         hideHeaderClose: false,
         centered: true,

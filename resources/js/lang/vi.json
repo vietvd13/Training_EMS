@@ -118,6 +118,12 @@
                 "course-name": "Tên khoá học",
                 "enter-course-name": "Nhập tên khoá học"
             },
+            "confirm": {
+                "title": "Vui lòng xác nhận",
+                "cf-delete": "Bạn muốn xoá môn học này đúng không?",
+                "cf-yes": "Có",
+                "cf-no": "Không"
+            },
             "valid": {
                 "title": "Cảnh báo",
                 "course_name": "Bạn cần phải nhập tên khoá học."
@@ -151,6 +157,12 @@
                 "course-in-class": "Khoá học trong lớp",
                 "all-student": "Tất cả thực tập sinh",
                 "student-in-class": "Thực tập sinh trong lớp"
+            },
+            "confirm": {
+                "title": "Vui lòng xác nhận",
+                "cf-delete": "Bạn muốn xoá lớp học này đúng không?",
+                "cf-yes": "Có",
+                "cf-no": "Không"
             },
             "valid":{
                 "title":"Cảnh báo",
@@ -205,6 +217,40 @@
                 "actions": "Hành động",
                 "edit": "Chỉnh sửa",
                 "delete": "Xoá"
+            },
+            "modal": {
+                "title-create": "Tạo câu hỏi mới",
+                "title-edit": "Chỉnh sửa câu hỏi",
+                "quiz-content": "Nội dung câu hỏi",
+                "enter-quiz-content": "Nhập câu hỏi",
+                "table": {
+                    "is-correct": "Chính xác",
+                    "answer-content": "Nội dung câu trả lời",
+                    "action": "Hành động",
+                    "enter-answer-content": "Nhập nội dung câu trả lời",
+                    "delete": "Xoá"
+                }
+            },
+            "confirm": {
+                "title": "Vui lòng xác nhận",
+                "cf-delete": "Bạn muốn xoá câu hỏi này đúng không?",
+                "cf-yes": "Có",
+                "cf-no": "Không"
+            },
+            "valid": {
+                "title": "Cảnh báo",
+                "quiz-content": "Bạn cần phải nhập câu hỏi",
+                "answer-limit": "Bạn cần nhập ít nhất một câu trả lời",
+                "answer-empty": "Bạn có một hoặc vài câu trả lời chưa được điền thông tin"
+            },
+            "message": {
+                "success": "Thành công",
+                "warning": "Cảnh báo",
+                "danger": "Thất bại",
+                "message-create-success": "Một câu hỏi đã được tạo thành công",
+                "message-edit-success": "Một câu hỏi đã được chỉnh sửa thành công",
+                "message-delete-success": "Một câu hỏi đã được loại bỏ khỏi hệ thống",
+                "message-delete-relationship": "Bạn không thể thực hiện xoá câu hỏi này"
             }
         },
         "manage-test": {

@@ -415,7 +415,6 @@ export default {
             });
 
             this.showModal = false;
-            this.page = 1;
             this.overlay.show = true;
             this.handleGetListUser();
             this.overlay.show = false;
