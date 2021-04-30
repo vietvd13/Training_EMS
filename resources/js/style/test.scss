@@ -1,0 +1,27 @@
+header#modal-test___BV_modal_header_ {
+    button.close {
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+div#modal-test___BV_modal_body_ {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    .mb-3,
+    .my-3 {
+        margin-bottom: 0 !important;
+    }
+}
+
+footer#modal-test___BV_modal_footer_ {
+    display: flex;
+    justify-content: center;
+    button {
+        background-color: #fb8c00;
+        border: none;
+        min-width: 130px;
+    }
+}

@@ -264,6 +264,19 @@
                 "actions": "Hành động",
                 "edit": "Chỉnh sửa",
                 "delete": "Xoá"
+            },
+            "modal": {
+                "title-create": "Tạo bài kiểm tra mới",
+                "title-edit": "Chỉnh sửa bài câu hỏi",
+                "test_name": "Tên bài kiểm tra",
+                "enter-test_name": "Nhập tên bài kiểm tra",
+                "select_class": "Lớp học",
+                "select_course": "Môn học",
+                "all_quiz": "Danh sách câu hỏi",
+                "quiz-in-test": "Câu hỏi đã chọn",
+                "create": "Tạo mới",
+                "save": "Lưu",
+                "close": "Đóng"
             }
         },
         "view-result": {

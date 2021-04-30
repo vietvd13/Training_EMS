@@ -264,6 +264,19 @@
                 "actions": "Actions",
                 "edit": "Edit",
                 "delete": "Delete"
+            },
+            "modal": {
+                "title-create": "Create a new test",
+                "title-edit": "Edit test",
+                "test_name": "Test name",
+                "enter-test_name": "Enter test name",
+                "select_class": "Select class",
+                "select_course": "Select course",
+                "all_quiz": "All quiz",
+                "quiz-in-test": "Quiz in current test",
+                "create": "Create",
+                "save": "Save",
+                "close": "Close"
             }
         },
         "view-result": {
