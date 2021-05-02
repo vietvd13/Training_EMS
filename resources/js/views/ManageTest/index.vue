@@ -54,10 +54,6 @@
                     </b-th>
 
                     <b-th>
-                      <span>{{ $t('views.manage-test.table.course') }}</span>
-                    </b-th>
-
-                    <b-th>
                       <span>{{ $t('views.manage-test.table.actions') }}</span>
                     </b-th>
                   </b-tr>
@@ -73,15 +69,11 @@
                     </b-td>
 
                     <b-td>
-                      <span>{{ test.id }}</span>
+                      <span>{{ test.test_id }}</span>
                     </b-td>
 
                     <b-td>
-                      <span>{{ test.title }}</span>
-                    </b-td>
-
-                    <b-td>
-                      <span>{{ test.course }}</span>
+                      <span>{{ test.test_name }}</span>
                     </b-td>
 
                     <b-td class="zone-button-control">
@@ -240,6 +232,7 @@ import draggable from 'vuedraggable';
 
 // Import function helper
 import { handleNextPage } from '@/utils/lazyload';
+import { getKey } from '@/utils/getKey';
 
 // Import Toast
 // import { MakeToast } from '@/utils/toast_message';
@@ -351,7 +344,7 @@ export default {
             this.ListTest = [...response.data];
           }
 
-          this.ListTest = [...new Map(this.ListTest.map(item => [item['id'], item])).values()];
+          this.ListTest = [...new Map(this.ListTest.map(item => [item['test_id'], item])).values()];
           this.overlay.show = false;
         });
     },
@@ -376,7 +369,7 @@ export default {
       const test_name = this.isTest.test_name;
       const class_id = this.isTest.select_class;
       const course_id = this.isTest.select_course;
-      const test_questions = this.isTest.test_questions;
+      const test_questions = getKey(this.isTest.test_questions, 'id');
 
       const NEW_TEST = {
         'test_name': test_name,
@@ -386,8 +379,11 @@ export default {
       };
 
       postCreateTest(NEW_TEST)
-        .then((response) => {
-          console.log(response);
+        .then(() => {
+          this.showModal = false;
+          this.overlay.show = true;
+          this.handleGetListTest();
+          this.overlay.show = false;
         });
     },
 
