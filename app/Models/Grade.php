@@ -7,13 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 class Grade extends Model
 {
     protected $fillable = [
-        "trainne_id",
+        "trainee_id",
         "test_id",	
-        "class_id"
+        "class_id",
+        'grade'
     ];
-
+    public $timestamps = false;
     public function trainee() {
-        return $this->hasOne('App\Models\User','id','trainne_id');
+        return $this->hasOne('App\Models\User','id','trainee_id');
     }
     public function test() {
         return $this->hasOne('App\Models\Test','id','test_id');

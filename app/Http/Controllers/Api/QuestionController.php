@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Question;
 use Exception;
 use Facade\Ignition\QueryRecorder\Query;
+use Illuminate\Support\Arr;
 
 class QuestionController extends Controller
 {
@@ -16,13 +17,17 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $is_not_paginate = Arr::get($request->all(),'no_paginate','');
+        if($is_not_paginate == 1) {
+            return Question::get(['id','question_content']);
+        }
         return Question::with([
             'answer' => function ($query) {
                 $query->select(['id','answer_content','is_correct','question_id']);
             }
-        ])->get(['id','question_content']);
+        ])->paginate(10,['id','question_content']);
     }
 
     /**
