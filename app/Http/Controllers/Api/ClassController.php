@@ -17,6 +17,15 @@ class ClassController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function get_course_in_class(Request $request, $id) {
+        // $course_in_class = Classs::with([
+        //     "course" => function($query) {
+        //         $query->select(['id','course_name']);
+        //     }
+        // ])->where('id',$id)->get(['id','class_name']);
+       // return $course_in_class;
+    }
+
     public function index()
     {
         $classes = Classs::with([

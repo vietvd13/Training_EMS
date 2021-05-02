@@ -33,5 +33,6 @@ Route::namespace('Api')->group(function() {
         Route::get('/user/trainer-list','UserController@get_trainer');
         Route::get('/user/trainee-list','UserController@get_trainee');
         Route::get('/user/class-list/{id}','UserController@get_trainee_class');
+        Route::get('/user/course-in-class/{id}','UserController@get_trainer_courses_in_class');
     });
 });

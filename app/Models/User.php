@@ -67,6 +67,10 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Models\Classs','class_trainee','trainee_id','class_id');
     }
 
+    public function classes_trainer() {
+        return $this->belongsToMany('App\Models\Classs','class_teacher','teacher_id','class_id');
+    }
+
     public function getJWTIdentifier()
     {
         return $this->getKey();
