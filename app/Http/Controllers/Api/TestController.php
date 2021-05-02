@@ -60,7 +60,7 @@ class TestController extends Controller
 
         $questions = Question::whereIn('id',$request->test_questions)->get(['id']);
         foreach ($questions as $key => $question) {
-            $questions_in_test[] = $question;
+            $questions_in_test[] = $question->id;
         }
 
         $test->question()->attach($questions_in_test);
