@@ -34,5 +34,8 @@ Route::namespace('Api')->group(function() {
         Route::get('/user/trainee-list','UserController@get_trainee');
         Route::get('/user/class-list/{id}','UserController@get_trainee_class');
         Route::get('/user/course-in-class/{id}','UserController@get_trainer_courses_in_class');
+        Route::post('/testing/submit','TestingController@testing');
+        Route::get('/grades','TestingController@view_grade_by_trainer');
+        Route::get('/grade','TestingController@view_grade_by_trainee');
     });
 });
