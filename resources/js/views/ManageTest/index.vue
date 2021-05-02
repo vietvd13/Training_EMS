@@ -289,28 +289,52 @@ export default {
       },
     };
   },
+  computed: {
+    isSelectClassChange() {
+      return this.isTest.test_class;
+    },
+  },
+  watch: {
+    isSelectClassChange() {
+      this.handelGetListCourse();
+    },
+  },
   methods: {
     // Handle get list class
     async handleGetListClass() {
       const PARAM = {
-        id: 1,
+        id: this.$store.getters.userId,
       };
 
       await getListClass(PARAM)
         .then((response) => {
-          this.ListClass = response.data;
+          this.ListClass = response.classes;
+
+          if (this.ListClass.length === 0) {
+            this.isTest.test_class = null;
+          }
         });
     },
 
     async handelGetListCourse() {
-      const PARAM = {
-        page: 1,
-      };
+      if (this.isTest.test_class !== null) {
+        const ID_CLASS = {
+          id: this.isTest.test_class,
+        };
 
-      await getListCourse(PARAM)
-        .then((response) => {
-          this.ListCourse = response.data;
-        });
+        const ID_TRAINER = {
+          'trainer_id': this.$store.getters.userId,
+        };
+
+        await getListCourse(ID_CLASS, ID_TRAINER)
+          .then((response) => {
+            this.ListCourse = response.data;
+            this.isTest.test_course = null;
+          });
+      } else {
+        this.ListCourse = [];
+        this.isTest.test_course = null;
+      }
     },
 
     async handelGetListQuiz() {
