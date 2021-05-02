@@ -277,6 +277,28 @@
                 "create": "Tạo mới",
                 "save": "Lưu",
                 "close": "Đóng"
+            },
+            "valid": {
+                "title":"Cảnh báo",
+                "test-name": "Bạn cần phải nhập tên cho bài kiểm tra",
+                "req-class": "Bạn cần lựa chọn lớp học cho bài kiểm tra",
+                "req-course": "Bạn cần lựa chọn môn học cho bài kiểm tra",
+                "req-test-questions": "Bạn cần lựa chọn ít nhất một câu hỏi"
+            },
+            "message": {
+                "success": "Thành công",
+                "warning": "Cảnh báo",
+                "danger": "Thất bại",
+                "message-create-success": "Một bài kiểm tra đã được tạo thành công",
+                "message-edit-success": "Một bài kiểm tra đã được chỉnh sửa thành công",
+                "message-delete-success": "Một bài kiểm tra đã được loại bỏ khỏi hệ thống",
+                "message-delete-relationship": "Bạn không thể thực hiện xoá bộ câu hỏi này"
+            },
+            "confirm": {
+                "title": "Vui lòng xác nhận",
+                "cf-delete": "Bạn muốn xoá bài kiểm này đúng không?",
+                "cf-yes": "Có",
+                "cf-no": "Không"
             }
         },
         "view-result": {

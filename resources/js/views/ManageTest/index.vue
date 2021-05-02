@@ -82,7 +82,7 @@
                       </div>
 
                       <div class="zone-button-delete">
-                        <b-button>{{ $t('views.manage-quiz.table.delete') }}</b-button>
+                        <b-button @click="handleDeleteTest(test.test_id)">{{ $t('views.manage-quiz.table.delete') }}</b-button>
                       </div>
                     </b-td>
                   </b-tr>
@@ -122,7 +122,7 @@
         :label="$t('views.manage-test.modal.select_class')"
         label-for="input-select_class"
       >
-        <b-form-select v-model="isTest.select_class" class="mb-3">
+        <b-form-select v-model="isTest.test_class" class="mb-3">
           <b-form-select-option :value="null">{{ $t('select.please_select') }}</b-form-select-option>
           <b-form-select-option
             v-for="(isClass, indexClass) in ListClass"
@@ -140,7 +140,7 @@
         :label="$t('views.manage-test.modal.select_course')"
         label-for="input-select_course"
       >
-        <b-form-select v-model="isTest.select_course" class="mb-3">
+        <b-form-select v-model="isTest.test_course" class="mb-3">
           <b-form-select-option :value="null">{{ $t('select.please_select') }}</b-form-select-option>
           <b-form-select-option
             v-for="(course, indexCourse) in ListCourse"
@@ -233,12 +233,14 @@ import draggable from 'vuedraggable';
 // Import function helper
 import { handleNextPage } from '@/utils/lazyload';
 import { getKey } from '@/utils/getKey';
+import { removeDupEl } from '@/utils/helperDrag';
+import { IsEmptyOrWhiteSpace } from '@/utils/validate';
 
 // Import Toast
-// import { MakeToast } from '@/utils/toast_message';
+import { MakeToast } from '@/utils/toast_message';
 
 // Import function call api
-import { getListTest, getListClass, getListCourse, getListQuiz, postCreateTest } from '@/api/manage-test';
+import { getListTest, getListClass, getListCourse, getListQuiz, postCreateTest, putUpdateTest, deleteTest } from '@/api/manage-test';
 
 export default {
   name: 'ManageQuiz',
@@ -279,9 +281,10 @@ export default {
       ListQuiz: [],
 
       isTest: {
+        'test_id': '',
         'test_name': '',
-        'select_class': null,
-        'select_course': null,
+        'test_class': null,
+        'test_course': null,
         'test_questions': [],
       },
     };
@@ -290,7 +293,7 @@ export default {
     // Handle get list class
     async handleGetListClass() {
       const PARAM = {
-        page: 1,
+        id: 1,
       };
 
       await getListClass(PARAM)
@@ -351,15 +354,23 @@ export default {
 
     // handle Open modal
     async handleOpenModal(test) {
+      this.isResetModalTest();
       await this.handleGetListClass();
       await this.handelGetListCourse();
       await this.handelGetListQuiz();
 
       if (test !== null) {
         this.isAction = 'EDIT';
+        this.isTest.test_id = test.test_id;
+        this.isTest.test_name = test.test_name;
+        this.isTest.test_class = test.test_class;
+        this.isTest.test_course = test.test_course;
+        this.isTest.test_questions = test.test_questions;
       } else {
         this.isAction = 'CREATE';
       }
+
+      this.ListQuiz = removeDupEl(this.ListQuiz, this.isTest.test_questions, 'test_id');
 
       this.showModal = true;
     },
@@ -367,8 +378,8 @@ export default {
     // Handle Create Test
     handleCreateTest() {
       const test_name = this.isTest.test_name;
-      const class_id = this.isTest.select_class;
-      const course_id = this.isTest.select_course;
+      const class_id = this.isTest.test_class;
+      const course_id = this.isTest.test_course;
       const test_questions = getKey(this.isTest.test_questions, 'id');
 
       const NEW_TEST = {
@@ -378,22 +389,184 @@ export default {
         'test_questions': test_questions,
       };
 
-      postCreateTest(NEW_TEST)
-        .then(() => {
-          this.showModal = false;
-          this.overlay.show = true;
-          this.handleGetListTest();
-          this.overlay.show = false;
+      const isValidTest = this.isValidTest(NEW_TEST);
+
+      if (isValidTest.status === true) {
+        postCreateTest(NEW_TEST)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manage-test.message.success'),
+              content: this.$t('views.manage-test.message.message-create-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.isResetModalTest();
+            this.showModal = false;
+            this.overlay.show = true;
+            this.handleGetListTest();
+            this.overlay.show = false;
+          });
+      } else {
+        const TITLE = 'views.manage-test.valid.title';
+
+        MakeToast({
+          variant: 'warning',
+          title: this.$t(TITLE),
+          content: this.$t(isValidTest.type),
+          toaster: 'b-toaster-top-right',
+
         });
+      }
     },
 
     // Handle Update Test
     handleUpdateTest() {
+      const test_name = this.isTest.test_name;
+      const class_id = this.isTest.test_class;
+      const course_id = this.isTest.test_course;
+      const test_questions = getKey(this.isTest.test_questions, 'id');
 
+      const TEST = {
+        'test_name': test_name,
+        'test_class': class_id,
+        'test_course': course_id,
+        'test_questions': test_questions,
+      };
+
+      const ID = {
+        'id': this.isTest.test_id,
+      };
+
+      const isValidTest = this.isValidTest(TEST);
+
+      if (isValidTest.status === true) {
+        putUpdateTest(TEST, ID)
+          .then(() => {
+            MakeToast({
+              variant: 'success',
+              title: this.$t('views.manage-test.message.success'),
+              content: this.$t('views.manage-test.message.message-edit-success'),
+              toaster: 'b-toaster-top-right',
+            });
+
+            this.showModal = false;
+            this.overlay.show = true;
+            this.handleGetListTest();
+            this.overlay.show = false;
+          });
+      } else {
+        const TITLE = 'views.manage-test.valid.title';
+
+        MakeToast({
+          variant: 'warning',
+          title: this.$t(TITLE),
+          content: this.$t(isValidTest.type),
+          toaster: 'b-toaster-top-right',
+
+        });
+      }
+    },
+
+    handleDeleteTest(id) {
+      this.isAction = 'DELETE';
+
+      const PARAM = {
+        id: id,
+      };
+
+      this.$bvModal.msgBoxConfirm(this.$t('views.manage-test.confirm.cf-delete'), {
+        title: this.$t('views.manage-test.confirm.title'),
+        size: 'sm',
+        buttonSize: 'sm',
+        okVariant: 'danger',
+        okTitle: this.$t('views.manage-test.confirm.cf-yes'),
+        cancelTitle: this.$t('views.manage-test.confirm.cf-no'),
+        footerClass: 'p-2',
+        hideHeaderClose: false,
+        centered: true,
+      })
+        .then(value => {
+          if (value === true) {
+            deleteTest(PARAM)
+              .then((response) => {
+                if (response.message !== 'Can not delete because the relation') {
+                  MakeToast({
+                    variant: 'success',
+                    title: this.$t('views.manage-test.message.success'),
+                    content: this.$t('views.manage-test.message.message-delete-success'),
+                    toaster: 'b-toaster-top-right',
+                  });
+
+                  this.showModal = false;
+                  this.ListTest.length = this.ListTest.length - 1;
+                  this.overlay.show = true;
+                  this.handleGetListTest();
+                  this.overlay.show = false;
+                } else {
+                  MakeToast({
+                    variant: 'warning',
+                    title: this.$t('views.manage-test.message.warning'),
+                    content: this.$t('views.manage-test.message.message-delete-relationship'),
+                    toaster: 'b-toaster-top-right',
+                  });
+                }
+              });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        });
     },
 
     isValidTest(test) {
+      let isValid = {
+        status: false,
+        type: '',
+      };
 
+      const isCheckName = IsEmptyOrWhiteSpace(test.test_name);
+
+      if (isCheckName === true) {
+        isValid = {
+          status: false,
+          type: 'views.manage-test.valid.test-name',
+        };
+      } else if (test.test_class === null) {
+        isValid = {
+          status: false,
+          type: 'views.manage-test.valid.req-class',
+        };
+      } else if (test.test_course === null) {
+        isValid = {
+          status: false,
+          type: 'views.manage-test.valid.req-course',
+        };
+      } else if (test.test_questions.length === 0) {
+        isValid = {
+          status: false,
+          type: 'views.manage-test.valid.req-test-questions',
+        };
+      } else {
+        isValid = {
+          status: true,
+          type: -1,
+        };
+      }
+
+      return isValid;
+    },
+
+    isResetModalTest() {
+      const IS_TEST = {
+        'test_id': '',
+        'test_name': '',
+        'test_class': null,
+        'test_course': null,
+        'test_questions': [],
+      };
+
+      this.isTest = IS_TEST;
     },
   },
 };

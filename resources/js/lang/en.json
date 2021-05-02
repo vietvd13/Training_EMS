@@ -277,6 +277,28 @@
                 "create": "Create",
                 "save": "Save",
                 "close": "Close"
+            },
+            "valid": {
+                "title": "Warning",
+                "test-name": "You need to enter a name for the test",
+                "req-class": "You need to select a class for the test",
+                "req-course": "You need to select a course for the test",
+                "req-test-questions": "You need to select at least one question"
+            },
+            "message": {
+                "success": "Success",
+                "warning": "Warning",
+                "danger": "Danger",
+                "message-create-success": "A test has been successfully created",
+                "message-edit-success": "A test has been successfully edited",
+                "message-delete-success": "One test has been removed from the system",
+                "message-delete-relationship": "You cannot delete this test"
+            },
+            "confirm": {
+                "title": "Please Confirm",
+                "cf-delete": "You want to delete this test, right?",
+                "cf-yes": "Yes",
+                "cf-no": "No"
             }
         },
         "view-result": {
