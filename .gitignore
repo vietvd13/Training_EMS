@@ -28,3 +28,4 @@ yarn-error.log
 .DS_Store
 .vscode
 .vscode-upload.json
+public/mix-manifest.json
