@@ -23,16 +23,28 @@ class UserController extends Controller
     public function get_trainee_class(Request $request, $id) {
         $user = User::where("id",$id)->with([
             "classes" => function ($query) {
-                $query->with([
-                    "course" => function($query) {
-                        $query->select(['id','course_name']);
-                    }
-                ]);
                 $query->select(['id','class_name']);
             }
         ])->get(['id','name','email']);
         return $user[0];
     }
+
+    public function get_trainer_courses_in_class(Request $request,$id) {
+        $trainer_id = Arr::get($request->all(),'trainer_id','');
+        if($trainer_id == "") $trainer_id = $request->user()->id;
+        $user = User::where("id",$trainer_id)->with([
+            "classes_trainer" => function ($query) use($id) {
+                $query->with([
+                    "course" => function ($query) {
+                        $query->select(['id','course_name']);
+                    }
+                ]);
+                $query->select(['id','class_name'])->where('id',$id);
+            }
+        ])->get(['id','name','email']);
+        return $user[0]->classes_trainer[0];
+    }
+
     public function get_trainer() {
         $users = User::query();
         return $users->role('trainer')->get(['id','email','name']);
