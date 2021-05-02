@@ -7,14 +7,14 @@
         </b-col>
 
         <b-col sm="3">
-          <b-form-select v-model="isfilter.course" class="mb-3">
-            <b-form-select-option :value="null">{{ $t('views.view-result.please-select-course') }}</b-form-select-option>
+          <b-form-select v-model="isfilter.class" class="mb-3">
+            <b-form-select-option :value="null">{{ $t('views.view-result.please-select-class') }}</b-form-select-option>
           </b-form-select>
         </b-col>
 
         <b-col sm="3">
-          <b-form-select v-model="isfilter.class" class="mb-3">
-            <b-form-select-option :value="null">{{ $t('views.view-result.please-select-class') }}</b-form-select-option>
+          <b-form-select v-model="isfilter.course" class="mb-3">
+            <b-form-select-option :value="null">{{ $t('views.view-result.please-select-course') }}</b-form-select-option>
           </b-form-select>
         </b-col>
 
@@ -121,6 +121,12 @@
 </template>
 
 <script>
+// Import function helper
+import { IsEmptyOrWhiteSpace } from '@/utils/validate';
+
+// Import function call api
+import { getListGradeTrainer, getListGradeTrainee } from '@/api/view-result';
+
 export default {
   name: 'ViewResult',
   data() {
@@ -128,8 +134,8 @@ export default {
       // Filter
       isfilter: {
         fullname: '',
-        course: null,
         class: null,
+        course: null,
         test: null,
       },
 
@@ -144,6 +150,67 @@ export default {
 
       ListResult: [],
     };
+  },
+  methods: {
+    handleGetGradeTrainer() {
+      const isCheckFilterName = IsEmptyOrWhiteSpace(this.isfilter.fullname);
+      const isCheckFilterClass = this.isfilter.class;
+      const isCheckFilterCourse = this.isfilter.course;
+      const isCheckFilterTest = this.isfilter.test;
+
+      const FILTER = this.handleCheckOption({
+        'class': isCheckFilterClass,
+        'course': isCheckFilterCourse,
+        'test': isCheckFilterTest,
+      });
+
+      let isFilterName;
+
+      if (isCheckFilterName !== true) {
+        isFilterName = {
+          'full_name': this.isfilter.fullname,
+        };
+      } else {
+        isFilterName = null;
+      }
+
+      getListGradeTrainer(isFilterName, FILTER)
+        .then((response) => {
+          this.ListResult = response.data;
+        });
+    },
+
+    handleGetGradeTrainee() {
+      const isCheckFilterClass = this.isfilter.class;
+      const isCheckFilterCourse = this.isfilter.course;
+      const isCheckFilterTest = this.isfilter.test;
+
+      const FILTER = this.handleCheckOption({
+        'class': isCheckFilterClass,
+        'course': isCheckFilterCourse,
+        'test': isCheckFilterTest,
+      });
+
+      getListGradeTrainee(FILTER)
+        .then((response) => {
+          this.ListResult = response.data;
+        });
+    },
+
+    handleCheckOption(obj) {
+      var newObj = {};
+
+      for (const [key, value] of Object.entries(obj)) {
+        if (
+          value !== null &&
+          value !== undefined
+        ) {
+          newObj[key] = value;
+        }
+      }
+
+      return newObj;
+    },
   },
 };
 </script>

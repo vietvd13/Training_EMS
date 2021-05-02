@@ -115,7 +115,7 @@ export default {
 
     async handleSubmitTest() {
       const DATA_SUBMIT = {
-        'test_id': this.$store.getters.respondent.selected.id_test,
+        'test_id': 1, // this.$store.getters.respondent.selected.id_test,
         'answers': this.ListAnswer,
       };
 
@@ -137,6 +137,8 @@ export default {
         this.handleSubmitTest();
         this.$router.push({ path: '/complete-test', query: this.otherQuery }, onAbort => {});
       }
+
+      this.isAnswerSelectd = [];
     },
 
     handleDisplayQuestion(index) {
