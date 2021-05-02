@@ -12,7 +12,7 @@ class Test extends Model
         "class_id",	
         "who_created"
     ];
-
+    public $timestamps = false;
     public function question() {
         return $this->belongsToMany('App\Models\Question','test_question','test_id','question_id');
     }
