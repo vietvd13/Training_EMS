@@ -3,9 +3,9 @@ import { template } from './templateURL.js';
 
 const urlAPI = {
   // Get list class
-  urlGETListClass: template`/class`,
+  urlGETListClass: template`/user/class-list/${'id'}`,
   // Get list course
-  urlGETListCourse: template`/course`,
+  urlGETListCourse: template`/user/course-in-class/${'id'}`,
   // Get List Quiz
   urlGETListQuiz: template`/question`,
   // Get list test
@@ -18,12 +18,12 @@ const urlAPI = {
   urlDELETETest: template`/test/${'id'}`,
 };
 
-export function getListClass(param) {
-  return request.getRequest(urlAPI.urlGETListClass(), param);
+export function getListClass(id_class) {
+  return request.getRequest(urlAPI.urlGETListClass(id_class));
 }
 
-export function getListCourse(param) {
-  return request.getRequest(urlAPI.urlGETListCourse(), param);
+export function getListCourse(id_class, id_trainer) {
+  return request.getRequest(urlAPI.urlGETListCourse(id_class), id_trainer);
 }
 
 export function getListQuiz(param) {
