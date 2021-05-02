@@ -20,6 +20,19 @@ class UserController extends Controller
         return UserResource::collection($users);
     }
 
+    public function get_trainee_class(Request $request, $id) {
+        $user = User::where("id",$id)->with([
+            "classes" => function ($query) {
+                $query->with([
+                    "course" => function($query) {
+                        $query->select(['id','course_name']);
+                    }
+                ]);
+                $query->select(['id','class_name']);
+            }
+        ])->get(['id','name','email']);
+        return $user[0];
+    }
     public function get_trainer() {
         $users = User::query();
         return $users->role('trainer')->get(['id','email','name']);
