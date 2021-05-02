@@ -15,7 +15,8 @@
         "choose-class": "Lớp học",
         "choose-course": "Môn học",
         "choose-test": "Bài kiểm tra",
-        "do-test": "Làm bài kiểm tra"
+        "do-test": "Làm bài kiểm tra",
+        "complete-test": "Hoàn thành bài kiểm tra"
     },          
     "navbar": {
         "settings": "Cài đặt",
@@ -43,7 +44,8 @@
             "wellcome": "Xin chào, {name}!",
             "email": "Email: {email}",
             "role": "Chức vụ: {role}",
-            "quotes": "Trí tuệ không phải là một sản phẩm từ trường học, mà là một quá trình học tập suốt đời."
+            "quotes": "Trí tuệ không phải là một sản phẩm từ trường học, mà là một quá trình học tập suốt đời.",
+            "start": "Bắt đầu thôi"
         },
         "manage-user": {
             "create-new": "Tạo mới",

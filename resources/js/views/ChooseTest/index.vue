@@ -8,10 +8,18 @@
 
 <script>
 export default {
+  name: 'ChooseTest',
+  data() {
+    return {
 
+    };
+  },
+  methods: {
+
+  },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 
 </style>

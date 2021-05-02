@@ -13,9 +13,10 @@
         "manage-test": "Manage Test",
         "view-result": "View Result",
         "choose-class": "Choose Class",
-        "choose-courese": "Choose Course",
+        "choose-course": "Choose Course",
         "choose-test": "Choose Test",
-        "do-test": "Do Test"
+        "do-test": "Do Test",
+        "complete-test": "Complete Test"
     },
     "navbar": {
         "settings": "Settings",
@@ -43,7 +44,8 @@
             "wellcome": "Hi, {name}!",
             "email": "Email: {email}",
             "role": "Role: {role}",
-            "quotes": "Wisdom is not a product from school, but a lifelong learning process."
+            "quotes": "Wisdom is not a product from school, but a lifelong learning process.",
+            "start": "Let's start"
         },
         "manage-user": {
             "create-new": "Create new",

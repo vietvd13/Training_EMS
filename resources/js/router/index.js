@@ -223,7 +223,7 @@ export const asyncRoutes = [
     hidden: true,
     component: Layout,
     meta: {
-      roles: ['admin', 'trainee'],
+      roles: ['trainee'],
     },
     children: [
       {
@@ -242,7 +242,7 @@ export const asyncRoutes = [
     hidden: true,
     component: Layout,
     meta: {
-      roles: ['admin', 'trainee'],
+      roles: ['trainee'],
     },
     children: [
       {
@@ -261,7 +261,7 @@ export const asyncRoutes = [
     hidden: true,
     component: Layout,
     meta: {
-      roles: ['admin', 'trainee'],
+      roles: ['trainee'],
     },
     children: [
       {
@@ -280,7 +280,7 @@ export const asyncRoutes = [
     hidden: true,
     component: Layout,
     meta: {
-      roles: ['admin', 'trainee'],
+      roles: ['trainee'],
     },
     children: [
       {
@@ -288,6 +288,25 @@ export const asyncRoutes = [
         component: () => import('@/views/DoTest/index'),
         meta: {
           title: 'routes.do-test',
+          icon: 'icofont-instrument',
+        },
+      },
+    ],
+  },
+  {
+    path: '/complete-test',
+    redirect: 'complete-test/index',
+    hidden: true,
+    component: Layout,
+    meta: {
+      roles: ['trainee'],
+    },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/CompleteTest/index'),
+        meta: {
+          title: 'routes.complete-test',
           icon: 'icofont-instrument',
         },
       },
