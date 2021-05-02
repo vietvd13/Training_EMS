@@ -127,7 +127,7 @@
           <b-form-select-option
             v-for="(isClass, indexClass) in ListClass"
             :key="indexClass"
-            :value="isClass.class_id"
+            :value="isClass.id"
           >
             {{ isClass.class_name }}
           </b-form-select-option>
@@ -145,7 +145,7 @@
           <b-form-select-option
             v-for="(course, indexCourse) in ListCourse"
             :key="indexCourse"
-            :value="course.course_id"
+            :value="course.id"
           >
             {{ course.course_name }}
           </b-form-select-option>
@@ -296,6 +296,7 @@ export default {
   },
   watch: {
     isSelectClassChange() {
+      this.isTest.test_course = null;
       this.handelGetListCourse();
     },
   },
@@ -308,7 +309,7 @@ export default {
 
       await getListClass(PARAM)
         .then((response) => {
-          this.ListClass = response.classes;
+          this.ListClass = response.classes_trainer;
 
           if (this.ListClass.length === 0) {
             this.isTest.test_class = null;
@@ -328,8 +329,7 @@ export default {
 
         await getListCourse(ID_CLASS, ID_TRAINER)
           .then((response) => {
-            this.ListCourse = response.data;
-            this.isTest.test_course = null;
+            this.ListCourse = response.course;
           });
       } else {
         this.ListCourse = [];
@@ -348,7 +348,7 @@ export default {
         });
     },
 
-    handleGetListTest() {
+    async handleGetListTest() {
       let length;
 
       if (this.isAction === 'CREATE' || this.isAction === '' || this.isAction === 'DELETE') {
@@ -363,7 +363,7 @@ export default {
         page: this.page,
       };
 
-      getListTest(PARAM)
+      await getListTest(PARAM)
         .then((response) => {
           if (this.page > 1) {
             this.ListTest = [...this.ListTest, ...response.data];
@@ -380,18 +380,20 @@ export default {
     async handleOpenModal(test) {
       this.isResetModalTest();
       await this.handleGetListClass();
-      await this.handelGetListCourse();
-      await this.handelGetListQuiz();
 
       if (test !== null) {
         this.isAction = 'EDIT';
         this.isTest.test_id = test.test_id;
         this.isTest.test_name = test.test_name;
         this.isTest.test_class = test.test_class;
+        await this.handelGetListCourse();
+        await this.handelGetListQuiz();
         this.isTest.test_course = test.test_course;
         this.isTest.test_questions = test.test_questions;
       } else {
         this.isAction = 'CREATE';
+        await this.handelGetListCourse();
+        await this.handelGetListQuiz();
       }
 
       this.ListQuiz = removeDupEl(this.ListQuiz, this.isTest.test_questions, 'test_id');
