@@ -9,6 +9,7 @@ const getters = {
   avatar: state => state.user.avatar,
   permissionRoutes: state => state.permission.routes,
   addRoutes: state => state.permission.addRoutes,
+  respondent: state => state.respondent,
 };
 
 export default getters;
