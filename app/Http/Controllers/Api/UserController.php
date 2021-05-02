@@ -24,6 +24,9 @@ class UserController extends Controller
         $user = User::where("id",$id)->with([
             "classes" => function ($query) {
                 $query->select(['id','class_name']);
+            },
+            "classes_trainer" => function ($query) use($id) {
+                $query->select(['id','class_name']);
             }
         ])->get(['id','name','email']);
         return $user[0];
