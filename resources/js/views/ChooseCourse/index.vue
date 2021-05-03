@@ -1,5 +1,14 @@
 <template>
   <div style="margin-top: 20px">
+    <b-row v-if="isShowNoData">
+      <b-col>
+        <div class="card">
+          <div class="card-body" style="text-align: center;">
+            <span>{{ $t('no-data') }}</span>
+          </div>
+        </div>
+      </b-col>
+    </b-row>
     <b-row sm="1" md="1" lg="3">
       <b-col
         v-for="(currentCourse, indexCourse) in ListCourse"
@@ -34,6 +43,7 @@ export default {
   data() {
     return {
       ListCourse: [],
+      isShowNoData: false,
     };
   },
   created() {
@@ -50,6 +60,11 @@ export default {
         await getListFullCourse(ID_CLASS)
           .then((response) => {
             this.ListCourse = response.data.class_course;
+            if (this.ListCourse.length === 0) {
+              this.isShowNoData = true;
+            } else {
+              this.isShowNoData = false;
+            }
           });
       } else {
         this.$router.push({ path: '/choose-class', query: this.otherQuery }, onAbort => {});

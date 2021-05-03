@@ -1,5 +1,14 @@
 <template>
   <div style="margin-top: 20px">
+    <b-row v-if="isShowNoData">
+      <b-col>
+        <div class="card">
+          <div class="card-body" style="text-align: center;">
+            <span>{{ $t('no-data') }}</span>
+          </div>
+        </div>
+      </b-col>
+    </b-row>
     <b-row sm="1" md="1" lg="3">
       <b-col
         v-for="(currentTest, indexTest) in ListTest"
@@ -34,6 +43,7 @@ export default {
   data() {
     return {
       ListTest: [],
+      isShowNoData: false,
     };
   },
   created() {
@@ -53,6 +63,11 @@ export default {
         getListTest(PARAMS)
           .then((response) => {
             this.ListTest = response.data;
+            if (this.ListTest.length === 0) {
+              this.isShowNoData = true;
+            } else {
+              this.isShowNoData = false;
+            }
           });
       } else {
         this.$router.push({ path: '/choose-course', query: this.otherQuery }, onAbort => {});

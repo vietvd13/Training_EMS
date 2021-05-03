@@ -348,5 +348,6 @@
         "trainee": "Trainee",
         "trainer": "Trainer",
         "staff": "Training Staff"
-    }
+    },
+    "no-data": "No Data"
 }
