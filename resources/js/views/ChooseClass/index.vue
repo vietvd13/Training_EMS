@@ -1,5 +1,14 @@
 <template>
   <div style="margin-top: 20px;">
+    <b-row v-if="isShowNoData">
+      <b-col>
+        <div class="card">
+          <div class="card-body" style="text-align: center;">
+            <span>{{ $t('no-data') }}</span>
+          </div>
+        </div>
+      </b-col>
+    </b-row>
     <b-row sm="1" md="1" lg="3">
       <b-col
         v-for="(currentClass, indexClass) in ListClass"
@@ -34,6 +43,7 @@ export default {
   data() {
     return {
       ListClass: [],
+      isShowNoData: false,
     };
   },
   created() {
@@ -48,6 +58,11 @@ export default {
       await getListFullClass(ID_USER)
         .then((response) => {
           this.ListClass = response.classes;
+          if (this.ListClass.length === 0) {
+            this.isShowNoData = true;
+          } else {
+            this.isShowNoData = false;
+          }
         });
     },
 

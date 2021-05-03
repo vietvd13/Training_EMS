@@ -348,5 +348,6 @@
         "staff": "Nhân Viên",
         "trainer": "Huấn luyện viên",
         "trainee": "Thực tập sinh"
-    }
+    },
+        "no-data": "Không có dữ liệu"
 }
