@@ -69,7 +69,7 @@ class TestingController extends Controller
 
         $grades = Grade::query();
 
-        $grades->join('users','users.id','=','grades.trainne_id');
+        $grades->join('users','users.id','=','grades.trainee_id');
         $grades->join("tests",'tests.class_id','grades.class_id');
         $grades->join("courses",'tests.course_id','courses.id');
         $grades->join("classes",'classes.id','grades.class_id');
@@ -108,7 +108,7 @@ class TestingController extends Controller
 
         $grades = Grade::query();
 
-        $grades->join('users','users.id','=','grades.trainne_id');
+        $grades->join('users','users.id','=','grades.trainee_id');
         $grades->join("tests",'tests.class_id','grades.class_id');
         $grades->join("courses",'tests.course_id','courses.id');
         $grades->join("classes",'classes.id','grades.class_id');
