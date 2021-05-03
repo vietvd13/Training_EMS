@@ -83,7 +83,7 @@ class ClassController extends Controller
         }
 
         $courses = Course::whereIn('id',$request->class_courses)->get(['id']);
-        if(count($courses) != count($request->class_students)) {
+        if(count($courses) != count($request->class_courses)) {
             return [
                 "class_students" => "Invalid, There are some ID is not Courses"
             ];
