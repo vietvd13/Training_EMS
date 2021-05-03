@@ -8,12 +8,8 @@ const urlAPI = {
   urlGETListGradeTrainee: template`/grade`,
 };
 
-export function getListGradeTrainer(body, params) {
-  if (body !== null) {
-    return request.getRequest(urlAPI.urlGETListGradeTrainer(), params);
-  }
-
-  return request.getRequest(urlAPI.urlGETListGradeTrainer(), body, params);
+export function getListGradeTrainer(params) {
+  return request.getRequest(urlAPI.urlGETListGradeTrainer(), params);
 }
 
 export function getListGradeTrainee(params) {
