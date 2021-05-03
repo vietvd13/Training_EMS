@@ -274,9 +274,9 @@ export default {
       getListQuiz(PARAM)
         .then((response) => {
           if (this.page > 1) {
-            this.ListQuiz = [...this.ListQuiz, ...response];
+            this.ListQuiz = [...this.ListQuiz, ...response.data];
           } else {
-            this.ListQuiz = [...response];
+            this.ListQuiz = [...response.data];
           }
 
           this.ListQuiz = [...new Map(this.ListQuiz.map(item => [item['id'], item])).values()];
