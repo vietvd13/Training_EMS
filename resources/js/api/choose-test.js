@@ -3,10 +3,10 @@ import { template } from './templateURL.js';
 
 const urlAPI = {
   // Get list full class
-  urlGETListFullClass: template`/user/class-list/${'id'}`,
+  urlGETListTest: template`/test`,
 };
 
-export function getListFullClass(id_user) {
-  return request.getRequest(urlAPI.urlGETListFullClass(id_user));
+export function getListTest(params) {
+  return request.getRequest(urlAPI.urlGETListTest(), params);
 }
 

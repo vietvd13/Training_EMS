@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     async handleGetOneTest() {
-      const GET_ID_TEST = 1; // this.$store.getters.respondent.selected.id_test
+      const GET_ID_TEST = this.$store.getters.respondent.selected.id_test;
       if (GET_ID_TEST !== null) {
         const ID_TEST = {
           'id': GET_ID_TEST,
@@ -115,14 +115,11 @@ export default {
 
     async handleSubmitTest() {
       const DATA_SUBMIT = {
-        'test_id': 1, // this.$store.getters.respondent.selected.id_test,
+        'test_id': this.$store.getters.respondent.selected.id_test,
         'answers': this.ListAnswer,
       };
 
-      await postSubmitTest(DATA_SUBMIT)
-        .then((response) => {
-          console.log(response);
-        });
+      await postSubmitTest(DATA_SUBMIT);
     },
 
     handleNextQuestion() {
