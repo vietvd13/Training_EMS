@@ -66,14 +66,15 @@ class TestingController extends Controller
         $class_id = Arr::get($request->all(),'class','');
         $course_id = Arr::get($request->all(),'course','');
         $test_id = Arr::get($request->all(),'test','');
-
+        $full_name = Arr::get($request->all(),'full_name','');
+        
         $grades = Grade::query();
 
         $grades->join('users','users.id','=','grades.trainee_id');
         $grades->join("tests",'tests.class_id','grades.class_id');
         $grades->join("courses",'tests.course_id','courses.id');
         $grades->join("classes",'classes.id','grades.class_id');
-        if(isset($request->full_name)) {
+        if($full_name != "") {
             $grades->where('users.name','like','%'.$request->full_name.'%');
         }
         
