@@ -20,11 +20,11 @@ class QuestionTest extends Migration
             $table->foreign('question_id')
                 ->references('id')
                 ->on('questions')
-                ->onDelete('restrict')->onUpdate('restrict');
+                ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('test_id')
                 ->references('id')
                 ->on('tests')
-                ->onDelete('restrict')->onUpdate('restrict');
+                ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
