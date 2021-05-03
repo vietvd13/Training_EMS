@@ -162,7 +162,7 @@ class ClassController extends Controller
         }
 
         $courses = Course::whereIn('id',$request->class_courses)->get(['id']);
-        if(count($courses) != count($request->class_students)) {
+        if(count($courses) != count($request->class_courses)) {
             return [
                 "class_students" => "Invalid, There are some ID is not Courses"
             ];
@@ -173,14 +173,12 @@ class ClassController extends Controller
         $class->save();
         $trainees_list = [];
         foreach ($trainees as $index => $trainee) {
-            $trainees_list[] = $trainee['id'];
+            $trainees_list[] = $trainee->id;
         }
-
         $courses_list = [];
         foreach ($courses as $index => $course) {
-            $courses_list[] = $course['id'];
+            $courses_list[] = $course->id;
         }
-
         $class->trainee()->sync($trainees_list);
         $class->course()->sync($courses_list);
         return [

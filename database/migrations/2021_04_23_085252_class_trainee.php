@@ -16,7 +16,7 @@ class ClassTrainee extends Migration
         Schema::create('class_trainee', function (Blueprint $table) {
             $table->bigInteger('class_id')->unsigned();
             $table->bigInteger('trainee_id')->unsigned();
-
+            $table->primary(['class_id','trainee_id']);
             $table->foreign('class_id')
                 ->references('id')
                 ->on('classes')

@@ -16,7 +16,7 @@ class ClassCourse extends Migration
         Schema::create('class_course', function (Blueprint $table) {
             $table->bigInteger('class_id')->unsigned();
             $table->bigInteger('course_id')->unsigned();
-
+            $table->primary(['class_id','course_id']);
             $table->foreign('class_id')
                 ->references('id')
                 ->on('classes')
