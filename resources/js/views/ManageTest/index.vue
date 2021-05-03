@@ -339,7 +339,7 @@ export default {
 
     async handelGetListQuiz() {
       const PARAM = {
-        page: 1,
+        'no_paginate': 1,
       };
 
       await getListQuiz(PARAM)
