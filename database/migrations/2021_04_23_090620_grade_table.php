@@ -15,12 +15,12 @@ class GradeTable extends Migration
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('trainne_id')->unsigned();
+            $table->bigInteger('trainee_id')->unsigned();
             $table->bigInteger("test_id")->unsigned();
             $table->bigInteger('class_id')->unsigned();
             $table->integer('grade');
 
-            $table->foreign('trainne_id')
+            $table->foreign('trainee_id')
                 ->references('id')
                 ->on('users')
                 ->onDelete('restrict')->onUpdate('restrict');

@@ -34,7 +34,9 @@ class TestingController extends Controller
         ])->get(['id','test_name','course_id','class_id']);
 
         foreach ($request->answers as $key => $question) {
-            foreach ($question->answer as $key => $answer) $answers[$question->question_id] = $answer;
+            foreach ($question['answer'] as $key => $answer) {
+                $answers[$question['question_id']][] = $answer;
+            }
         }
         $test = $test[0];
         $grade = 0;
