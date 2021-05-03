@@ -159,7 +159,7 @@ class TestController extends Controller
         try {
             Test::where('id',$id)->delete();
         } catch(Exception $e) {
-            return response()->json(["message" => "Can not delete because the relation"]);
+            return $e;response()->json(["message" => "Can not delete because the relation"]);
         }
     }
 

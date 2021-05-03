@@ -16,7 +16,7 @@ class ClassTeacherTable extends Migration
         Schema::create('class_teacher', function (Blueprint $table) {
             $table->bigInteger('class_id')->unsigned();
             $table->bigInteger('teacher_id')->unsigned();
-
+            $table->primary(['class_id','teacher_id']);
             $table->foreign('class_id')
                 ->references('id')
                 ->on('classes')
