@@ -349,5 +349,8 @@
         "trainer": "Huấn luyện viên",
         "trainee": "Thực tập sinh"
     },
-        "no-data": "Không có dữ liệu"
+    "no-data": "Không có dữ liệu",
+    "complete": "Bạn đã hoàn thành bài kiểm tra!",
+    "back-to-home": "Trở về bảng điều khiển",
+    "view-grade": "Xem điểm"
 }

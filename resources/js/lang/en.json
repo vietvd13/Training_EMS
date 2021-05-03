@@ -349,5 +349,8 @@
         "trainer": "Trainer",
         "staff": "Training Staff"
     },
-    "no-data": "No Data"
+    "no-data": "No Data",
+    "complete": "You have completed the test!",
+    "back-to-home": "Back to Dashboard",
+    "view-grade": "View Grade"
 }
