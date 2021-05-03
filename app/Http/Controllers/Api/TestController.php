@@ -9,6 +9,7 @@ use App\Models\Test;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Arr;
 class TestController extends Controller
 {
     /**
@@ -16,8 +17,22 @@ class TestController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $class = Arr::get($request->all(),'class','');
+        $course = Arr::get($request->all(),'course','');
+        if($class != "" && $course != "") {
+            $test = Test::with([
+                "class" => function($query) {
+                    $query->select(['id','class_name']);
+                },
+                "course" => function($query) {
+                    $query->select(['id','course_name']);
+                }
+            ])->where('class_id', $class)
+            ->where('course_id', $course)->paginate(10,['id','test_name','course_id','class_id'],'page');
+            return TestResource::collection($test);
+        }
         $test = Test::with([
             "class" => function($query) {
                 $query->select(['id','class_name']);
@@ -28,6 +43,7 @@ class TestController extends Controller
         ])->paginate(10,['id','test_name','course_id','class_id'],'page');
         return TestResource::collection($test);
     }
+    //chưa có get list test của (class, course) đâu
 
     /**
      * Show the form for creating a new resource.
