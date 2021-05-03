@@ -17,7 +17,7 @@
         <div class="bullshit__info">
           {{ $t('views.page404.detail') }}
         </div>
-        <a href="#/employee-management/index" class="bullshit__return-home">{{ $t('views.page404.back_to_home') }}</a>
+        <a href="#/dashboard/index" class="bullshit__return-home">{{ $t('views.page404.back_to_home') }}</a>
       </div>
     </div>
   </div>
