@@ -277,7 +277,7 @@ export default {
         'test': isFilterTest,
       });
 
-      if (isCheckFilterName === true) {
+      if (isCheckFilterName !== true) {
         FILTER.full_name = this.isfilter.fullname;
       }
 
