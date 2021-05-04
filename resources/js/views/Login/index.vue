@@ -65,8 +65,8 @@ export default {
   data() {
     return {
       loginForm: {
-        email: 'admin@laravue.dev',
-        password: 'laravue',
+        email: '',
+        password: '',
       },
       typePassword: 'password',
       Backgroud: Backgroud,
