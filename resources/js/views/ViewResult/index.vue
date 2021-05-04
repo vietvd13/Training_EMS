@@ -278,7 +278,7 @@ export default {
       });
 
       if (isCheckFilterName === true) {
-        FILTER.full_name = 'trainee';
+        FILTER.full_name = this.isfilter.fullname;
       }
 
       await getListGradeTrainer(FILTER)
