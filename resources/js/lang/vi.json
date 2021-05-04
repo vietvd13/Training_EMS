@@ -136,7 +136,8 @@
                 "danger": "Thất bại",
                 "message-create-success": "Một khoá học mới đã được thêm vào hệ thống",
                 "message-edit-success": "Bạn đã chỉnh sửa thành công thông tin của khoá học",
-                "message-delete-success": "Bạn đã xóa thành công một khoá học khỏi hệ thống"
+                "message-delete-success": "Bạn đã xóa thành công một khoá học khỏi hệ thống",
+                "message-delete-relationship": "Bạn không thể thực hiện xoá môn học này"                 
             }
         },
         "manage-class": {

@@ -136,7 +136,8 @@
                 "danger": "Danger",
                 "message-create-success": "A new course has been added to the system",
                 "message-edit-success": "You have successfully edited the course information",
-                "message-delete-success": "You have successfully deleted a course from the system"
+                "message-delete-success": "You have successfully deleted a course from the system",
+                "message-delete-relationship": "You cannot delete this course"
             }
         },
         "manage-class": {
