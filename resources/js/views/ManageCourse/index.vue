@@ -349,19 +349,28 @@ export default {
         .then(value => {
           if (value === true) {
             deleteCourse(ID)
-              .then(() => {
-                MakeToast({
-                  variant: 'success',
-                  title: this.$t('views.manage-course.message.success'),
-                  content: this.$t('views.manage-course.message.message-delete-success'),
-                  toaster: 'b-toaster-top-right',
-                });
+              .then((response) => {
+                if (response.message !== 'Can not delete because relationship') {
+                  MakeToast({
+                    variant: 'success',
+                    title: this.$t('views.manage-course.message.success'),
+                    content: this.$t('views.manage-course.message.message-delete-success'),
+                    toaster: 'b-toaster-top-right',
+                  });
 
-                this.showModal = false;
-                this.ListCourse.length = this.ListCourse.length - 1;
-                this.overlay.show = true;
-                this.handleGetListCourse();
-                this.overlay.show = false;
+                  this.showModal = false;
+                  this.ListCourse.length = this.ListCourse.length - 1;
+                  this.overlay.show = true;
+                  this.handleGetListCourse();
+                  this.overlay.show = false;
+                } else {
+                  MakeToast({
+                    variant: 'warning',
+                    title: this.$t('views.manage-course.message.warning'),
+                    content: this.$t('views.manage-course.message.message-delete-relationship'),
+                    toaster: 'b-toaster-top-right',
+                  });
+                }
               });
           }
         });
