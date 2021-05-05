@@ -21,6 +21,7 @@ class CourseTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->bigIncrements('id'); // auto increment
             $table->string('course_name'); // varchar
+            $table->string('course_detail');
             $table->timestamp('failed_at')->useCurrent();
         });
     }
