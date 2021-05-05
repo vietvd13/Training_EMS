@@ -565,17 +565,36 @@ export default {
       if (this.User.role === 3) {
         USER.ex_in_ternal = +!!this.User.ex_in_ternal;
         USER.address = this.User.address;
+        USER.birthday = '';
+        USER.education_level = null;
+        USER.user_major_programing = '';
+        USER.toeic_grade = null;
+        USER.exp_detail = '';
+        USER.department = '';
+        USER.position = '';
       } else if (this.User.role === 4) {
         USER.birthday = this.User.birthday;
         USER.education_level = this.User.education_level;
-        USER.major_programing = this.User.major_programing;
+        USER.user_major_programing = this.User.major_programing;
         USER.toeic_grade = this.User.toeic_grade;
         USER.exp_detail = this.User.exp_detail;
         USER.department = this.User.department;
         USER.position = this.User.position;
+        USER.ex_in_ternal = 0;
+        USER.address = '';
       } else {
-        console.log('❤️️');
+        USER.ex_in_ternal = 0;
+        USER.address = '';
+        USER.birthday = '';
+        USER.education_level = null;
+        USER.user_major_programing = '';
+        USER.toeic_grade = null;
+        USER.exp_detail = '';
+        USER.department = '';
+        USER.position = '';
       }
+
+      console.log(USER);
 
       const validUser = this.isValidateUser(USER);
 
@@ -626,16 +645,33 @@ export default {
       if (this.User.role === 3) {
         USER.ex_in_ternal = +!!this.User.ex_in_ternal;
         USER.address = this.User.address;
+        USER.birthday = '';
+        USER.education_level = null;
+        USER.user_major_programing = '';
+        USER.toeic_grade = null;
+        USER.exp_detail = '';
+        USER.department = '';
+        USER.position = '';
       } else if (this.User.role === 4) {
         USER.birthday = this.User.birthday;
         USER.education_level = this.User.education_level;
-        USER.major_programing = this.User.major_programing;
+        USER.user_major_programing = this.User.major_programing;
         USER.toeic_grade = this.User.toeic_grade;
         USER.exp_detail = this.User.exp_detail;
         USER.department = this.User.department;
         USER.position = this.User.position;
+        USER.ex_in_ternal = 0;
+        USER.address = '';
       } else {
-        console.log('❤️️');
+        USER.ex_in_ternal = 0;
+        USER.address = '';
+        USER.birthday = '';
+        USER.education_level = null;
+        USER.user_major_programing = '';
+        USER.toeic_grade = null;
+        USER.exp_detail = '';
+        USER.department = '';
+        USER.position = '';
       }
 
       const ID_USER = {
