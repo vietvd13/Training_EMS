@@ -94,7 +94,9 @@ class UserController extends Controller
             "exp_detail" => $request->user_exp_detail,
             "department" => $request->user_department,
             "ex_in_ternal" => $request->user_ex_in_ternal,
-            "address" => $request->user_address
+            "address" => $request->user_address,
+            "position" => $request->user_position,
+            "major_programing" => $request->user_major_programing
         ]);
         $user->syncRoles($role->name);
         return response()->json(['message' => "create sucessfully"]);
@@ -124,6 +126,8 @@ class UserController extends Controller
         $user->department = $request->user_department;
         $user->ex_in_ternal = $request->user_ex_in_ternal;
         $user->address = $request->user_address;
+        $user->position = $request->user_position;
+        $user->major_programing = $request->user_major_programing;
         $user->save();
         $user->syncRoles($role->name);
         return response()->json(['message' => "Update sucessfully"]);
@@ -150,7 +154,9 @@ class UserController extends Controller
             "user_exp_detail" => 'string',
             "user_department" => 'string',
             "user_ex_in_ternal" => 'integer',
-            "user_address" => 'string'
+            "user_address" => 'string',
+            "user_major_programing" => 'string',
+            "user_position" => 'string'
         ]);
         if($Validater->fails()) return $Validater;
         else return true;

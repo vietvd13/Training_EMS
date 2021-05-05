@@ -39,7 +39,8 @@ class User extends Authenticatable
         'department',
         'ex_in_ternal',
         'address',
-        'major_programing'
+        'major_programing',
+        'position'
     ];
 
     /**

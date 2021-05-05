@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->integer('ex_in_ternal')->nullable();
             $table->string('address')->nullable();
             $table->integer('major_programing')->nullable();
+            $table->string('position')->nullable();
             //major_programing 
             $table->rememberToken();
             $table->timestamps();
