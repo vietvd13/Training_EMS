@@ -70,3 +70,12 @@ export function isCountDup(arr, key, val) {
 
   return result;
 }
+
+export function getAgeByDOB(dob) {
+  var splitDOB = dob.split('-');
+  dob = new Date(splitDOB[0], splitDOB[1], splitDOB[2]);
+  var diff_ms = Date.now() - dob.getTime();
+  var age_dt = new Date(diff_ms);
+
+  return Math.abs(age_dt.getUTCFullYear() - 1970);
+}

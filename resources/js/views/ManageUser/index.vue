@@ -208,7 +208,7 @@
           :label="$t('views.manage-user.modal.age')"
           label-for="input-age"
         >
-          <span id="input-age">{{ User.birthday }}</span>
+          <span id="input-age">{{ getAgeByDOB(User.birthday) }}</span>
         </b-form-group>
 
         <b-form-group
@@ -386,7 +386,7 @@ import LazyLoad from '@/components/LazyLoad';
 import ConstValue from '../../../../const/const_value.json';
 
 // Import function helper
-import { deCodeRole, getNameRole } from '@/utils/deCode';
+import { deCodeRole, getNameRole, getAgeByDOB } from '@/utils/deCode';
 import { handleNextPage } from '@/utils/lazyload';
 import { validEmail, IsEmptyOrWhiteSpace } from '@/utils/validate';
 
@@ -406,6 +406,7 @@ export default {
       // Function Helper
       deCodeRole: deCodeRole,
       getNameRole: getNameRole,
+      getAgeByDOB: getAgeByDOB,
 
       // Search & Fliter
       keySearch: '',
