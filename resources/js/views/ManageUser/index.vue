@@ -218,7 +218,7 @@
 
 <script>
 // Import Function call api
-import { getListUser, postCreateUser, putUpdateUser, deleteUser } from '@/api/manager-user';
+import { getListUser, getListUserTrainerTrainee, postCreateUser, putUpdateUser, deleteUser } from '@/api/manager-user';
 
 // Import Component
 import LazyLoad from '@/components/LazyLoad';
@@ -285,6 +285,8 @@ export default {
       // Index
       isIndexEdit: '',
 
+      isUserRole: this.$store.getters.roles.join(''),
+
     };
   },
   methods: {
@@ -304,17 +306,31 @@ export default {
         page: this.page,
       };
 
-      getListUser(param)
-        .then((response) => {
-          if (this.page > 1) {
-            this.ListUser = [...this.ListUser, ...response.data];
-          } else {
-            this.ListUser = [...response.data];
-          }
+      if (this.isUserRole === ConstValue.ROLE.ADMIN) {
+        getListUser(param)
+          .then((response) => {
+            if (this.page > 1) {
+              this.ListUser = [...this.ListUser, ...response.data];
+            } else {
+              this.ListUser = [...response.data];
+            }
 
-          this.ListUser = [...new Map(this.ListUser.map(item => [item['id'], item])).values()];
-          this.overlay.show = false;
-        });
+            this.ListUser = [...new Map(this.ListUser.map(item => [item['id'], item])).values()];
+            this.overlay.show = false;
+          });
+      } else {
+        getListUserTrainerTrainee(param)
+          .then((response) => {
+            if (this.page > 1) {
+              this.ListUser = [...this.ListUser, ...response.data];
+            } else {
+              this.ListUser = [...response.data];
+            }
+
+            this.ListUser = [...new Map(this.ListUser.map(item => [item['id'], item])).values()];
+            this.overlay.show = false;
+          });
+      }
     },
 
     // Open Modal

@@ -2,8 +2,10 @@ import request from '../utils/request.js';
 import { template } from './templateURL.js';
 
 const urlAPI = {
-  // Get list user
+  // Get list user (Full)
   urlGETListUser: template`/users`,
+  // Get list user (Ignore Admin, Staff)
+  urlGETListUserTraineeTrainer: template`/staff/trainee-trainer-list`,
   // Post create a new user
   urlPOSTCreateUser: template`/users`,
   // Put update a user
@@ -19,6 +21,10 @@ const urlAPI = {
  */
 export function getListUser(param) {
   return request.getRequest(urlAPI.urlGETListUser(), param);
+}
+
+export function getListUserTrainerTrainee(params) {
+  return request.getRequest(urlAPI.urlGETListUserTraineeTrainer(), params);
 }
 
 /**
