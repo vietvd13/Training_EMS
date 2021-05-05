@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->integer('department')->nullable();
             $table->integer('ex_in_ternal')->nullable();
             $table->string('address')->nullable();
+            $table->integer('major_programing')->nullable();
+            //major_programing 
             $table->rememberToken();
             $table->timestamps();
 //             Thông tin của trainee: Tên, tài khoản, tuổi, ngày sinh, trình đọ học vấn, ngôn ngữ lập trình, điểm TOEIC, kinh nghiệm chi tiết, bộ phần làm việc, vị trí...
