@@ -50,7 +50,8 @@ class CourseController extends Controller
         }
 
         Course::create([
-            "course_name" => $request->course_name
+            "course_name" => $request->course_name,
+            "course_detail" => $request->course_detail
         ]);
 
         return response()->json([
@@ -97,6 +98,7 @@ class CourseController extends Controller
 
         $course = Course::find($id);
         $course->course_name = $request->course_name;
+        $course->course_detail = $request->course_detail;
         $course->save();
         return response()->json([
             "message" => "create sucessfully"
@@ -124,6 +126,7 @@ class CourseController extends Controller
     {
         $Validater = Validator::make($request->all(),[
             "course_name" => 'string|required',
+            "course_detail" => 'string|required'
         ]);
         if($Validater->fails()) return $Validater;
         else return true;
