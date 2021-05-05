@@ -20,6 +20,9 @@ class UserController extends Controller
         return UserResource::collection($users);
     }
 
+    //Tên, tài khoản, tuổi, ngày sinh, trình đọ học vấn, ngôn ngữ lập trình, điểm TOEIC, kinh nghiệm chi tiết, bộ phần làm việc, vị trí...
+    // Trainer: Tên, External or Internal type, sdt, email, địa chỉ...
+
     public function get_trainee_class(Request $request, $id) {
         $user = User::where("id",$id)->with([
             "classes" => function ($query) {
@@ -32,6 +35,12 @@ class UserController extends Controller
         return $user[0];
     }
 
+    public function get_trainee_trainer_for_staff() {
+        $users = User::role(['trainee','trainer'])
+        ->paginate(10,['*']);
+        return UserResource::collection($users);
+    }
+    
     public function get_trainer_courses_in_class(Request $request,$id) {
         $trainer_id = Arr::get($request->all(),'trainer_id','');
         if($trainer_id == "") $trainer_id = $request->user()->id;
@@ -68,6 +77,13 @@ class UserController extends Controller
             'name' => $request->user_full_name,
             'email' => $request->user_account,
             'password' => Hash::make($request->user_password),
+            "birthday" => $request->user_birthday,
+            "education_level" => $request->user_education_level,
+            "toeic_grade" => $request->user_toeic_grade,
+            "exp_detail" => $request->user_exp_detail,
+            "department" => $request->user_department,
+            "ex_in_ternal" => $request->user_ex_in_ternal,
+            "address" => $request->user_address
         ]);
         $user->syncRoles($role->name);
         return response()->json(['message' => "create sucessfully"]);
@@ -90,6 +106,13 @@ class UserController extends Controller
         $user = User::find($id);
         $user->name = $request->user_full_name;
         $user->password = Hash::make($request->user_password);
+        $user->birthday = $request->user_birthday;
+        $user->education_level = $request->user_education_level;
+        $user->toeic_grade = $request->user_toeic_grade;
+        $user->exp_detail = $request->user_exp_detail;
+        $user->department = $request->user_department;
+        $user->ex_in_ternal = $request->user_ex_in_ternal;
+        $user->address = $request->user_address;
         $user->save();
         $user->syncRoles($role->name);
         return response()->json(['message' => "Update sucessfully"]);
@@ -110,7 +133,13 @@ class UserController extends Controller
             "user_full_name" => 'string|required',
             "user_account" => 'string|required',
             "user_password" => 'string|required',
-            "user_role" => 'integer|required'
+            "user_role" => 'integer|required',
+            "user_education_level" => 'integer',
+            "user_toeic_grade" => 'integer',
+            "user_exp_detail" => 'string',
+            "user_department" => 'string',
+            "user_ex_in_ternal" => 'integer',
+            "user_address" => 'string'
         ]);
         if($Validater->fails()) return $Validater;
         else return true;

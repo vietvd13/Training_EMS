@@ -27,6 +27,7 @@ Route::namespace('Api')->group(function() {
         Route::apiResource('/course','CourseController');
         Route::apiResource('/test','TestController');
         Route::apiResource('/users','UserController');
+        Route::get('/staff/trainee-trainer-list','UserController@get_trainee_trainer_for_staff');
         Route::put('update-password', 'UserController@updateNewPassword');
         Route::post('/logout','AuthController@logout');
         Route::post('/class/assigned-class/{id}','ClassController@assign_trainer');
