@@ -31,8 +31,15 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'avatar',
-        'role_id'
+        'role_id',
+        'birthday',
+        'education_level',
+        'toeic_grade',
+        'exp_detail',
+        'department',
+        'ex_in_ternal',
+        'address'
+
     ];
 
     /**

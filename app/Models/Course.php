@@ -10,7 +10,8 @@ class Course extends Model
     public $timestamps = false;
     protected $fillable = [
         "course_name",
-        "is_assigned"
+        "is_assigned",
+        "course_detail"
     ];
     protected $hidden = ['pivot'];
     
