@@ -579,7 +579,7 @@ export default {
         USER.user_address = this.User.address;
         USER.user_birthday = '';
         USER.user_education_level = null;
-        USER.user_user_major_programing = '';
+        USER.user_major_programing = '';
         USER.user_toeic_grade = null;
         USER.user_exp_detail = '';
         USER.user_department = '';
@@ -665,7 +665,7 @@ export default {
       } else if (this.User.role === 4) {
         USER.user_birthday = this.User.birthday;
         USER.user_education_level = this.User.education_level;
-        USER.user_user_major_programing = this.User.major_programing;
+        USER.user_major_programing = this.User.major_programing;
         USER.user_toeic_grade = this.User.toeic_grade;
         USER.user_exp_detail = this.User.exp_detail;
         USER.user_department = this.User.department;
@@ -674,7 +674,7 @@ export default {
         USER.user_address = '';
       } else {
         USER.user_ex_in_ternal = 0;
-        USER.user_user_address = '';
+        USER.user_address = '';
         USER.user_birthday = '';
         USER.user_education_level = null;
         USER.user_major_programing = '';
