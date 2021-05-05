@@ -96,7 +96,7 @@ export const asyncRoutes = [
     redirect: 'manage-user/index',
     component: Layout,
     meta: {
-      roles: ['admin'],
+      roles: ['admin', 'staff'],
     },
     children: [
       {
