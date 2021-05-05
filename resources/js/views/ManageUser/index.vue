@@ -191,6 +191,164 @@
         </b-form-select>
       </b-form-group>
 
+      <div v-if="User.roles === 'trainee'">
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.dob')"
+          label-for="input-dob"
+        >
+          <b-form-input id="input-dob" v-model="User.birthday" type="date" />
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.age')"
+          label-for="input-age"
+        >
+          <span id="input-age">{{ User.birthday }}</span>
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.education_level')"
+          label-for="input-age"
+        >
+          <b-form-select
+            id="input-education_level"
+            v-model="User.education_level"
+          >
+            <b-form-select-option
+              :value="null"
+              disabled
+            >
+              {{ $t('select.please_select') }}
+            </b-form-select-option>
+
+            <b-form-select-option
+              :value="1"
+            >
+              {{ $t('views.manage-user.modal.cd') }}
+            </b-form-select-option>
+
+            <b-form-select-option
+              :value="2"
+            >
+              {{ $t('views.manage-user.modal.dh') }}
+            </b-form-select-option>
+
+          </b-form-select>
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.major_programing')"
+          label-for="input-major_programing"
+        >
+          <b-form-select
+            id="input-major_programing"
+            v-model="User.major_programing"
+          >
+            <b-form-select-option
+              :value="null"
+              disabled
+            >
+              {{ $t('select.please_select') }}
+            </b-form-select-option>
+
+            <b-form-select-option
+              :value="1"
+            >
+              {{ $t('views.manage-user.modal.php') }}
+            </b-form-select-option>
+
+            <b-form-select-option
+              :value="2"
+            >
+              {{ $t('views.manage-user.modal.javascript') }}
+            </b-form-select-option>
+
+            <b-form-select-option
+              :value="3"
+            >
+              {{ $t('views.manage-user.modal.c') }}
+            </b-form-select-option>
+
+            <b-form-select-option
+              :value="4"
+            >
+              {{ $t('views.manage-user.modal.c-plus') }}
+            </b-form-select-option>
+
+            <b-form-select-option
+              :value="5"
+            >
+              {{ $t('views.manage-user.modal.python') }}
+            </b-form-select-option>
+
+          </b-form-select>
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.toeic_grade')"
+          label-for="input-toeic_grade"
+        >
+          <b-form-input id="input-toeic_grade" v-model="User.toeic_grade" type="number" />
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.exp_detail')"
+          label-for="input-exp_detail"
+        >
+          <b-form-input id="input-exp_detail" v-model="User.exp_detail" type="text" />
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.department')"
+          label-for="input-department"
+        >
+          <b-form-input id="input-department" v-model="User.department" type="text" />
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.position')"
+          label-for="input-position"
+        >
+          <b-form-input id="input-position" v-model="User.position" type="text" />
+        </b-form-group>
+      </div>
+
+      <div v-if="User.roles === 'trainer'">
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.in_ternal')"
+          label-for="input-in_ternal"
+        >
+          <b-form-checkbox v-model="User.ex_in_ternal" name="check-button" switch />
+        </b-form-group>
+
+        <b-form-group
+          label-cols="4"
+          label-cols-lg="2"
+          :label="$t('views.manage-user.modal.address')"
+          label-for="input-address"
+        >
+          <b-form-input id="input-address" v-model="User.address" type="text" />
+        </b-form-group>
+      </div>
+
       <template #modal-footer>
         <div>
           <b-button
@@ -272,8 +430,18 @@ export default {
         fullname: '',
         email: '',
         password: '',
+        roles: null,
         role: null,
         avatar: null,
+        birthday: null,
+        education_level: null,
+        major_programing: null,
+        toeic_grade: null,
+        exp_detail: null,
+        ex_in_ternal: false,
+        address: null,
+        department: null,
+        position: null,
       },
 
       // Actions
@@ -288,6 +456,22 @@ export default {
       isUserRole: this.$store.getters.roles.join(''),
 
     };
+  },
+  computed: {
+    isRoleChange() {
+      return this.User.role;
+    },
+  },
+  watch: {
+    isRoleChange() {
+      if (this.User.role === 3) {
+        this.User.roles = 'trainer';
+      } else if (this.User.role === 4) {
+        this.User.roles = 'trainee';
+      } else {
+        this.User.roles = null;
+      }
+    },
   },
   methods: {
     // Get List User
@@ -343,8 +527,18 @@ export default {
         this.User.email = user.email;
         this.User.password = '';
         this.User.fullname = user.name;
+        this.User.roles = user.roles[0];
         this.User.role = deCodeRole(user.roles[0]);
         this.User.avatar = null;
+        this.User.birthday = user.birthday || null;
+        this.User.education_level = user.education_level || null;
+        this.User.major_programing = user.major_programing || null;
+        this.User.toeic_grade = user.toeic_grade || 0;
+        this.User.exp_detail = user.exp_detail || '';
+        this.User.ex_in_ternal = user.ex_in_ternal || false;
+        this.User.address = user.address || '';
+        this.User.department = user.department || '';
+        this.User.position = user.position || '';
 
         this.isIndexEdit = index;
 
@@ -361,12 +555,27 @@ export default {
       const PASSWORD = this.User.password;
       const ROLE = this.User.role;
 
-      const USER = {
+      var USER = {
         'user_full_name': FULLNAME,
         'user_account': EMAIL,
         'user_password': PASSWORD,
         'user_role': ROLE,
       };
+
+      if (this.User.role === 3) {
+        USER.ex_in_ternal = +!!this.User.ex_in_ternal;
+        USER.address = this.User.address;
+      } else if (this.User.role === 4) {
+        USER.birthday = this.User.birthday;
+        USER.education_level = this.User.education_level;
+        USER.major_programing = this.User.major_programing;
+        USER.toeic_grade = this.User.toeic_grade;
+        USER.exp_detail = this.User.exp_detail;
+        USER.department = this.User.department;
+        USER.position = this.User.position;
+      } else {
+        console.log('❤️️');
+      }
 
       const validUser = this.isValidateUser(USER);
 
@@ -407,12 +616,27 @@ export default {
       const PASSWORD = this.User.password;
       const ROLE = this.User.role;
 
-      const USER = {
+      var USER = {
         'user_full_name': FULLNAME,
         'user_account': EMAIL,
         'user_password': PASSWORD,
         'user_role': ROLE,
       };
+
+      if (this.User.role === 3) {
+        USER.ex_in_ternal = +!!this.User.ex_in_ternal;
+        USER.address = this.User.address;
+      } else if (this.User.role === 4) {
+        USER.birthday = this.User.birthday;
+        USER.education_level = this.User.education_level;
+        USER.major_programing = this.User.major_programing;
+        USER.toeic_grade = this.User.toeic_grade;
+        USER.exp_detail = this.User.exp_detail;
+        USER.department = this.User.department;
+        USER.position = this.User.position;
+      } else {
+        console.log('❤️️');
+      }
 
       const ID_USER = {
         'id': ID,
@@ -420,7 +644,7 @@ export default {
 
       const validUser = this.isValidateUser(USER);
 
-      if (validUser.status === true) {
+      if (validUser.status === true || (validUser.status === false && validUser.type === 'views.manage-user.valid.password')) {
         putUpdateUser(USER, ID_USER)
           .then(() => {
             MakeToast({
@@ -497,8 +721,18 @@ export default {
         fullname: '',
         email: '',
         password: '',
+        roles: null,
         role: null,
         avatar: null,
+        birthday: null,
+        major_programing: null,
+        education_level: null,
+        toeic_grade: null,
+        exp_detail: null,
+        ex_in_ternal: false,
+        address: null,
+        department: null,
+        position: null,
       };
 
       this.User = USER;
