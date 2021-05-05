@@ -184,6 +184,7 @@
             v-for="(role, indexRole) in ConstValue.SELECT_ROLE"
             :key="indexRole"
             :value="role.value"
+            :disabled="isDisableRole(indexRole)"
           >
             {{ $t(role.label) }}
           </b-form-select-option>
@@ -461,6 +462,9 @@ export default {
     isRoleChange() {
       return this.User.role;
     },
+    isHandleSearch() {
+      return this.keySearch;
+    },
   },
   watch: {
     isRoleChange() {
@@ -471,6 +475,10 @@ export default {
       } else {
         this.User.roles = null;
       }
+    },
+    isHandleSearch() {
+      this.ListUser.length = 0;
+      this.handleGetListUser();
     },
   },
   methods: {
@@ -486,9 +494,13 @@ export default {
 
       this.page = handleNextPage(length);
 
-      const param = {
+      var param = {
         page: this.page,
       };
+
+      if (!IsEmptyOrWhiteSpace(this.keySearch)) {
+        param.name = this.keySearch;
+      }
 
       if (this.isUserRole === ConstValue.ROLE.ADMIN) {
         getListUser(param)
@@ -535,7 +547,7 @@ export default {
         this.User.major_programing = user.major_programing || null;
         this.User.toeic_grade = user.toeic_grade || 0;
         this.User.exp_detail = user.exp_detail || '';
-        this.User.ex_in_ternal = user.ex_in_ternal || false;
+        this.User.ex_in_ternal = Boolean(user.ex_in_ternal);
         this.User.address = user.address || '';
         this.User.department = user.department || '';
         this.User.position = user.position || '';
@@ -563,38 +575,36 @@ export default {
       };
 
       if (this.User.role === 3) {
-        USER.ex_in_ternal = +!!this.User.ex_in_ternal;
-        USER.address = this.User.address;
-        USER.birthday = '';
-        USER.education_level = null;
-        USER.user_major_programing = '';
-        USER.toeic_grade = null;
-        USER.exp_detail = '';
-        USER.department = '';
-        USER.position = '';
+        USER.user_ex_in_ternal = +!!this.User.ex_in_ternal;
+        USER.user_address = this.User.address;
+        USER.user_birthday = '';
+        USER.user_education_level = null;
+        USER.user_user_major_programing = '';
+        USER.user_toeic_grade = null;
+        USER.user_exp_detail = '';
+        USER.user_department = '';
+        USER.user_position = '';
       } else if (this.User.role === 4) {
-        USER.birthday = this.User.birthday;
-        USER.education_level = this.User.education_level;
+        USER.user_birthday = this.User.birthday;
+        USER.user_education_level = this.User.education_level;
         USER.user_major_programing = this.User.major_programing;
-        USER.toeic_grade = this.User.toeic_grade;
-        USER.exp_detail = this.User.exp_detail;
-        USER.department = this.User.department;
-        USER.position = this.User.position;
-        USER.ex_in_ternal = 0;
-        USER.address = '';
+        USER.user_toeic_grade = this.User.toeic_grade;
+        USER.user_exp_detail = this.User.exp_detail;
+        USER.user_department = this.User.department;
+        USER.user_position = this.User.position;
+        USER.user_ex_in_ternal = 0;
+        USER.user_address = '';
       } else {
-        USER.ex_in_ternal = 0;
-        USER.address = '';
-        USER.birthday = '';
-        USER.education_level = null;
+        USER.user_ex_in_ternal = 0;
+        USER.user_address = '';
+        USER.user_birthday = '';
+        USER.user_education_level = null;
         USER.user_major_programing = '';
-        USER.toeic_grade = null;
-        USER.exp_detail = '';
-        USER.department = '';
-        USER.position = '';
+        USER.user_toeic_grade = null;
+        USER.user_exp_detail = '';
+        USER.user_department = '';
+        USER.user_position = '';
       }
-
-      console.log(USER);
 
       const validUser = this.isValidateUser(USER);
 
@@ -643,35 +653,35 @@ export default {
       };
 
       if (this.User.role === 3) {
-        USER.ex_in_ternal = +!!this.User.ex_in_ternal;
-        USER.address = this.User.address;
-        USER.birthday = '';
-        USER.education_level = null;
+        USER.user_ex_in_ternal = +!!this.User.ex_in_ternal;
+        USER.user_address = this.User.address;
+        USER.user_birthday = '';
+        USER.user_education_level = null;
         USER.user_major_programing = '';
-        USER.toeic_grade = null;
-        USER.exp_detail = '';
-        USER.department = '';
-        USER.position = '';
+        USER.user_toeic_grade = null;
+        USER.user_exp_detail = '';
+        USER.user_department = '';
+        USER.user_position = '';
       } else if (this.User.role === 4) {
-        USER.birthday = this.User.birthday;
-        USER.education_level = this.User.education_level;
-        USER.user_major_programing = this.User.major_programing;
-        USER.toeic_grade = this.User.toeic_grade;
-        USER.exp_detail = this.User.exp_detail;
-        USER.department = this.User.department;
-        USER.position = this.User.position;
-        USER.ex_in_ternal = 0;
-        USER.address = '';
+        USER.user_birthday = this.User.birthday;
+        USER.user_education_level = this.User.education_level;
+        USER.user_user_major_programing = this.User.major_programing;
+        USER.user_toeic_grade = this.User.toeic_grade;
+        USER.user_exp_detail = this.User.exp_detail;
+        USER.user_department = this.User.department;
+        USER.user_position = this.User.position;
+        USER.user_ex_in_ternal = 0;
+        USER.user_address = '';
       } else {
-        USER.ex_in_ternal = 0;
-        USER.address = '';
-        USER.birthday = '';
-        USER.education_level = null;
+        USER.user_ex_in_ternal = 0;
+        USER.user_user_address = '';
+        USER.user_birthday = '';
+        USER.user_education_level = null;
         USER.user_major_programing = '';
-        USER.toeic_grade = null;
-        USER.exp_detail = '';
-        USER.department = '';
-        USER.position = '';
+        USER.user_toeic_grade = null;
+        USER.user_exp_detail = '';
+        USER.user_department = '';
+        USER.user_position = '';
       }
 
       const ID_USER = {
@@ -823,6 +833,14 @@ export default {
 
         return isValid;
       }
+    },
+
+    isDisableRole(index) {
+      if (this.isUserRole !== 'admin') {
+        return [0, 1].includes(index);
+      }
+
+      return false;
     },
 
   },
