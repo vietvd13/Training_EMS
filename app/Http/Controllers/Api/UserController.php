@@ -5,19 +5,25 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use App\Models\Role;
 use App\Http\Resources\UserResource;
-
 use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
 class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::paginate(10,['*']);
-        return UserResource::collection($users);
+        $name = Arr::get($request->all(),'name','');
+        if($name == "") {
+            $users = User::paginate(10,['*']);
+            return UserResource::collection($users);
+        }  else {
+            $users = User::where('name','LIKE','%' . $name . '%')->paginate(10,['*']);
+            return UserResource::collection($users);
+        }
     }
 
     //Tên, tài khoản, tuổi, ngày sinh, trình đọ học vấn, ngôn ngữ lập trình, điểm TOEIC, kinh nghiệm chi tiết, bộ phần làm việc, vị trí...
@@ -35,10 +41,15 @@ class UserController extends Controller
         return $user[0];
     }
 
-    public function get_trainee_trainer_for_staff() {
-        $users = User::role(['trainee','trainer'])
-        ->paginate(10,['*']);
-        return UserResource::collection($users);
+    public function get_trainee_trainer_for_staff(Request $request) {
+        $name = Arr::get($request->all(),'name','');
+        if($name == "") {
+            $users = User::role(['trainee','trainer'])->paginate(10,['*']);
+            return UserResource::collection($users);
+        }  else {
+            $users = User::role(['trainee','trainer'])->where('name','LIKE','%' . $name . '%')->paginate(10,['*']);
+            return UserResource::collection($users);
+        }
     }
     
     public function get_trainer_courses_in_class(Request $request,$id) {
