@@ -142,7 +142,9 @@
                 "title-create": "Create a new course",
                 "title-edit": "Edit course",
                 "course-name": "Course Name",
-                "enter-course-name": "Enter course name"
+                "enter-course-name": "Enter course name",
+                "course_detail": "Course Detail",
+                "enter_course_detail": "Enter Course Detail..."
             },
             "confirm": {
                 "title": "Please Confirm",

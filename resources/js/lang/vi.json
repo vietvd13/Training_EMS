@@ -141,7 +141,9 @@
                 "title-create": "Tạo khoá học mới",
                 "title-edit": "Chỉnh sửa khoá học",
                 "course-name": "Tên khoá học",
-                "enter-course-name": "Nhập tên khoá học"
+                "enter-course-name": "Nhập tên khoá học",
+                "course_detail": "Giới thiệu",
+                "enter_course_detail": "Nhập giới thiệu"
             },
             "confirm": {
                 "title": "Vui lòng xác nhận",
