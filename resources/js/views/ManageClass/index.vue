@@ -362,8 +362,8 @@ export default {
     // Handle Open Modal
     async handleOpenModal(id) {
       this.isResetDataModal();
-      this.handleGetListCourse();
-      this.handleGetListTrainee();
+      await this.handleGetListCourse();
+      await this.handleGetListTrainee();
 
       if (id !== null) {
         this.isAction = 'EDIT';
