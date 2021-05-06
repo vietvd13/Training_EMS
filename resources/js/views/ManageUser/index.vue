@@ -203,6 +203,7 @@
         </b-form-group>
 
         <b-form-group
+          v-if="User.birthday !== null"
           label-cols="4"
           label-cols-lg="2"
           :label="$t('views.manage-user.modal.age')"
@@ -299,7 +300,7 @@
           :label="$t('views.manage-user.modal.toeic_grade')"
           label-for="input-toeic_grade"
         >
-          <b-form-input id="input-toeic_grade" v-model="User.toeic_grade" type="number" />
+          <b-form-input id="input-toeic_grade" v-model="User.toeic_grade" type="number" :placeholder="$t('views.manage-user.modal.enter_toeic_grade')" />
         </b-form-group>
 
         <b-form-group
@@ -308,7 +309,7 @@
           :label="$t('views.manage-user.modal.exp_detail')"
           label-for="input-exp_detail"
         >
-          <b-form-input id="input-exp_detail" v-model="User.exp_detail" type="text" />
+          <b-form-input id="input-exp_detail" v-model="User.exp_detail" type="text" :placeholder="$t('views.manage-user.modal.enter_exp_detail')" />
         </b-form-group>
 
         <b-form-group
@@ -317,7 +318,7 @@
           :label="$t('views.manage-user.modal.department')"
           label-for="input-department"
         >
-          <b-form-input id="input-department" v-model="User.department" type="text" />
+          <b-form-input id="input-department" v-model="User.department" type="text" :placeholder="$t('views.manage-user.modal.enter_department')" />
         </b-form-group>
 
         <b-form-group
@@ -326,7 +327,7 @@
           :label="$t('views.manage-user.modal.position')"
           label-for="input-position"
         >
-          <b-form-input id="input-position" v-model="User.position" type="text" />
+          <b-form-input id="input-position" v-model="User.position" type="text" :placeholder="$t('views.manage-user.modal.enter_position')" />
         </b-form-group>
       </div>
 
@@ -346,7 +347,7 @@
           :label="$t('views.manage-user.modal.address')"
           label-for="input-address"
         >
-          <b-form-input id="input-address" v-model="User.address" type="text" />
+          <b-form-input id="input-address" v-model="User.address" type="text" :placeholder="$t('views.manage-user.modal.enter_address')" />
         </b-form-group>
       </div>
 
