@@ -563,7 +563,7 @@ export default {
         this.User.address = user.address || '';
         this.User.department = user.department || '';
         this.User.position = user.position || '';
-        this.User.telephone = user.telephone || '';
+        this.User.telephone = user.phone || '';
 
         this.isIndexEdit = index;
 
@@ -590,7 +590,7 @@ export default {
       if (this.User.role === 3) {
         USER.user_ex_in_ternal = +!!this.User.ex_in_ternal;
         USER.user_address = this.User.address;
-        USER.user_telephone = this.User.telephone;
+        USER.user_phone = this.User.telephone;
         USER.user_birthday = '';
         USER.user_education_level = null;
         USER.user_major_programing = '';
@@ -608,7 +608,7 @@ export default {
         USER.user_position = this.User.position;
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
-        USER.user_telephone = '';
+        USER.user_phone = '';
       } else {
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
@@ -619,7 +619,7 @@ export default {
         USER.user_exp_detail = '';
         USER.user_department = '';
         USER.user_position = '';
-        USER.user_telephone = '';
+        USER.user_phone = '';
       }
 
       const validUser = this.isValidateUser(USER);
@@ -678,7 +678,7 @@ export default {
         USER.user_exp_detail = '';
         USER.user_department = '';
         USER.user_position = '';
-        USER.user_telephone = this.User.telephone;
+        USER.user_phone = this.User.telephone;
       } else if (this.User.role === 4) {
         USER.user_birthday = this.User.birthday;
         USER.user_education_level = this.User.education_level;
@@ -689,7 +689,7 @@ export default {
         USER.user_position = this.User.position;
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
-        USER.user_telephone = '';
+        USER.user_phone = '';
       } else {
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
@@ -700,7 +700,7 @@ export default {
         USER.user_exp_detail = '';
         USER.user_department = '';
         USER.user_position = '';
-        USER.user_telephone = '';
+        USER.user_phone = '';
       }
 
       const ID_USER = {
