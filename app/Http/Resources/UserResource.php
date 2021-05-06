@@ -33,6 +33,7 @@ class UserResource extends JsonResource
             "ex_in_ternal" => $this->ex_in_ternal,
             "address" => $this->address,
             "major_programing" => $this->major_programing,
+            "phone" => $this->phone
         ];
     }
 }
