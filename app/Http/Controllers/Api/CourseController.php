@@ -20,9 +20,9 @@ class CourseController extends Controller
     {
         $is_paginate = Arr::get($request->all(),'full','');
         if($is_paginate == 1) {
-            return Course::get(['id','course_name']);
+            return Course::get(['id','course_name','course_detail']);
         }
-        $courses = Course::paginate(10,['id','course_name']);
+        $courses = Course::paginate(10,['id','course_name','course_detail']);
         return CourseResource::collection($courses);
     }
 
