@@ -115,6 +115,21 @@
         />
       </b-form-group>
 
+      <b-form-group
+        label-cols="4"
+        label-cols-lg="2"
+        :label="$t('views.manage-course.modal.course_detail')"
+        label-for="course_detail"
+      >
+        <b-form-textarea
+          id="course_detail"
+          v-model="Course.course_detail"
+          :placeholder="$t('views.manage-course.modal.enter_course_detail')"
+          rows="3"
+          max-rows="6"
+        />
+      </b-form-group>
+
       <template #modal-footer>
         <div>
           <b-button
@@ -189,6 +204,7 @@ export default {
       Course: {
         course_id: '',
         course_name: '',
+        course_detail: '',
       },
 
       // index Edit
@@ -232,6 +248,8 @@ export default {
       if (course !== null) {
         this.Course.course_id = course.course_id;
         this.Course.course_name = course.course_name;
+        this.Course.course_detail = course.course_detail;
+
         this.isIndexEdit = index;
 
         this.isAction = 'EDIT';
@@ -245,6 +263,7 @@ export default {
       const COURSE = {
         course_id: '',
         course_name: '',
+        course_detail: '',
       };
 
       this.Course = COURSE;
@@ -253,9 +272,11 @@ export default {
     // Handle Create Course
     handleCreateCourse() {
       const COURSE_NAME = this.Course.course_name;
+      const COURSE_DETAIL = this.Course.course_detail;
 
       const COURSE = {
         'course_name': COURSE_NAME,
+        'course_detail': COURSE_DETAIL,
       };
 
       const isValidCourse = this.isValidateCourse(COURSE);
@@ -290,9 +311,11 @@ export default {
     handleUpdateCourse() {
       const COURSE_ID = this.Course.course_id;
       const COURSE_NAME = this.Course.course_name;
+      const COURSE_DETAIL = this.Course.course_detail;
 
       const COURSE = {
         'course_name': COURSE_NAME,
+        'course_detail': COURSE_DETAIL,
       };
 
       const ID = {
