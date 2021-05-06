@@ -27,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->integer('major_programing')->nullable();
             $table->string('position')->nullable();
+            $table->string('phone')->nullable();
             //major_programing 
             $table->rememberToken();
             $table->timestamps();

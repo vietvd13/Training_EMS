@@ -96,7 +96,8 @@ class UserController extends Controller
             "ex_in_ternal" => $request->user_ex_in_ternal,
             "address" => $request->user_address,
             "position" => $request->user_position,
-            "major_programing" => $request->user_major_programing
+            "major_programing" => $request->user_major_programing,
+            "phone" => $request->user_phone
         ]);
         $user->syncRoles($role->name);
         return response()->json(['message' => "create sucessfully"]);
@@ -128,6 +129,7 @@ class UserController extends Controller
         $user->address = $request->user_address;
         $user->position = $request->user_position;
         $user->major_programing = $request->user_major_programing;
+        $user->phone = $request->user_phone;
         $user->save();
         $user->syncRoles($role->name);
         return response()->json(['message' => "Update sucessfully"]);

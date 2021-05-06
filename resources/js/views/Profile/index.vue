@@ -223,6 +223,15 @@
                 >
                   <b-form-input id="input-address" v-model="InformationUser.address" type="text" :placeholder="$t('views.manage-user.modal.enter_address')" />
                 </b-form-group>
+
+                <b-form-group
+                  label-cols="4"
+                  label-cols-lg="2"
+                  :label="$t('views.manage-user.modal.telephone')"
+                  label-for="input-telephone"
+                >
+                  <b-form-input id="input-telephone" v-model="InformationUser.telephone" type="text" :placeholder="$t('views.manage-user.modal.enter_telephone')" />
+                </b-form-group>
               </div>
 
               <div class="zone-button-submit">
@@ -266,6 +275,7 @@ export default {
         role: null,
         avatar: null,
         birthday: null,
+        telephone: null,
         education_level: null,
         major_programing: null,
         toeic_grade: null,
@@ -307,6 +317,7 @@ export default {
           this.InformationUser.address = USER.address || '';
           this.InformationUser.department = USER.department || '';
           this.InformationUser.position = USER.position || '';
+          this.InformationUser.telephone = USER.telephone || '';
         });
     },
     handleEditInfor() {
@@ -333,6 +344,7 @@ export default {
         USER.user_exp_detail = '';
         USER.user_department = '';
         USER.user_position = '';
+        USER.user_telephone = this.InformationUser.telephone;
       } else if (this.InformationUser.role === 4) {
         USER.user_birthday = this.InformationUser.birthday;
         USER.user_education_level = this.InformationUser.education_level;
@@ -343,6 +355,7 @@ export default {
         USER.user_position = this.InformationUser.position;
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
+        USER.user_telephone = '';
       } else {
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
@@ -353,6 +366,7 @@ export default {
         USER.user_exp_detail = '';
         USER.user_department = '';
         USER.user_position = '';
+        USER.user_telephone = '';
       }
 
       const ID_USER = {

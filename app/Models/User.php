@@ -40,7 +40,8 @@ class User extends Authenticatable
         'ex_in_ternal',
         'address',
         'major_programing',
-        'position'
+        'position',
+        'phone'
     ];
 
     /**
