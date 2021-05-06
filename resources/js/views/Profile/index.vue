@@ -227,6 +227,7 @@
                 <b-form-group
                   label-cols="4"
                   label-cols-lg="2"
+                  style="font-weight: 600"
                   :label="$t('views.manage-user.modal.telephone')"
                   label-for="input-telephone"
                 >
@@ -317,7 +318,7 @@ export default {
           this.InformationUser.address = USER.address || '';
           this.InformationUser.department = USER.department || '';
           this.InformationUser.position = USER.position || '';
-          this.InformationUser.telephone = USER.telephone || '';
+          this.InformationUser.telephone = USER.phone || '';
         });
     },
     handleEditInfor() {
@@ -344,7 +345,7 @@ export default {
         USER.user_exp_detail = '';
         USER.user_department = '';
         USER.user_position = '';
-        USER.user_telephone = this.InformationUser.telephone;
+        USER.user_phone = this.InformationUser.telephone;
       } else if (this.InformationUser.role === 4) {
         USER.user_birthday = this.InformationUser.birthday;
         USER.user_education_level = this.InformationUser.education_level;
@@ -355,7 +356,7 @@ export default {
         USER.user_position = this.InformationUser.position;
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
-        USER.user_telephone = '';
+        USER.user_phone = '';
       } else {
         USER.user_ex_in_ternal = 0;
         USER.user_address = '';
@@ -366,7 +367,7 @@ export default {
         USER.user_exp_detail = '';
         USER.user_department = '';
         USER.user_position = '';
-        USER.user_telephone = '';
+        USER.user_phone = '';
       }
 
       const ID_USER = {
