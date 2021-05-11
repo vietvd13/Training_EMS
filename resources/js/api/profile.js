@@ -3,7 +3,7 @@ import { template } from './templateURL.js';
 
 const urlAPI = {
   // Get a profile
-  urlGETProfile: template`/user`,
+  urlGETProfile: template`/user/${'id'}`,
   // Put update a user
   urlPUTUpdateUser: template`/users/${'id'}`,
 };
